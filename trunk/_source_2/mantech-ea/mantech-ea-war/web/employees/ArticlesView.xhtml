@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:body>
+        <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+
+                <div class="grid_12">
+                    <div class="box_top">
+                        <h2 class="icon frames">
+                            <h:outputText value="#{bundle.ViewArticlesTitle}"/>
+                        </h2>
+                    </div>
+                    <div class="box_content padding">
+                        <!--START JSF CODE-->
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:form>
+                            <div class="field">
+                                <h:outputText value="#{bundle.ViewArticlesLabel_articleID}"/>
+                                <h:outputText value="#{articlesController.selected.articleID}" title="#{bundle.ViewArticlesTitle_articleID}"/>
+                            </div>
+                            <div class="field">
+                                <h:outputText value="#{bundle.ViewArticlesLabel_title}"/>
+                                <h:outputText value="#{articlesController.selected.title}" title="#{bundle.ViewArticlesTitle_title}"/>
+                            </div>
+                            <div class="field">
+                                <h:outputText value="#{bundle.ViewArticlesLabel_content}"/>
+                                <h:outputText value="#{articlesController.selected.content}" title="#{bundle.ViewArticlesTitle_content}"/>
+                            </div>
+                            <div class="field">
+                                <h:outputText value="#{bundle.ViewArticlesLabel_createTime}"/>
+                                <h:outputText value="#{articlesController.selected.createTime}" title="#{bundle.ViewArticlesTitle_createTime}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </div>
+                            <div class="field">
+                                <h:outputText value="#{bundle.ViewArticlesLabel_createIP}"/>
+                                <h:outputText value="#{articlesController.selected.createIP}" title="#{bundle.ViewArticlesTitle_createIP}"/>
+                            </div>
+                            <div class="field">
+                                <h:outputText value="#{bundle.ViewArticlesLabel_editTime}"/>
+                                <h:outputText value="#{articlesController.selected.editTime}" title="#{bundle.ViewArticlesTitle_editTime}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </div>
+                            <div class="field">
+                                <h:outputText value="#{bundle.ViewArticlesLabel_editIP}"/>
+                                <h:outputText value="#{articlesController.selected.editIP}" title="#{bundle.ViewArticlesTitle_editIP}"/>
+                            </div>
+                            <div class="field">
+                                <h:outputText value="#{bundle.ViewArticlesLabel_isEnable}"/>
+                                <h:outputText value="#{articlesController.selected.isEnable}" title="#{bundle.ViewArticlesTitle_isEnable}"/>
+                            </div>
+                            <div class="field">
+                                <h:outputText value="#{bundle.ListArticlesTitle_userName}"/>
+                                <h:outputText value="#{articlesController.selected.userID.username}" title="#{bundle.ListArticlesTitle_userName}"/>
+                            </div>
+                            <br/>
+                            <br />
+                            <h:commandLink styleClass="button" action="#{articlesController.destroyAndView}" value="#{bundle.ActionLabel_Disable}"/>
+                            <br/>
+                            <br />
+                            <h:commandLink styleClass="button" action="#{articlesController.enableAndView}" value="#{bundle.ActionLabel_Enable}"/>
+                            <br />
+                            <br />
+                            <h:commandLink styleClass="button" action="Edit" value="#{bundle.ViewArticlesEditLink}"/>
+                            <br />
+                            <h:commandLink styleClass="button" action="#{articlesController.prepareCreate}" value="#{bundle.ViewArticlesCreateLink}" />
+                            <br />
+                            <h:commandLink styleClass="button" action="#{articlesController.prepareList}" value="#{bundle.ViewArticlesShowAllLink}"/>
+                           
+                        </h:form>
+                        <!--END JSF CODE-->
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

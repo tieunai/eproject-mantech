@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:body>
+        <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+
+                <div class="grid_12">
+                    <div class="box_top">
+                        <h2 class="icon frames">
+                            <h:outputText value="#{bundle.EditAnswersTitle}"/>
+                        </h2>
+                    </div>
+                    <div class="box_content padding">
+
+                        <!--START JSF CODE-->
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:form>
+                            <h:outputLabel value="#{bundle.EditAnswersLabel_answerID}" for="answerID" />
+                            <h:inputText id="answerID" value="#{answersController.selected.answerID}" title="#{bundle.EditAnswersTitle_answerID}" required="true" requiredMessage="#{bundle.EditAnswersRequiredMessage_answerID}"/>
+                            <h:outputLabel value="#{bundle.EditAnswersLabel_answerContent}" for="answerContent" />
+                            <h:inputTextarea rows="4" cols="30" id="answerContent" value="#{answersController.selected.answerContent}" title="#{bundle.EditAnswersTitle_answerContent}" required="true" requiredMessage="#{bundle.EditAnswersRequiredMessage_answerContent}"/>
+                            <h:outputLabel value="#{bundle.EditAnswersLabel_createTime}" for="createTime" />
+                            <h:inputText id="createTime" value="#{answersController.selected.createTime}" title="#{bundle.EditAnswersTitle_createTime}" required="true" requiredMessage="#{bundle.EditAnswersRequiredMessage_createTime}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:inputText>
+                            <h:outputLabel value="#{bundle.EditAnswersLabel_createIP}" for="createIP" />
+                            <h:inputText id="createIP" value="#{answersController.selected.createIP}" title="#{bundle.EditAnswersTitle_createIP}" required="true" requiredMessage="#{bundle.EditAnswersRequiredMessage_createIP}"/>
+                            <h:outputLabel value="#{bundle.EditAnswersLabel_editTime}" for="editTime" />
+                            <h:inputText id="editTime" value="#{answersController.selected.editTime}" title="#{bundle.EditAnswersTitle_editTime}" >
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:inputText>
+                            <h:outputLabel value="#{bundle.EditAnswersLabel_editIP}" for="editIP" />
+                            <h:inputText id="editIP" value="#{answersController.selected.editIP}" title="#{bundle.EditAnswersTitle_editIP}" />
+                            <h:outputLabel value="#{bundle.EditAnswersLabel_isEnable}" for="isEnable" />
+                            <h:inputText id="isEnable" value="#{answersController.selected.isEnable}" title="#{bundle.EditAnswersTitle_isEnable}" required="true" requiredMessage="#{bundle.EditAnswersRequiredMessage_isEnable}"/>
+                            <h:outputLabel value="#{bundle.EditAnswersLabel_editorID}" for="editorID" />
+                            <h:selectOneMenu id="editorID" value="#{answersController.selected.editorID}" title="#{bundle.EditAnswersTitle_editorID}" >
+                                <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{bundle.EditAnswersLabel_complaintID}" for="complaintID" />
+                            <h:selectOneMenu id="complaintID" value="#{answersController.selected.complaintID}" title="#{bundle.EditAnswersTitle_complaintID}" required="true" requiredMessage="#{bundle.EditAnswersRequiredMessage_complaintID}">
+                                <f:selectItems value="#{complaintsController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <br/>
+                            <br/>
+                            <h:commandLink styleClass="button" action="#{answersController.update}" value="#{bundle.EditAnswersSaveLink}"/>
+                            <br />
+                            <br />
+                            <h:commandLink styleClass="button"  action="View" value="#{bundle.EditAnswersViewLink}" immediate="true"/>
+                            <br />
+                            <h:commandLink styleClass="button" action="#{answersController.prepareList}" value="#{bundle.EditAnswersShowAllLink}" immediate="true"/>
+                           
+                        </h:form>
+                        <!--END JSF CODE-->
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

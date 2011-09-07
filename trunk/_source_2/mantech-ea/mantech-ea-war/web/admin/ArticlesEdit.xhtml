@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:body>
+        <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+
+                <div class="grid_12">
+                    <div class="box_top">
+                        <h2 class="icon frames">
+                            <h:outputText value="#{bundle.EditArticlesTitle}"/>
+                        </h2>
+                    </div>
+                    <div class="box_content padding">
+
+                        <!--START JSF CODE-->
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:form>
+
+                            <h:outputLabel value="#{bundle.EditArticlesLabel_title}" for="title" />
+                            <h:inputText id="title" value="#{articlesController.selected.title}" title="#{bundle.EditArticlesTitle_title}" required="true" requiredMessage="#{bundle.EditArticlesRequiredMessage_title}"/>
+                            <h:outputLabel value="#{bundle.EditArticlesLabel_content}" for="content" />
+                            <h:inputTextarea rows="4" cols="30" id="content" value="#{articlesController.selected.content}" title="#{bundle.EditArticlesTitle_content}" required="true" requiredMessage="#{bundle.EditArticlesRequiredMessage_content}"/>
+                            <h:outputLabel value="#{bundle.EditArticlesLabel_isEnable}" for="isEnable" />
+                            <h:inputText id="isEnable" value="#{articlesController.selected.isEnable}" title="#{bundle.EditArticlesTitle_isEnable}" required="true" requiredMessage="#{bundle.EditArticlesRequiredMessage_isEnable}"/>
+                            <br/>
+                            <br/>
+                            <h:commandLink styleClass="button" action="#{articlesController.update}" value="#{bundle.EditArticlesSaveLink}"/>
+                            <br />
+                            <br />
+                            <h:commandLink styleClass="button" action="ArticlesView" value="#{bundle.EditArticlesViewLink}" immediate="true"/>
+                            <br />
+                            <h:commandLink styleClass="button" action="#{articlesController.prepareList}" value="#{bundle.EditArticlesShowAllLink}" immediate="true"/>
+                          
+                        </h:form>
+                        <!--END JSF CODE-->
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

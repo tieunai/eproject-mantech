@@ -1,0 +1,2 @@
+trunk:			https://eproject-mantech.googlecode.com/svn/trunk
+checkout:		svn checkout https://eproject-mantech.googlecode.com/svn/trunk/ eproject-mantech

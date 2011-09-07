@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:body>
+        <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+
+                <div class="grid_24">
+
+                    <!-- Box Header: Start -->
+                    <div class="box_top">
+
+                        <h2 class="icon pages"><h:outputText value="#{bundle.ComplaintsManagement_tableName}"/></h2>
+
+                        <!-- Tab Select: Start -->
+                        <ul class="sorting">
+                            <li><a href="#listing" class="active"><h:outputText value="#{bundle.TabsLabel_Listing}"/></a></li>
+                            <li>
+                                <h:form>
+                                    <h:commandLink action="ComplaintsCreate" title="Add New"><h:outputText value="#{bundle.TabsLabel_AddNew}"/></h:commandLink>
+                                </h:form>
+                            </li>
+                        </ul>
+                        <!-- Tab Select: End -->
+
+                    </div>
+                    <!-- Box Header: End -->
+
+                    <!-- Box Content: Start -->
+                    <div class="box_content">
+
+                        <!-- News Table Tabs: Start -->
+                        <div class="tabs">
+                            <!-- News Sorting Table: Start -->
+                            <div id="listing">
+                                <h:form styleClass="jsfcrud_list_form">
+                                    <h:panelGroup id="messagePanel" layout="block">
+                                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                                    </h:panelGroup>
+                                    <h:outputText escape="false" value="#{bundle.ListComplaintsEmpty}" rendered="#{complaintsController.items.rowCount == 0}"/>
+                                    <h:panelGroup rendered="#{complaintsController.items.rowCount > 0}">
+                                        <h:outputText value="#{complaintsController.pagination.pageFirstItem + 1}..#{complaintsController.pagination.pageLastItem + 1}/#{complaintsController.pagination.itemsCount}"/>&nbsp;
+                                        <h:commandLink action="#{complaintsController.previous}" value="#{bundle.Previous} #{complaintsController.pagination.pageSize}" rendered="#{complaintsController.pagination.hasPreviousPage}"/>&nbsp;
+                                        <h:commandLink action="#{complaintsController.next}" value="#{bundle.Next} #{complaintsController.pagination.pageSize}" rendered="#{complaintsController.pagination.hasNextPage}"/>&nbsp;
+
+                                        <h:dataTable value="#{complaintsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" styleClass="sorting">
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListComplaintsTitle_title}"/>
+                                                </f:facet>
+                                                <h:outputText style="font-weight: bold; color: red" value="#{item.title}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListComplaintsTitle_createTime}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.createTime}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </h:column>
+                                             <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListComplaintsTitle_priority}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.priority}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListComplaintsTitle_isEnable}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.isEnable}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListComplaintsTitle_isFinished}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.isFinished}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListComplaintsTitle_hasReplied}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.hasReplied}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListComplaintsTitle_userRef}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.userRef.username}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListComplaintsTitle_userName}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.userID.username}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListThreadsTitle_threadName}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.threadID.threadName}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="&nbsp;"/>
+                                                </f:facet>
+                                                <h:commandLink styleClass="view tip" title="#{bundle.ActionLabel_View}" action="#{complaintsController.prepareView}" value="#{bundle.ListComplaintsViewLink}"/>
+                                                <h:outputText value=" "/>
+                                                <h:commandLink styleClass="edit tip" title="#{bundle.ActionLabel_Edit}" action="#{complaintsController.prepareEdit}" value="#{bundle.ListComplaintsEditLink}"/>
+                                                <h:outputText value=" "/>
+                                                <h:commandLink styleClass="edit tip" title="#{bundle.ListComplaintsAssignLink}" action="#{complaintsController.prepareAssign}" value="#{bundle.ListComplaintsAssignLink}"/>
+                                                <h:outputText value=" "/>
+                                                <h:commandLink styleClass="delete tip" title="#{bundle.ActionLabel_Disable}" action="#{complaintsController.destroy}" value="#{bundle.ActionLabel_Disable}"/>
+                                                <h:outputText value=" "/>
+                                                <h:commandLink styleClass="delete tip" title="#{bundle.ActionLabel_Enable}" action="#{complaintsController.enable}" value="#{bundle.ActionLabel_Enable}"/>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </h:panelGroup>
+                                </h:form>
+                            </div>
+
+                        </div>
+                        <!-- News Table Tabs: End -->
+
+                    </div>
+                    <!-- Box Content: End -->
+
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

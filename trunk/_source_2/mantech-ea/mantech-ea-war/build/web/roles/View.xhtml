@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:body>
+        <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+
+                <div class="grid_12">
+                    <div class="box_top">
+                        <h2 class="icon frames">
+                            <h:outputText value="#{bundle.ViewRolesTitle}"/>
+                        </h2>
+                    </div>
+                    <div class="box_content padding">
+                        <!--START JSF CODE-->
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:form>
+                            <div class="field">
+                                <h:outputText value="#{bundle.ViewRolesLabel_roleID}"/>
+                                <h:outputText value="#{rolesController.selected.roleID}" title="#{bundle.ViewRolesTitle_roleID}"/>
+                            </div>
+                            <div class="field">
+                                <h:outputText value="#{bundle.ViewRolesLabel_roleName}"/>
+                                <h:outputText value="#{rolesController.selected.roleName}" title="#{bundle.ViewRolesTitle_roleName}"/>
+                            </div>
+                            <div class="field">
+                                <h:outputText value="#{bundle.ViewRolesLabel_description}"/>
+                                <h:outputText value="#{rolesController.selected.description}" title="#{bundle.ViewRolesTitle_description}"/>
+                            </div>
+                            <br />
+                            <br />
+                            <h:commandLink styleClass="button" action="Edit" value="#{bundle.ViewRolesEditLink}"/>
+                            <br />
+                            <h:commandLink styleClass="button" action="#{rolesController.prepareCreate}" value="#{bundle.ViewRolesCreateLink}" />
+                            <br />
+                            <h:commandLink styleClass="button" action="#{rolesController.prepareList}" value="#{bundle.ViewRolesShowAllLink}"/>
+                            
+                        </h:form>
+                        <!--END JSF CODE-->
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

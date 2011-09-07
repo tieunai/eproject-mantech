@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <h:outputStylesheet library="css" name="screen.css" />
+        <h:outputStylesheet library="css" name="reset.css" />
+        <h:outputStylesheet library="css" name="style.css" />
+        <h:outputStylesheet library="css" name="typography.css" />
+         <h:outputStylesheet library="css" name="forms.css" />
+
+        <h:outputStylesheet library="css" name="fixed.css" />
+        <h:outputStylesheet library="css" name="dark.css" />
+
+        <h:outputScript library="js" name="jquery-1.4.1.min.js" target="head"/>
+        <h:outputScript library="js" name="jquery.cookie.js" target="head"/>
+        <h:outputScript library="js" name="jquery.styleswitcher.js" target="head"/>
+        <h:outputScript library="js" name="jquery.visualize.js" target="head"/>
+        <h:outputScript library="js" name="jquery.visualize-tooltip.js" target="head"/>
+        <h:outputScript library="js" name="jquery-animate-css-rotate-scale.js" target="head"/>
+        <h:outputScript library="js" name="jquery-ui-1.8.13.custom.min.js" target="head"/>
+        <h:outputScript library="js" name="jquery.poshytip.min.js" target="head"/>
+        <h:outputScript library="js" name="jquery.quicksand.js" target="head"/>
+        <h:outputScript library="js" name="jquery.poshytip.min.js" target="head"/>
+        <h:outputScript library="js" name="jquery.dataTables.min.js" target="head"/>
+        <h:outputScript library="js" name="jquery.facebox.js" target="head"/>
+        <h:outputScript library="js" name="jquery.uniform.min.js" target="head"/>
+        <h:outputScript library="js" name="jquery.wysiwyg.js" target="head"/>
+        <h:outputScript library="js" name="shCore.js" target="head"/>
+        <h:outputScript library="js" name="shBrushXml.js" target="head"/>
+        <h:outputScript library="js" name="shBrushJScript.js" target="head"/>
+        <h:outputScript library="js" name="shBrushCss.js" target="head"/>
+        <h:outputScript library="js" name="shBrushPhp.js" target="head"/>
+        <h:outputScript library="js" name="shCore.js" target="head"/>
+        <h:outputScript library="js" name="jqueryFileTree.js" target="head"/>
+         <h:outputScript library="js" name="custom.js" target="head"/>
+
+
+
+    </h:head>
+    <h:body>
+        <div id="wrap" class="container_24">
+          <ui:insert name="header" >
+                <ui:include src="/_include/header.xhtml" />
+            </ui:insert>
+
+  <div class="grid_24">
+
+	<!-- Info Notice: Start -->
+	<div class="notice info">
+		<p>Welcome to Simplpan Admin Template! We hope you enjoy your stay and be sure to check out the other pages</p>
+	</div>
+	<!-- Info Notice: End -->
+
+	<!-- Box Header: Start -->
+	<div class="box_top">
+
+		<h2 class="icon time">Quick Links</h2>
+
+	</div>
+	<!-- Box Header: End -->
+
+	<!-- Box Content: Start -->
+	<div class="box_content">
+
+		<p class="center">
+			<!-- List of big icons for quicklinks -->
+			<a href="#news" class="big_button add_news"><span>add news</span></a>
+			<a href="#gallery" class="big_button upload"><span>upload</span></a>
+			<a href="tables.html" class="big_button add_user"><span>add user</span></a>
+			<a href="tables.html" class="big_button add_event"><span>add event</span></a>
+			<a href="#messages" class="big_button new_pm popup"><span>new pm</span></a>
+			<a href="typography.html" class="big_button support"><span>support</span></a>
+		</p>
+
+	</div>
+	<!-- Box Content: End -->
+
+</div>
+
+     <ui:insert name="content" >
+              <ui:include src="/_include/content.xhtml" />
+    </ui:insert>
+
+              <ui:insert name="footer" >
+                <ui:include src="/_include/footer.xhtml" />
+            </ui:insert>
+        </div>
+    </h:body>
+</html>

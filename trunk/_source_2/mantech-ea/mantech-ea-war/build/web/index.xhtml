@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta http-equiv="imagetoolbar" content="no" />
+        <title>Mantech Helpdesk Administration Panel</title>
+        <link media="screen" rel="stylesheet" type="text/css" href="css/admin.css"  />
+        <!--[if lte IE 6]><link media="screen" rel="stylesheet" type="text/css" href="css/admin-ie.css" /><![endif]-->
+        <script type="text/javascript" src="js/css.js"></script>
+        <script type="text/javascript" src="js/behaviour.js"></script>
+    </h:head>
+    <h:body>
+        <!--[if !IE]>start wrapper<![endif]-->
+        <div id="wrapper">
+            <!--[if !IE]>start head<![endif]-->
+            <div id="head">
+
+                <!--[if !IE]>start logo and user details<![endif]-->
+                <div id="logo_user_details">
+                    <h1 id="logo"><a href="#">Mantech Helpdesk Administration Panel</a></h1>
+
+                    <ui:include src="_components/user_details.xhtml" id="userDetails1"/>
+
+                </div>
+
+                <!--[if !IE]>end logo end user details<![endif]-->
+
+                <ui:include src="_components/menus_wrapper.xhtml" id="menus_wrapper1"/>
+
+            </div>
+            <!--[if !IE]>end head<![endif]-->
+
+            <!--[if !IE]>start content<![endif]-->
+            <div id="content">
+
+                <!--[if !IE]>start page<![endif]-->
+                <div id="page">
+                    <div class="inner">
+
+                        <!--[if !IE]>start section<![endif]-->
+                        <div class="section">
+                            <!--[if !IE]>start title wrapper<![endif]-->
+                            <div class="title_wrapper">
+                                <h2>Dashboard</h2>
+                                <span class="title_wrapper_left"></span>
+                                <span class="title_wrapper_right"></span>
+                            </div>
+                            <!--[if !IE]>end title wrapper<![endif]-->
+                            <!--[if !IE]>start section content<![endif]-->
+                            <div class="section_content">
+                                <!--[if !IE]>start section content top<![endif]-->
+                                <div class="sct">
+                                    <div class="sct_left">
+                                        <div class="sct_right">
+                                            <div class="sct_left">
+                                                <div class="sct_right">
+                                                    <!--[if !IE]>start dashboard menu<![endif]-->
+                                                    <div class="dashboard_menu_wrapper">
+                                                        <ul class="dashboard_menu">
+                                                            <li>
+                                                                <h:form>
+                                                                    <h:commandLink action="/users/List" styleClass="d1">
+                                                                        <span>User management</span>
+                                                                    </h:commandLink>
+                                                                </h:form>
+                                                            </li>
+                                                            <li>
+                                                                <h:commandLink action="/" styleClass="d2">
+                                                                    <span>Setup upload folders</span>
+                                                                </h:commandLink>
+                                                            </li>
+                                                            <li>
+                                                                <h:commandLink action="/" styleClass="d3">
+                                                                    <span>Manage photo galleries</span>
+                                                                </h:commandLink>
+                                                            </li>
+                                                            <li>
+                                                                <h:commandLink action="/" styleClass="d4">
+                                                                    <span>Change site templates</span>
+                                                                </h:commandLink>
+                                                            </li>
+                                                            <li>
+                                                                <h:commandLink action="/" styleClass="d5">
+                                                                    <span>SEO Tools and Settings</span>
+                                                                </h:commandLink>
+                                                            </li>
+                                                            <li>
+                                                                <h:commandLink action="/" styleClass="d6">
+                                                                    <span>Email Settings and Templates</span>
+                                                                </h:commandLink>
+                                                            </li>
+                                                            <li>
+                                                                <h:commandLink action="/" styleClass="d7">
+                                                                    <span>Homepage and Static Pages</span>
+                                                                </h:commandLink>
+                                                            </li>
+                                                            <li>
+                                                                <h:commandLink action="/" styleClass="d8">
+                                                                    <span>Website Security Settings</span>
+                                                                </h:commandLink>
+                                                            </li>
+                                                            <li>
+                                                                <h:commandLink action="/" styleClass="d9">
+                                                                    <span>Printable Pages Template</span>
+                                                                </h:commandLink>
+                                                            </li>
+                                                            <li>
+                                                                <h:commandLink action="/" styleClass="d10">
+                                                                    <span>Date and Time Setup</span>
+                                                                </h:commandLink>
+                                                            </li>
+                                                            <li>
+                                                                <h:commandLink action="/" styleClass="d11">
+                                                                    <span>Favorires Settings</span>
+                                                                </h:commandLink>
+                                                            </li>
+                                                            <li>
+                                                                <h:commandLink action="/" styleClass="d12">
+                                                                    <span>Statistics and Graphs</span>
+                                                                </h:commandLink>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!--[if !IE]>end dashboard menu<![endif]-->
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[if !IE]>end section content top<![endif]-->
+                                <!--[if !IE]>start section content bottom<![endif]-->
+                                <span class="scb"><span class="scb_left"></span><span class="scb_right"></span></span>
+                                <!--[if !IE]>end section content bottom<![endif]-->
+
+                            </div>
+                            <!--[if !IE]>end section content<![endif]-->
+                        </div>
+                        <!--[if !IE]>end section<![endif]-->
+
+                    </div>
+                </div>
+                <!--[if !IE]>end page<![endif]-->
+                <!--[if !IE]>start sidebar<![endif]-->
+                <div id="sidebar">
+                    <div class="inner">
+
+                        <ui:include src="_components/calendar.xhtml" id="calendar1"/>
+
+                        <ui:include src="_components/sidebar_menu.xhtml" id="sidebar_menu1"/>
+
+                        <ui:include src="_components/todo_list.xhtml" id="todo_list1"/>
+
+                        <ui:include src="_components/photo_gallery.xhtml" id="photo_gallery1"/>
+
+                        <ui:include src="_components/quick_info.xhtml"/>
+
+                    </div>
+                </div>
+                <!--[if !IE]>end sidebar<![endif]-->
+
+            </div>
+            <!--[if !IE]>end content<![endif]-->
+
+        </div>
+        <!--[if !IE]>end wrapper<![endif]-->
+
+        <ui:include src="_components/footer.xhtml" id="footer1"/>
+    </h:body>
+</html>
+

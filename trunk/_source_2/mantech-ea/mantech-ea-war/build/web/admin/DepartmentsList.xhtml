@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:body>
+        <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+
+                <div class="grid_24">
+
+                    <!-- Box Header: Start -->
+                    <div class="box_top">
+
+                        <h2 class="icon pages"><h:outputText value="#{bundle.DepartmentsManagement_tableName}"/></h2>
+
+                        <!-- Tab Select: Start -->
+                        <ul class="sorting">
+                            <li><a href="#listing" class="active"><h:outputText value="#{bundle.TabsLabel_Listing}"/></a></li>
+                            <li>
+                                <h:form>
+                                    <h:commandLink action="DepartmentsCreate" title="Add New"><h:outputText value="#{bundle.TabsLabel_AddNew}"/></h:commandLink>
+                                </h:form>
+                            </li>
+                        </ul>
+                        <!-- Tab Select: End -->
+
+                    </div>
+                    <!-- Box Header: End -->
+
+                    <!-- Box Content: Start -->
+                    <div class="box_content">
+
+                        <!-- News Table Tabs: Start -->
+                        <div class="tabs">
+                            <!-- News Sorting Table: Start -->
+                            <div id="listing">
+                                <h:form styleClass="jsfcrud_list_form">
+                                    <h:panelGroup id="messagePanel" layout="block">
+                                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                                    </h:panelGroup>
+                                    <h:outputText escape="false" value="#{bundle.ListDepartmentsEmpty}" rendered="#{departmentsController.items.rowCount == 0}"/>
+                                    <h:panelGroup rendered="#{departmentsController.items.rowCount > 0}">
+                                        <h:outputText value="#{departmentsController.pagination.pageFirstItem + 1}..#{departmentsController.pagination.pageLastItem + 1}/#{departmentsController.pagination.itemsCount}"/>&nbsp;
+                                        <h:commandLink action="#{departmentsController.previous}" value="#{bundle.Previous} #{departmentsController.pagination.pageSize}" rendered="#{departmentsController.pagination.hasPreviousPage}"/>&nbsp;
+                                        <h:commandLink action="#{departmentsController.next}" value="#{bundle.Next} #{departmentsController.pagination.pageSize}" rendered="#{departmentsController.pagination.hasNextPage}"/>&nbsp;
+
+                                        <h:dataTable value="#{departmentsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" styleClass="sorting">
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListDepartmentsTitle_departmentID}"/>
+                                                </f:facet>
+                                                <h:outputText style="font-weight: bold; color: red" value="#{item.departmentID}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListDepartmentsTitle_departmentName}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.departmentName}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListDepartmentsTitle_isEnable}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.isEnable}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="&nbsp;"/>
+                                                </f:facet>
+                                                <h:commandLink styleClass="view tip" title="#{bundle.ActionLabel_View}" action="#{departmentsController.prepareView}" value="#{bundle.ActionLabel_View}"/>
+                                                <h:outputText value=" "/>
+                                                <h:commandLink styleClass="edit tip" title="#{bundle.ActionLabel_Edit}" action="#{departmentsController.prepareEdit}" value="#{bundle.ActionLabel_Edit}"/>
+                                                <h:outputText value=" "/>
+                                                <h:commandLink styleClass="delete tip" title="#{bundle.ActionLabel_Disable}" action="#{departmentsController.destroy}" value="#{bundle.ActionLabel_Disable}"/>
+                                                <h:outputText value=" "/>
+                                                <h:commandLink styleClass="enable tip" title="#{bundle.ActionLabel_Enable}" action="#{departmentsController.enable}" value="#{bundle.ActionLabel_Enable}"/>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </h:panelGroup>
+                                </h:form>
+                            </div>
+
+                        </div>
+                        <!-- News Table Tabs: End -->
+
+                    </div>
+                    <!-- Box Content: End -->
+
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
