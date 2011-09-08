@@ -16,7 +16,12 @@
                             <h:outputText value="#{bundle.FAQsManagement_tableName}"/>
                         </h2>
                         <div class="box-content">
-                            <h:form styleClass="jsfcrud_list_form">
+                            <h:form >
+                                <h:commandLink styleClass="button white" action="#{fAQsController.prepareCreate}" immediate="true">
+                                    <span class="icon_text addnew"/>Add new
+                                </h:commandLink>
+                                <br/>
+
                                 <h:dataTable value="#{fAQsController.items}" var="item" styleClass="display tabledata"  id="tabledata">
                                     <h:column>
                                         <f:facet name="header">
@@ -60,9 +65,13 @@
                                         <f:facet name="header">
                                             <h:outputText value="&nbsp;"/>
                                         </f:facet>
-                                        <h:commandLink styleClass="view tip" title="#{bundle.ActionLabel_View}" action="#{fAQsController.prepareView}" value="#{bundle.ListFAQsViewLink}"/>
+                                        <h:commandLink styleClass="button white tip" title="#{bundle.ActionLabel_View}" action="#{fAQsController.prepareView}" >
+                                                  <span class="icon_single preview"/>
+                                        </h:commandLink>
                                         <h:outputText value=" "/>
-                                        <h:commandLink styleClass="edit tip" title="#{bundle.ActionLabel_Edit}" action="#{fAQsController.prepareEdit}" value="#{bundle.ListFAQsEditLink}"/>
+                                        <h:commandLink styleClass="button white tip" title="#{bundle.ActionLabel_Edit}" action="#{fAQsController.prepareEdit}" >
+                                               <span class="icon_single edit"/>
+                                        </h:commandLink>
                                     </h:column>
                                 </h:dataTable>
                             </h:form>
