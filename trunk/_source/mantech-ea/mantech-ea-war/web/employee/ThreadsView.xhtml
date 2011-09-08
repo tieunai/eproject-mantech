@@ -5,64 +5,63 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:body>
-      
-
-                <div class="grid_12">
-                    <div class="box_top">
-                        <h2 class="icon frames">
-                            <h:outputText value="#{bundle.ViewThreadsTitle}"/>
-                        </h2>
-                    </div>
-                    <div class="box_content padding">
-                        <!--START JSF CODE-->
+        <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+                <div class="column half fl">
+                    <div class="box black_box">
+                        <h2 class="box-header">#{bundle.ViewThreadsTitle} </h2>
+                        <div class="box-content">
                         <h:panelGroup id="messagePanel" layout="block">
                             <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                         </h:panelGroup>
                         <h:form>
-                            <div class="field">
-                                <h:outputText value="#{bundle.ViewThreadsLabel_threadID}"/>
-                                <h:outputText value="#{threadsController.selected.threadID}" title="#{bundle.ViewThreadsTitle_threadID}"/>
-                            </div>
-                            <div class="field">
-                                <h:outputText value="#{bundle.ViewThreadsLabel_threadName}"/>
-                                <h:outputText style="font-weight: bold; color: red" value="#{threadsController.selected.threadName}" title="#{bundle.ViewThreadsTitle_threadName}"/>
-                            </div>
-                            <div class="field">
-                                <h:outputText value="#{bundle.ViewThreadsLabel_createTime}"/>
-                                <h:outputText value="#{threadsController.selected.createTime}" title="#{bundle.ViewThreadsTitle_createTime}">
+
+                                 <h:outputText styleClass="form-label" value="#{bundle.ViewThreadsLabel_threadID}"/>
+                                 <h:outputText styleClass="form-label"  style="color:red"  value="#{threadsController.selected.threadID}" title="#{bundle.ViewThreadsTitle_threadID}"/>
+
+                                 <h:outputText styleClass="form-label" value="#{bundle.ViewThreadsLabel_threadName}"/>
+                                 <h:outputText styleClass="form-label" style="font-weight: bold; color: red" value="#{threadsController.selected.threadName}" title="#{bundle.ViewThreadsTitle_threadName}"/>
+
+                                 <h:outputText styleClass="form-label" value="#{bundle.ViewThreadsLabel_createTime}"/>
+                                 <h:outputText styleClass="form-label"  style="color:red"  value="#{threadsController.selected.createTime}" title="#{bundle.ViewThreadsTitle_createTime}">
                                     <f:convertDateTime pattern="MM/dd/yyyy" />
                                 </h:outputText>
-                            </div>
-                            <div class="field">
-                                <h:outputText value="#{bundle.ViewThreadsLabel_createIP}"/>
-                                <h:outputText value="#{threadsController.selected.createIP}" title="#{bundle.ViewThreadsTitle_createIP}"/>
-                            </div>
-                            <div class="field">
-                                <h:outputText value="#{bundle.ViewThreadsLabel_editTime}"/>
-                                <h:outputText value="#{threadsController.selected.editTime}" title="#{bundle.ViewThreadsTitle_editTime}">
+
+                                 <h:outputText styleClass="form-label" value="#{bundle.ViewThreadsLabel_createIP}"/>
+                                 <h:outputText styleClass="form-label"  style="color:red" value="#{threadsController.selected.createIP}" title="#{bundle.ViewThreadsTitle_createIP}"/>
+
+                                 <h:outputText styleClass="form-label" value="#{bundle.ViewThreadsLabel_editTime}"/>
+                                 <h:outputText styleClass="form-label"  style="color:red" value="#{threadsController.selected.editTime}" title="#{bundle.ViewThreadsTitle_editTime}">
                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                 </h:outputText>
-                            </div>
-                            <div class="field">
-                                <h:outputText value="#{bundle.ViewThreadsLabel_editIP}"/>
-                                <h:outputText value="#{threadsController.selected.editIP}" title="#{bundle.ViewThreadsTitle_editIP}"/>
-                            </div>
-                            <div class="field">
-                                <h:outputText value="#{bundle.ViewThreadsLabel_isEnable}"/>
-                                <h:outputText value="#{threadsController.selected.isEnable}" title="#{bundle.ViewThreadsTitle_isEnable}"/>
-                            </div>
-                            <div class="field">
-                                <h:outputText value="#{bundle.ViewDepartmentsLabel_departmentName}"/>
-                                <h:outputText value="#{threadsController.selected.departmentID.departmentName}" title="#{bundle.ViewDepartmentsTitle_departmentName}"/>
-                            </div>
+
+                                 <h:outputText styleClass="form-label" value="#{bundle.ViewThreadsLabel_editIP}"/>
+                                 <h:outputText styleClass="form-label"  style="color:red" value="#{threadsController.selected.editIP}" title="#{bundle.ViewThreadsTitle_editIP}"/>
+
+                                 <h:outputText styleClass="form-label" value="#{bundle.ViewThreadsLabel_isEnable}"/>
+                                 <h:outputText styleClass="form-label"  style="color:red" value="#{threadsController.selected.isEnable}" title="#{bundle.ViewThreadsTitle_isEnable}"/>
+
+                                 <h:outputText styleClass="form-label" value="#{bundle.ViewDepartmentsLabel_departmentName}"/>
+                                 <h:outputText styleClass="form-label" style="color:red" value="#{threadsController.selected.departmentID.departmentName}" title="#{bundle.ViewDepartmentsTitle_departmentName}"/>
+
                             <br />
                             <br/>
-                           
-                            <h:commandLink styleClass="button" action="#{threadsController.prepareList}" value="#{bundle.ViewThreadsShowAllLink}"/>
+                            <h:commandLink styleClass="button white" action="#{threadsController.destroyAndView}" value="#{bundle.ActionLabel_Disable}"/>
+
+                            <h:commandLink styleClass="button white" action="#{threadsController.enableAndView}" value="#{bundle.ActionLabel_Enable}"/>
+
+
+                            <h:commandLink styleClass="button white" action="ThreadsEdit" value="#{bundle.ViewThreadsEditLink}"/>
+                            <br />
+                            <h:commandLink styleClass="button white" action="#{threadsController.prepareCreate}" value="#{bundle.ViewThreadsCreateLink}" />
+
+                            <h:commandLink styleClass="button white" action="#{threadsController.prepareList}" value="#{bundle.ViewThreadsShowAllLink}"/>
                         </h:form>
                         <!--END JSF CODE-->
+                     </div>
                     </div>
                 </div>
-           
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
