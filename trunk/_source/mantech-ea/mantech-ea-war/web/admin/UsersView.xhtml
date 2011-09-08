@@ -6,13 +6,12 @@
       xmlns:f="http://java.sun.com/jsf/core">
     <h:body>
 
-        <div class="grid_12">
-            <div class="box_top">
-                <h2 class="icon frames">
-                    <h:outputText value="#{bundle.ViewUsersTitle}"/>
-                </h2>
-            </div>
-            <div class="box_content padding">
+ <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+                <div class="column half fl">
+                    <div class="box black_box">
+                        <h2 class="box-header">#{bundle.UsersManagement_tableName} </h2>
+                        <div class="box-content">
 
                 <!--START JSF CODE-->
                 <h:panelGroup id="messagePanel" layout="block">
@@ -20,86 +19,86 @@
                 </h:panelGroup>
                 <h:form>
                     <div class="field">
-                        <h:outputText value="#{bundle.ViewUsersLabel_userID}"/>
-                        <h:outputText value="#{usersController.selected.userID}" title="#{bundle.ViewUsersTitle_userID}"/>
+                         <h:outputText styleClass="form-label" value="#{bundle.ViewUsersLabel_userID}"/>
+                         <h:outputText styleClass="form-label" value="#{usersController.selected.userID}" title="#{bundle.ViewUsersTitle_userID}"/>
                     </div>
                     <div class="field">
-                        <h:outputText value="#{bundle.ViewUsersLabel_username}"/>
-                        <h:outputText style="font-weight: bold; color: red" value="#{usersController.selected.username}" title="#{bundle.ViewUsersTitle_username}"/>
+                         <h:outputText styleClass="form-label" value="#{bundle.ViewUsersLabel_username}"/>
+                         <h:outputText styleClass="form-label" style="font-weight: bold; color: red" value="#{usersController.selected.username}" title="#{bundle.ViewUsersTitle_username}"/>
                     </div>
                     <div class="field">
-                        <h:outputText value="#{bundle.ViewUsersLabel_firstName}"/>
-                        <h:outputText value="#{usersController.selected.firstName}" title="#{bundle.ViewUsersTitle_firstName}"/>
+                         <h:outputText styleClass="form-label" value="#{bundle.ViewUsersLabel_firstName}"/>
+                         <h:outputText styleClass="form-label" value="#{usersController.selected.firstName}" title="#{bundle.ViewUsersTitle_firstName}"/>
                     </div>
                     <div class="field">
-                        <h:outputText value="#{bundle.ViewUsersLabel_lastName}"/>
-                        <h:outputText value="#{usersController.selected.lastName}" title="#{bundle.ViewUsersTitle_lastName}"/>
+                         <h:outputText styleClass="form-label" value="#{bundle.ViewUsersLabel_lastName}"/>
+                         <h:outputText styleClass="form-label" value="#{usersController.selected.lastName}" title="#{bundle.ViewUsersTitle_lastName}"/>
                     </div>
                     <div class="field">
-                        <h:outputText value="#{bundle.ViewUsersLabel_isOnline}"/>
-                        <h:outputText value="#{usersController.selected.isOnline}" title="#{bundle.ViewUsersTitle_isOnline}"/>
+                         <h:outputText styleClass="form-label" value="#{bundle.ViewUsersLabel_isOnline}"/>
+                         <h:outputText styleClass="form-label" value="#{usersController.selected.isOnline}" title="#{bundle.ViewUsersTitle_isOnline}"/>
                     </div>
                     <div class="field">
-                        <h:outputText value="#{bundle.ViewUsersLabel_lastVisit}"/>
-                        <h:outputText value="#{usersController.selected.lastVisit}" title="#{bundle.ViewUsersTitle_lastVisit}">
+                         <h:outputText styleClass="form-label" value="#{bundle.ViewUsersLabel_lastVisit}"/>
+                         <h:outputText styleClass="form-label" value="#{usersController.selected.lastVisit}" title="#{bundle.ViewUsersTitle_lastVisit}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
                     </div>
                     <div class="field">
-                        <h:outputText value="#{bundle.ViewUsersLabel_createTime}"/>
-                        <h:outputText value="#{usersController.selected.createTime}" title="#{bundle.ViewUsersTitle_createTime}">
+                         <h:outputText styleClass="form-label" value="#{bundle.ViewUsersLabel_createTime}"/>
+                         <h:outputText styleClass="form-label" value="#{usersController.selected.createTime}" title="#{bundle.ViewUsersTitle_createTime}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
                     </div>
                     <div class="field">
-                        <h:outputText value="#{bundle.ViewUsersLabel_createIP}"/>
-                        <h:outputText value="#{usersController.selected.createIP}" title="#{bundle.ViewUsersTitle_createIP}"/>
+                         <h:outputText styleClass="form-label" value="#{bundle.ViewUsersLabel_createIP}"/>
+                         <h:outputText styleClass="form-label" value="#{usersController.selected.createIP}" title="#{bundle.ViewUsersTitle_createIP}"/>
                     </div>
                     <div class="field">
-                        <h:outputText value="#{bundle.ViewUsersLabel_editTime}"/>
-                        <h:outputText value="#{usersController.selected.editTime}" title="#{bundle.ViewUsersTitle_editTime}">
+                         <h:outputText styleClass="form-label" value="#{bundle.ViewUsersLabel_editTime}"/>
+                         <h:outputText styleClass="form-label" value="#{usersController.selected.editTime}" title="#{bundle.ViewUsersTitle_editTime}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
                     </div>
                     <div class="field">
-                        <h:outputText value="#{bundle.ViewUsersLabel_editIP}"/>
-                        <h:outputText value="#{usersController.selected.editIP}" title="#{bundle.ViewUsersTitle_editIP}"/>
+                         <h:outputText styleClass="form-label" value="#{bundle.ViewUsersLabel_editIP}"/>
+                         <h:outputText styleClass="form-label" value="#{usersController.selected.editIP}" title="#{bundle.ViewUsersTitle_editIP}"/>
                     </div>
                     <div class="field">
-                        <h:outputText value="#{bundle.ViewUsersLabel_isEnable}"/>
-                        <h:outputText value="#{usersController.selected.isEnable}" title="#{bundle.ViewUsersTitle_isEnable}"/>
+                         <h:outputText styleClass="form-label" value="#{bundle.ViewUsersLabel_isEnable}"/>
+                         <h:outputText styleClass="form-label" value="#{usersController.selected.isEnable}" title="#{bundle.ViewUsersTitle_isEnable}"/>
                     </div>
                     <div class="field">
-                        <h:outputText value="#{bundle.ViewUsersLabel_editorName}"/>
-                        <h:outputText value="#{usersController.selected.editorID.username}" title="#{bundle.ViewUsersTitle_editorName}"/>
+                         <h:outputText styleClass="form-label" value="#{bundle.ViewUsersLabel_editorName}"/>
+                         <h:outputText styleClass="form-label" value="#{usersController.selected.editorID.username}" title="#{bundle.ViewUsersTitle_editorName}"/>
                     </div>
                     <div class="field">
-                        <h:outputText value="#{bundle.ViewRolesLabel_roleName}"/>
-                        <h:outputText value="#{usersController.selected.roleID.roleName}" title="#{bundle.ViewRolesLabel_roleName}"/>
+                         <h:outputText styleClass="form-label" value="#{bundle.ViewRolesLabel_roleName}"/>
+                         <h:outputText styleClass="form-label" value="#{usersController.selected.roleID.roleName}" title="#{bundle.ViewRolesLabel_roleName}"/>
                     </div>
                     <div class="field">
-                        <h:outputText value="#{bundle.ViewDepartmentsLabel_departmentName}"/>
-                        <h:outputText value="#{usersController.selected.departmentID.departmentName}" title="#{bundle.ViewDepartmentsLabel_departmentName}"/>
+                         <h:outputText styleClass="form-label" value="#{bundle.ViewDepartmentsLabel_departmentName}"/>
+                         <h:outputText styleClass="form-label" value="#{usersController.selected.departmentID.departmentName}" title="#{bundle.ViewDepartmentsLabel_departmentName}"/>
                     </div>
                     <br />
                     <br/>
-                    <h:commandLink styleClass="button" action="#{usersController.destroyAndView}" value="#{bundle.ActionLabel_Disable}"/>
-                    <br />
-                    <br/>
-                    <h:commandLink styleClass="button" action="#{usersController.enableAndView}" value="#{bundle.ActionLabel_Enable}"/>
-                    <br />
-                    <br />
-                    <h:commandLink styleClass="button" action="Edit" value="#{bundle.ViewUsersEditLink}"/>
-                    <br />
-                    <h:commandLink styleClass="button" action="#{usersController.prepareCreate}" value="#{bundle.ViewUsersCreateLink}" />
-                    <br />
-                    <h:commandLink styleClass="button" action="#{usersController.prepareList}" value="#{bundle.ViewUsersShowAllLink}"/>
-                    <br />
-                    <br />
-                </h:form>
-                <!--END JSF CODE-->
-            </div>
-        </div>
+                    <h:commandLink styleClass="button white" action="#{usersController.destroyAndView}" value="#{bundle.ActionLabel_Disable}"/>
 
+                    <h:commandLink styleClass="button white" action="#{usersController.enableAndView}" value="#{bundle.ActionLabel_Enable}"/>
+
+                    <h:commandLink styleClass="button white" action="UsersEdit" value="#{bundle.ViewUsersEditLink}"/>
+                    <br />
+                    <h:commandLink styleClass="button white" action="#{usersController.prepareCreate}" value="#{bundle.ViewUsersCreateLink}" />
+
+                    <h:commandLink styleClass="button white" action="#{usersController.prepareList}" value="#{bundle.ViewUsersShowAllLink}"/>
+
+
+                </h:form>
+                            <!--END JSF CODE-->
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
