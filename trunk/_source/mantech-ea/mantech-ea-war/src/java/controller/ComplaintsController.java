@@ -148,6 +148,7 @@ public class ComplaintsController {
             getSelected().setIsEnable(true);
             getSelected().setIsFinished(false);
             getSelected().setHasReplied(false);
+            getSelected().setPriority(getSelected().getPriority() == null ? 1 : getSelected().getPriority());
 
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ComplaintsCreated"));
