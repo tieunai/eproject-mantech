@@ -79,19 +79,19 @@ public class ThreadsController {
 
     public String prepareList() {
         recreateModel();
-        return "List";
+        return "ThreadsList";
     }
 
     public String prepareView() {
         current = (Threads)getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return "ThreadsView";
     }
 
     public String prepareCreate() {
         current = new Threads();
         selectedItemIndex = -1;
-        return "Create";
+        return "ThreadsCreate";
     }
 
     public String create() {
@@ -112,7 +112,7 @@ public class ThreadsController {
     public String prepareEdit() {
         current = (Threads)getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        return "ThreadsEdit";
     }
 
     public String update() {
@@ -122,7 +122,7 @@ public class ThreadsController {
 
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ThreadsUpdated"));
-            return "View";
+            return "ThreadsView";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -134,7 +134,7 @@ public class ThreadsController {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreateModel();
-        return "List";
+        return "ThreadsList";
     }
 
     public String enable() {
@@ -142,7 +142,7 @@ public class ThreadsController {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performEnable();
         recreateModel();
-        return "List";
+        return "ThreadsList";
     }
 
     public String destroyAndView() {
@@ -150,11 +150,11 @@ public class ThreadsController {
         recreateModel();
         updateCurrentItem();
         if (selectedItemIndex >= 0) {
-            return "View";
+            return "ThreadsView";
         } else {
             // all items were removed - go back to list
             recreateModel();
-            return "List";
+            return "ThreadsList";
         }
     }
 
@@ -163,11 +163,11 @@ public class ThreadsController {
         recreateModel();
         updateCurrentItem();
         if (selectedItemIndex >= 0) {
-            return "View";
+            return "ThreadsView";
         } else {
             // all items were removed - go back to list
             recreateModel();
-            return "List";
+            return "ThreadsList";
         }
     }
 
@@ -183,6 +183,7 @@ public class ThreadsController {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
     }
+
 
     private void performEnable() {
         try {
@@ -226,13 +227,13 @@ public class ThreadsController {
     public String next() {
         getPagination().nextPage();
         recreateModel();
-        return "List";
+        return "ThreadsList";
     }
 
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return "List";
+        return "ThreadsList";
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
@@ -243,6 +244,15 @@ public class ThreadsController {
         return JsfUtil.getThreadsSelectItems(ejbFacade.findAll(), true);
     }
 
+     public SelectItem[] getTrueFalseAvailableSelectOne() {
+        SelectItem[] trueFalseItems = new SelectItem[2];
+        trueFalseItems[0] = new SelectItem("true", "True");
+        trueFalseItems[1] = new SelectItem("false", "False");
+
+        return trueFalseItems;
+    }
+
+         
     @FacesConverter(forClass=Threads.class)
     public static class ThreadsControllerConverter implements Converter {
 
