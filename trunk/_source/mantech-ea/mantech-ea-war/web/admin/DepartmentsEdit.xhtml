@@ -26,17 +26,15 @@
 
                                 <br/>
                                 <br/>
-                                <h:commandLink styleClass="button white" action="#{departmentsController.update}" value="#{bundle.EditDepartmentsSaveLink}">
-                                    <span class="icon_text save"/>
+                                <h:commandLink styleClass="button " action="#{departmentsController.update}" value="#{bundle.EditDepartmentsSaveLink}">
+                                  
+                                </h:commandLink>
+                                <h:commandLink styleClass="button " action="DepartmentsView" value="#{bundle.EditDepartmentsViewLink}" immediate="true">
+                                    
                                 </h:commandLink>
                                 <br />
-                                <br />
-                                <h:commandLink styleClass="button white" action="DepartmentsView" value="#{bundle.EditDepartmentsViewLink}" immediate="true">
-                                    <span class="icon_text viewDetails"/>
-                                </h:commandLink>
-                                <br />
-                                <h:commandLink styleClass="button white" action="#{departmentsController.prepareList}" value="#{bundle.EditDepartmentsShowAllLink}" immediate="true">
-                                    <span class="icon_text showlist"/>
+                                <h:commandLink styleClass="button " action="#{departmentsController.prepareList}" value="#{bundle.EditDepartmentsShowAllLink}" immediate="true">
+                                    
                                 </h:commandLink>
 
                             </h:form>
