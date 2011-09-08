@@ -44,19 +44,19 @@
                                         <f:facet name="header">
                                             <h:outputText value="&nbsp;"/>
                                         </f:facet>
-                                        <h:commandLink styleClass="button white" title="#{bundle.ActionLabel_View}" action="#{departmentsController.prepareView}">
-                                            <span class="icon_single viewDetails"/>
+                                        <h:commandLink styleClass="button white tip" title="#{bundle.ActionLabel_View}" action="#{departmentsController.prepareView}">
+                                            <span class="icon_single preview"/>
                                         </h:commandLink>
                                         <h:outputText value=" "/>
-                                        <h:commandLink styleClass="button white" title="#{bundle.ActionLabel_Edit}" action="#{departmentsController.prepareEdit}" >
+                                        <h:commandLink styleClass="button white tip" title="#{bundle.ActionLabel_Edit}" action="#{departmentsController.prepareEdit}" >
                                             <span class="icon_single edit"/>
                                         </h:commandLink>
                                         <h:outputText value=" "/>
-                                        <h:commandLink styleClass="button white" title="#{bundle.ActionLabel_Disable}" action="#{departmentsController.destroy}" >
+                                        <h:commandLink styleClass="button white tip" title="#{bundle.ActionLabel_Disable}" action="#{departmentsController.destroy}" >
                                             <span class="icon_single cancel"/>
                                         </h:commandLink>
                                         <h:outputText value=" "/>
-                                        <h:commandLink styleClass="button white" title="#{bundle.ActionLabel_Enable}" action="#{departmentsController.enable}" >
+                                        <h:commandLink styleClass="button white tip" title="#{bundle.ActionLabel_Enable}" action="#{departmentsController.enable}" >
                                             <span class="icon_single accept"/>
                                         </h:commandLink>
                                     </h:column>
