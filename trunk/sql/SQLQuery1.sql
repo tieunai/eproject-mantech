@@ -105,6 +105,12 @@ create table FAQs(
 	IsEnable bit default 1 not null
 );
 
+
+create table Roles_Users(
+	RoleID int foreign key references Roles(RoleID),
+	UserID int foreign key references Users(UserID),
+	primary key(RoleID, UserID)
+)
 --insert data
 
 insert into Roles(RoleName) values('admin')
