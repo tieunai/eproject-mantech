@@ -79,19 +79,19 @@ public class FAQsController {
 
     public String prepareList() {
         recreateModel();
-        return "List";
+        return "FAQsList";
     }
 
     public String prepareView() {
         current = (FAQs)getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return "FAQsView";
     }
 
     public String prepareCreate() {
         current = new FAQs();
         selectedItemIndex = -1;
-        return "Create";
+        return "FAQsCreate";
     }
 
     public String create() {
@@ -112,14 +112,14 @@ public class FAQsController {
     public String prepareEdit() {
         current = (FAQs)getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        return "FAQsEdit";
     }
 
     public String update() {
         try {
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FAQsUpdated"));
-            return "View";
+            return "FAQsView";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -131,7 +131,7 @@ public class FAQsController {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreateModel();
-        return "List";
+        return "FAQsList";
     }
 
     public String destroyAndView() {
@@ -139,11 +139,11 @@ public class FAQsController {
         recreateModel();
         updateCurrentItem();
         if (selectedItemIndex >= 0) {
-            return "View";
+            return "FAQsView";
         } else {
             // all items were removed - go back to list
             recreateModel();
-            return "List";
+            return "FAQsList";
         }
     }
 
@@ -185,13 +185,13 @@ public class FAQsController {
     public String next() {
         getPagination().nextPage();
         recreateModel();
-        return "List";
+        return "FAQsList";
     }
 
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return "List";
+        return "FAQsList";
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
