@@ -7,8 +7,8 @@
     <h:body>
         <ui:composition template="/_include/master.xhtml">
             <ui:define name="content">
-                <div class="column half fl">
-                    <div class="box black_box">
+                <div class="column full fl">
+                    <div class="box">
                         <h2 class="box-header">	<h:outputText value="#{bundle.ViewArticlesTitles}"/> </h2>
                         <div class="box-content">
                             <!--START JSF CODE-->
@@ -24,7 +24,7 @@
                                 <h:outputText styleClass="form-label full" style="color:red" value="#{articlesController.selected.title}" title="#{bundle.ViewArticlesTitle_title}"/>
 
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewArticlesLabel_content}"/>
-                                <h:outputText escape="false" styleClass="form-label full" style="color:red" value="#{articlesController.selected.content}" title="#{bundle.ViewArticlesTitle_content}"/>
+                                <h:outputText escape="false" style="color:red" value="#{articlesController.selected.content}" title="#{bundle.ViewArticlesTitle_content}"/>
 
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewArticlesLabel_createTime}"/>
                                 <h:outputText styleClass="form-label full" style="color:red" value="#{articlesController.selected.createTime}" title="#{bundle.ViewArticlesTitle_createTime}">
@@ -48,11 +48,10 @@
                                 <h:outputText styleClass="form-label" value="#{bundle.ListArticlesTitle_userName}"/>
                                 <h:outputText styleClass="form-label full" style="color:red" value="#{articlesController.selected.userID.username}" title="#{bundle.ListArticlesTitle_userName}"/>
 
-                                <br/>
-                                <br />
+                                <hr/>
 
-                                <h:commandLink styleClass="button " action="#{articlesController.prepareList}" value="#{bundle.ViewArticlesShowAllLink}">
-                                   
+                                <h:commandLink styleClass="button  themed" action="#{articlesController.prepareList}" value="#{bundle.ViewArticlesShowAllLink}">
+
                                 </h:commandLink>
 
                             </h:form>

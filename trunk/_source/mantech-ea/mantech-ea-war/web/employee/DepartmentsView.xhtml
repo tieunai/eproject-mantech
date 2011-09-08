@@ -26,11 +26,10 @@
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewDepartmentsLabel_isEnable}"/>
                                 <h:outputText styleClass="form-label full" style="color:red" value="#{departmentsController.selected.isEnable}" title="#{bundle.ViewDepartmentsTitle_isEnable}"/>
 
-                                <br/>
-                                <br />
+                                <hr/>
 
-                                <h:commandLink styleClass="button" action="#{departmentsController.prepareList}" value="#{bundle.ViewDepartmentsShowAllLink}">
-                                   
+                                <h:commandLink styleClass="button  themed" action="#{departmentsController.prepareList}" value="#{bundle.ViewDepartmentsShowAllLink}">
+
                                 </h:commandLink>
 
                             </h:form>

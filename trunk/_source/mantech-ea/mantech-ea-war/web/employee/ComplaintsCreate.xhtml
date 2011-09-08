@@ -20,10 +20,9 @@
                                 <h:inputText styleClass="form-field full" id="title" value="#{complaintsController.selected.title}" title="#{bundle.CreateComplaintsTitle_title}" required="true" requiredMessage="#{bundle.CreateComplaintsRequiredMessage_title}"/>
                                 <h:outputLabel styleClass="form-label" value="#{bundle.CreateComplaintsLabel_complaintContent}" for="complaintContent" />
                                 <h:inputTextarea styleClass="form-field full" rows="4" id="complaintContent" value="#{complaintsController.selected.complaintContent}" title="#{bundle.CreateComplaintsTitle_complaintContent}" required="true" requiredMessage="#{bundle.CreateComplaintsRequiredMessage_complaintContent}"/>
-                                <br/>
-                                <br />
+                                <hr/>
                                 <h:commandLink styleClass="button themed" action="#{complaintsController.create}" value="#{bundle.CreateComplaintsSaveLink}" >
-                                  
+
                                 </h:commandLink>
 
                             </h:form>

@@ -68,11 +68,10 @@
                                 <h:outputText styleClass="form-label" value="#{bundle.ListThreadsTitle_threadName}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.threadID.threadName}" title="#{bundle.ListThreadsTitle_threadName}"/>
 
-                                <br/>
-                                <br />
+                                <hr/>
 
-                                <h:commandLink styleClass="button " action="#{complaintsController.prepareList}" value="#{bundle.ViewComplaintsShowAllLink}">
-                                   
+                                <h:commandLink styleClass="button  themed" action="#{complaintsController.prepareList}" value="#{bundle.ViewComplaintsShowAllLink}">
+
                                 </h:commandLink>
 
 

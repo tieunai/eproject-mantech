@@ -25,18 +25,17 @@
                                 <h:selectOneMenu styleClass="form-field" id="isEnable" value="#{articlesController.selected.isEnable}" title="#{bundle.EditArticlesTitle_isEnable}" required="true" requiredMessage="#{bundle.EditArticlesRequiredMessage_isEnable}">
                                     <f:selectItems value="#{articlesController.trueFalseAvailableSelectOne}"/>
                                 </h:selectOneMenu>
-                                <br/>
-                                <br/>
+                                <hr/>
                                 <h:commandLink styleClass="button themed" action="#{articlesController.update}" value="#{bundle.EditArticlesSaveLink}">
                                   
                                 </h:commandLink>
                                 <br />
                                 <br />
-                                <h:commandLink styleClass="button " action="ArticlesView" value="#{bundle.EditArticlesViewLink}" immediate="true">
+                                <h:commandLink styleClass="button  themed" action="ArticlesView" value="#{bundle.EditArticlesViewLink}" immediate="true">
                                    
                                 </h:commandLink>
                             
-                                <h:commandLink styleClass="button " action="#{articlesController.prepareList}" value="#{bundle.EditArticlesShowAllLink}" immediate="true">
+                                <h:commandLink styleClass="button themed " action="#{articlesController.prepareList}" value="#{bundle.EditArticlesShowAllLink}" immediate="true">
                                   
                                 </h:commandLink>
 

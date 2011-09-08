@@ -48,11 +48,9 @@
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewAnswersLabel_complaintID}"/>
                                 <h:outputText styleClass="form-label full" style="color:red" value="#{answersController.selected.complaintID}" title="#{bundle.ViewAnswersTitle_complaintID}"/>
 
+                                <hr/>
+                                <h:commandLink styleClass="button  themed" action="#{answersController.prepareList}" value="#{bundle.ViewAnswersShowAllLink}">
 
-                                <br/>
-                                <br />
-                                <h:commandLink styleClass="button " action="#{answersController.prepareList}" value="#{bundle.ViewAnswersShowAllLink}">
-                                  
                                 </h:commandLink>
 
                             </h:form>

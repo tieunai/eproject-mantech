@@ -19,14 +19,13 @@
 
                                 <h:outputLabel styleClass="form-label" value="#{bundle.CreateDepartmentsLabel_departmentName}" for="departmentName" />
                                 <h:inputText styleClass="form-field full" id="departmentName" value="#{departmentsController.selected.departmentName}" title="#{bundle.CreateDepartmentsTitle_departmentName}" required="true" requiredMessage="#{bundle.CreateDepartmentsRequiredMessage_departmentName}"/>
-                                <br/>
-                                <br />
+                                <hr/>
                                 <h:commandLink styleClass="button themed" action="#{departmentsController.create}" value="#{bundle.CreateDepartmentsSaveLink}" >
                                     
                                 </h:commandLink>
                                 <br />
                                 <br />
-                                <h:commandLink styleClass="button " action="#{departmentsController.prepareList}" value="#{bundle.CreateDepartmentsShowAllLink}" immediate="true">
+                                <h:commandLink styleClass="button  themed" action="#{departmentsController.prepareList}" value="#{bundle.CreateDepartmentsShowAllLink}" immediate="true">
                                    
                                 </h:commandLink>
 

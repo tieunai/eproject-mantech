@@ -31,14 +31,13 @@
                             <h:selectOneMenu styleClass="form-field full" id="threadID" value="#{complaintsController.selected.threadID}" title="#{bundle.EditComplaintsTitle_threadID}" required="true" requiredMessage="#{bundle.EditComplaintsRequiredMessage_threadID}">
                                 <f:selectItems value="#{threadsController.itemsAvailableSelectOne}"/>
                             </h:selectOneMenu>
-                            <br/>
-                            <br />
+                            <hr/>
                             <h:commandLink styleClass="button themed" action="#{complaintsController.create}" value="#{bundle.CreateComplaintsSaveLink}" >
                                
                             </h:commandLink>
                             <br />
                             <br />
-                            <h:commandLink styleClass="button " action="#{complaintsController.prepareList}" value="#{bundle.EditComplaintsShowAllLink}" immediate="true">
+                            <h:commandLink styleClass="button  themed" action="#{complaintsController.prepareList}" value="#{bundle.EditComplaintsShowAllLink}" immediate="true">
                                
                             </h:commandLink>
                             

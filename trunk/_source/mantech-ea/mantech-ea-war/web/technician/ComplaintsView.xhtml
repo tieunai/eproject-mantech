@@ -5,80 +5,79 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:body>
-       <ui:composition template="/_include/master.xhtml">
+        <ui:composition template="/_include/master.xhtml">
             <ui:define name="content">
                 <div class="column half fl">
                     <div class="box black_box">
                         <h2 class="box-header">	<h:outputText value="#{bundle.ViewComplaintsTitle}"/> </h2>
                         <div class="box-content">
-                        <!--START JSF CODE-->
-                        <h:panelGroup id="messagePanel" layout="block">
-                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                        </h:panelGroup>
-                        <h:form>
-                        
+                            <!--START JSF CODE-->
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:form>
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_complaintID}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.complaintID}" title="#{bundle.ViewComplaintsTitle_complaintID}"/>
-                            
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_title}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.title}" title="#{bundle.ViewComplaintsTitle_title}"/>
-                        
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_complaintContent}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.complaintContent}" title="#{bundle.ViewComplaintsTitle_complaintContent}"/>
-                          
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_createTime}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.createTime}" title="#{bundle.ViewComplaintsTitle_createTime}">
                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                 </h:outputText>
-                            
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_createIP}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.createIP}" title="#{bundle.ViewComplaintsTitle_createIP}"/>
-                          
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_editIP}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.editIP}" title="#{bundle.ViewComplaintsTitle_editIP}"/>
-                          
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_isEnable}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.isEnable}" title="#{bundle.ViewComplaintsTitle_isEnable}"/>
-                          
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_isFinished}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.isFinished}" title="#{bundle.ViewComplaintsTitle_isFinished}"/>
-                        
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_finishedTime}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.finishedTime}" title="#{bundle.ViewComplaintsTitle_finishedTime}">
                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                 </h:outputText>
-                          
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_hasReplied}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.hasReplied}" title="#{bundle.ViewComplaintsTitle_hasReplied}"/>
-                          
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_repliedTime}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.repliedTime}" title="#{bundle.ViewComplaintsTitle_repliedTime}">
                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                 </h:outputText>
-                           
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_userRef}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.userRef}" title="#{bundle.ViewComplaintsTitle_userRef}"/>
-                           
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_editorName}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.editorID.username}" title="#{bundle.ViewComplaintsTitle_editorName}"/>
-                           
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ListComplaintsTitle_userName}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.userID.username}" title="#{bundle.ListComplaintsTitle_userName}"/>
-                            
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ListThreadsTitle_threadName}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.threadID.threadName}" title="#{bundle.ListThreadsTitle_threadName}"/>
-                          
-                            <br/>
-                            <br />
-                           
-                            <h:commandLink styleClass="button " action="#{complaintsController.prepareList}" value="#{bundle.ViewComplaintsShowAllLink}">
-                               
-                            </h:commandLink>
-                            
 
-                        </h:form>
-                        <!--END JSF CODE-->
-                     </div>
+                                <hr/>
+
+                                <h:commandLink styleClass="button  themed" action="#{complaintsController.prepareList}" value="#{bundle.ViewComplaintsShowAllLink}">
+
+                                </h:commandLink>
+
+
+                            </h:form>
+                            <!--END JSF CODE-->
+                        </div>
                     </div>
                 </div>
             </ui:define>
