@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:body>
+        <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+
+                <div class="clear"></div>
+                <div class="column full">
+
+                    <div class="box">
+                        <h2 class="box-header">
+                            <h:outputText value="#{bundle.ComplaintsManagement_tableName}"/>
+                        </h2>
+                        <div class="box-content">
+                            <h:form >
+                                <h:commandLink styleClass="button" action="ComplaintsCreate" value="#{bundle.ListComplaintsCreateLink}" immediate="true"/>
+                                <br/>
+                                <h:dataTable value="#{complaintsController.items}" var="item" styleClass="display tabledata"  id="tabledata">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComplaintsTitle_title}"/>
+                                        </f:facet>
+                                        <h:outputText style="font-weight: bold; color: red" value="#{item.title}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComplaintsTitle_createTime}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.createTime}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                        </h:outputText>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComplaintsTitle_priority}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.priority}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComplaintsTitle_isEnable}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.isEnable}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComplaintsTitle_isFinished}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.isFinished}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComplaintsTitle_hasReplied}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.hasReplied}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComplaintsTitle_userRef}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.userRef.username}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComplaintsTitle_userName}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.userID.username}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListThreadsTitle_threadName}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.threadID.threadName}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="&nbsp;"/>
+                                        </f:facet>
+                                    </h:column>
+                                </h:dataTable>
+                                </h:panelGroup>
+                            </h:form>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <h:outputStylesheet library="css" name="jquery.ui.all.css" />
+        <h:outputStylesheet library="css" name="table_data.css" />
+        <h:outputStylesheet library="css" name="style.css" />
+
+
+        <!--[if IE]><script type="text/javascript" src="js/excanvas.js"></script><![endif]-->
+        <h:outputScript library="js" name="jquery-1.4.2.js" target="head"/>
+        <h:outputScript library="js" name="jquery-ui-1.8.2.js" target="head"/>
+        <h:outputScript library="js" name="jquery.validate.js" target="head"/>
+        <h:outputScript library="js" name="jquery.wysiwyg.js" target="head"/>
+        <h:outputScript library="js" name="jquery.dataTables.js" target="head"/>
+        <h:outputScript library="js" name="jquery.flot.stack.js" target="head"/>
+        <h:outputScript library="js" name="jquery.flot.js" target="head"/>
+        <h:outputScript library="js" name="styleswitch.js" target="head"/>
+        <h:outputScript library="js" name="custom.js" target="head"/>
+
+    </h:head>
+    <body>
+
+        <ui:composition template="/include/master.xhtml">
+            <ui:define name="content">
+                            </ui:define>
+        </ui:composition>
+<div id="wrapper">
+      <ul id="topbar">
+        <li><a class="button white fl" title="preview" HREF="index.html"><span class="icon_single preview"></span></a></li>
+		<li class="s_1"></li>
+        <li class="logo"><strong>MAGNETO</strong> ADMIN SKIN</li>
+      </ul>
+
+	<div id="content-login">
+	<div class="logo"></div>
+	<h2 class="header-login">Login </h2>
+	<form id="box-login" action="dashboard.html" method="post">
+		<p>
+			<label class="req"> username </label>
+			<br/>
+			<input type="text" name="username" value="" id="username"/>
+		</p>
+		<p>
+			<label class="req"> password </label>
+			<br/>
+			<input type="password" name="password" value="" id="password"/>
+		</p>
+		<p class="fl">
+			<input type="checkbox" name="remember" value="1" id="remember"/>
+			<label class="rem"> Remember me </label>
+		</p>
+		<p class="fr">
+			<input type="button" value="Error test" class="button black" id="error"/>
+			<input type="submit" value="Login" class="button themed" id="login"/>
+		</p>
+
+		<div class="clear"></div>
+	</form>
+	<a class="forgot" href="#"> Forgot password? </a>
+	<span class="message information">Just press <strong>Login</strong> or <strong>Error Test</strong></span>
+	</div>
+
+</div>
+
+	<div id="footer">
+      <p class="copy fl">Copyright 2010<strong> MAGNETO </strong>ADMIN SKIN. All rights reserved.</p>
+      <ul class="button language_button white fr">
+        <li class="icon_single language fl"></li>
+        <li class="flag en fl"></li>
+		<li class="flag es fl"></li>
+        <li class="flag de fl"></li>
+        <li class="flag it fl"></li>
+        <li class="clear"></li>
+      </ul>
+
+	  <ul class="skinner fr">
+		<li class="fl"><a href="#" rel="style_blue" class="styleswitch skin skin_blue fl"></a></li>
+		<li class="fl"><a href="#" rel="style_green" class="styleswitch skin skin_green fl"></a></li>
+		<li class="fl"><a href="#" rel="style_red" class="styleswitch skin skin_red fl"></a></li>
+		<li class="fl"><a href="#" rel="style_purple" class="styleswitch skin skin_purple fl"></a></li>
+		<li class="clear"></li>
+	 </ul>
+    </div>
+    </body>
+</html>

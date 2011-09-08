@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:body>
+        <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+
+                <div class="clear"></div>
+                <div class="column full">
+
+                    <div class="box">
+                        <h2 class="box-header">
+                            <h:outputText value="#{bundle.UsersManagement_tableName}"/>
+                        </h2>
+                        <div class="box-content">
+                            <h:form >
+                                <h:dataTable value="#{usersController.items}" var="item" styleClass="display tabledata"  id="tabledata">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListUsersTitle_username}"/>
+                                        </f:facet>
+                                        <h:outputText style="font-weight: bold; color: red" value="#{item.username}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListUsersTitle_isOnline}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.isOnline}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListUsersTitle_lastVisit}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lastVisit}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                        </h:outputText>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListUsersTitle_createTime}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.createTime}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListUsersTitle_isEnable}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.isEnable}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ViewUsersTitle_editorName}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.editorID.username}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListRolesTitle_roleName}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.roleID.roleName}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListDepartmentsTitle_shortDepartmentName}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.departmentID.departmentName}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="&nbsp;"/>
+                                        </f:facet>
+
+                                        <h:commandLink styleClass="view tip" title="#{bundle.ActionLabel_View}" action="#{usersController.prepareView}" value="#{bundle.ActionLabel_View}"/>
+                                        <h:outputText value=" "/>
+                                        <h:commandLink styleClass="edit tip" title="#{bundle.ActionLabel_Edit}" action="#{usersController.prepareEdit}" value="#{bundle.ActionLabel_Edit}"/>
+                                        <h:outputText value=" "/>
+                                        <h:commandLink styleClass="edit tip" title="#{bundle.ActionLabel_ResetPassword}" action="#{usersController.prepareResetPassword}" value="#{bundle.ActionLabel_ResetPassword}"/>
+                                        <h:outputText value=" "/>
+                                        <h:commandLink styleClass="delete tip" title="#{bundle.ActionLabel_Disable}" action="#{usersController.destroy}" value="#{bundle.ActionLabel_Disable}"/>
+                                        <h:outputText value=" "/>
+                                        <h:commandLink styleClass="enable tip" title="#{bundle.ActionLabel_Enable}" action="#{usersController.enable}" value="#{bundle.ActionLabel_Enable}"/>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

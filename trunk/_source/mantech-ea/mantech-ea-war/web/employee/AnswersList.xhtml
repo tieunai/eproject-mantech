@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:body>
+        <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+
+                <div class="clear"></div>
+                <div class="column full">
+
+                    <div class="box">
+                        <h2 class="box-header">
+                            <h:outputText value="#{bundle.AnswersManagement_tableName}"/>
+                        </h2>
+                        <div class="box-content">
+                            <h:form styleClass="sorting">
+                                <h:dataTable value="#{answersController.items}" var="item" styleClass="display tabledata"  id="tabledata">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAnswersTitle_answerID}"/>
+                                        </f:facet>
+                                        <h:outputText style="font-weight: bold; color: red" value="#{item.answerID}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAnswersTitle_answerContent}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.answerContent}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAnswersTitle_createTime}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.createTime}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                        </h:outputText>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAnswersTitle_createIP}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.createIP}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAnswersTitle_editTime}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.editTime}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                        </h:outputText>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAnswersTitle_editIP}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.editIP}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAnswersTitle_isEnable}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.isEnable}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAnswersTitle_editorID}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.editorID}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAnswersTitle_complaintID}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.complaintID}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="&nbsp;"/>
+                                        </f:facet>
+                                        <h:commandLink styleClass="button white" title="#{bundle.ActionLabel_View}" action="#{answersController.prepareView}" >
+                                            <span class="icon_single viewDetails"/>
+                                        </h:commandLink>
+                                    </h:column>
+                                </h:dataTable>
+                                </h:panelGroup>
+                            </h:form>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:body>
+       
+
+                <div class="grid_24">
+
+                    <!-- Box Header: Start -->
+                    <div class="box_top">
+
+                        <h2 class="icon pages"><h:outputText value="#{bundle.ThreadsManagement_tableName}"/></h2>
+
+                        <!-- Tab Select: Start -->
+                        <ul class="sorting">
+                            <li><a href="#listing" class="active"><h:outputText value="#{bundle.TabsLabel_Listing}"/></a></li>
+                            <li>
+                                <h:form>
+                                    <h:commandLink action="Create" title="Add New"><h:outputText value="#{bundle.TabsLabel_AddNew}"/></h:commandLink>
+                                </h:form>
+                            </li>
+                        </ul>
+                        <!-- Tab Select: End -->
+
+                    </div>
+                    <!-- Box Header: End -->
+
+                    <!-- Box Content: Start -->
+                    <div class="box_content">
+
+                        <!-- News Table Tabs: Start -->
+                        <div class="tabs">
+                            <!-- News Sorting Table: Start -->
+                            <div id="listing">
+                                <h:form styleClass="jsfcrud_list_form">
+                                    <h:panelGroup id="messagePanel" layout="block">
+                                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                                    </h:panelGroup>
+                                    <h:outputText escape="false" value="#{bundle.ListThreadsEmpty}" rendered="#{threadsController.items.rowCount == 0}"/>
+                                    <h:panelGroup rendered="#{threadsController.items.rowCount > 0}">
+                                        <h:outputText value="#{threadsController.pagination.pageFirstItem + 1}..#{threadsController.pagination.pageLastItem + 1}/#{threadsController.pagination.itemsCount}"/>&nbsp;
+                                        <h:commandLink action="#{threadsController.previous}" value="#{bundle.Previous} #{threadsController.pagination.pageSize}" rendered="#{threadsController.pagination.hasPreviousPage}"/>&nbsp;
+                                        <h:commandLink action="#{threadsController.next}" value="#{bundle.Next} #{threadsController.pagination.pageSize}" rendered="#{threadsController.pagination.hasNextPage}"/>&nbsp;
+
+                                        <h:dataTable value="#{threadsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" styleClass="sorting">
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListThreadsTitle_threadName}"/>
+                                                </f:facet>
+                                                <h:outputText style="font-weight: bold; color: red" value="#{item.threadName}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListThreadsTitle_createTime}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.createTime}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListThreadsTitle_createIP}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.createIP}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListThreadsTitle_editTime}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.editTime}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListThreadsTitle_editIP}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.editIP}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListThreadsTitle_isEnable}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.isEnable}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="#{bundle.ListDepartmentsTitle_departmentName}"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.departmentID.departmentName}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="&nbsp;"/>
+                                                </f:facet>
+                                                <h:commandLink styleClass="view tip" title="#{bundle.ActionLabel_View}" action="#{threadsController.prepareView}" value="#{bundle.ListThreadsViewLink}"/>
+                                               
+                                            </h:column>
+                                        </h:dataTable>
+                                    </h:panelGroup>                                   
+                                </h:form>
+                            </div>
+
+                            <!-- News Table Tabs: End -->
+
+                        </div>
+                        <!-- Box Content: End -->
+
+                    </div>
+                </div>
+         
+    </h:body>
+</html>

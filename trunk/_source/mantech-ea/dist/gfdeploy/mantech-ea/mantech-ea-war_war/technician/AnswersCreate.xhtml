@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:body>
+       <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+                <div class="column half fl">
+                    <div class="box black_box">
+                        <h2 class="box-header">	Quick Post </h2>
+                        <div class="box-content">
+                        <!--START JSF CODE-->
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:form>
+
+                            <h:outputLabel styleClass="form-label" value="#{bundle.CreateAnswersLabel_answerID}" for="answerID" />
+                            <h:inputText styleClass="form-label full" id="answerID" value="#{answersController.selected.answerID}" title="#{bundle.CreateAnswersTitle_answerID}" required="true" requiredMessage="#{bundle.CreateAnswersRequiredMessage_answerID}"/>
+                            <h:outputLabel styleClass="form-label" value="#{bundle.CreateAnswersLabel_answerContent}" for="answerContent" />
+                            <h:inputTextarea styleClass="form-label full" rows="4" id="answerContent" value="#{answersController.selected.answerContent}" title="#{bundle.CreateAnswersTitle_answerContent}" required="true" requiredMessage="#{bundle.CreateAnswersRequiredMessage_answerContent}"/>
+                            <h:outputLabel styleClass="form-label" value="#{bundle.CreateAnswersLabel_createTime}" for="createTime" />
+                            <h:inputText styleClass="form-label full" id="createTime" value="#{answersController.selected.createTime}" title="#{bundle.CreateAnswersTitle_createTime}" required="true" requiredMessage="#{bundle.CreateAnswersRequiredMessage_createTime}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:inputText>
+                            <h:outputLabel styleClass="form-label" value="#{bundle.CreateAnswersLabel_createIP}" for="createIP" />
+                            <h:inputText styleClass="form-label full" id="createIP" value="#{answersController.selected.createIP}" title="#{bundle.CreateAnswersTitle_createIP}" required="true" requiredMessage="#{bundle.CreateAnswersRequiredMessage_createIP}"/>
+                            <h:outputLabel styleClass="form-label" value="#{bundle.CreateAnswersLabel_editTime}" for="editTime" />
+                            <h:inputText styleClass="form-label full" id="editTime" value="#{answersController.selected.editTime}" title="#{bundle.CreateAnswersTitle_editTime}" >
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:inputText>
+                            <h:outputLabel styleClass="form-label" value="#{bundle.CreateAnswersLabel_editIP}" for="editIP" />
+                            <h:inputText styleClass="form-label full" id="editIP" value="#{answersController.selected.editIP}" title="#{bundle.CreateAnswersTitle_editIP}" />
+                            <h:outputLabel styleClass="form-label" value="#{bundle.CreateAnswersLabel_isEnable}" for="isEnable" />
+                            <h:inputText styleClass="form-label full" id="isEnable" value="#{answersController.selected.isEnable}" title="#{bundle.CreateAnswersTitle_isEnable}" required="true" requiredMessage="#{bundle.CreateAnswersRequiredMessage_isEnable}"/>
+                            <h:outputLabel styleClass="form-label" value="#{bundle.CreateAnswersLabel_editorID}" for="editorID" />
+                            <h:selectOneMenu styleClass="form-label full" id="editorID" value="#{answersController.selected.editorID}" title="#{bundle.CreateAnswersTitle_editorID}" >
+                                <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel styleClass="form-label" value="#{bundle.CreateAnswersLabel_complaintID}" for="complaintID" />
+                            <h:selectOneMenu styleClass="form-label full" id="complaintID" value="#{answersController.selected.complaintID}" title="#{bundle.CreateAnswersTitle_complaintID}" required="true" requiredMessage="#{bundle.CreateAnswersRequiredMessage_complaintID}">
+                                <f:selectItems value="#{complaintsController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <br/>
+                            <br />
+                            <h:commandLink styleClass="button white" action="#{answersController.create}" value="#{bundle.CreateAnswersSaveLink}" >
+                                <span class="icon_single addnew"/>
+                            </h:commandLink>
+                            <br />
+                            <br />
+                            <h:commandLink styleClass="button white" action="#{answersController.prepareList}" value="#{bundle.CreateAnswersShowAllLink}" immediate="true">
+                                <span class="icon_single showlist"/>
+                            </h:commandLink>
+                            
+                        </h:form>
+                        <!--END JSF CODE-->
+                     </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

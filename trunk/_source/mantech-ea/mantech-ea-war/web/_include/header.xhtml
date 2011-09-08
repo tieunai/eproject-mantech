@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <body>
+        <ui:composition>
+
+                  <ul id="topbar">
+        <li><a class="button white fl" title="preview" HREF="../template/login.xhtml"><span class="icon_single preview"></span></a></li>
+		<li class="s_1"></li>
+        <li class="logo"><strong>Mantech HelpDesk</strong> ADMIN</li>
+		<li class="s_1"></li>
+        <li><a class="breadcrumb underline" href="#">Dashboard</a> &gt; <a class="breadcrumb underline" href="#"><strong>Forms</strong></a></li>
+        <li class="fr"><a class="button red fl" title="logout" HREF="../template/login.xhtml"><span class="icon_text logout"></span>logout</a></li>
+        <li class="s_1 fr"></li>
+		<li class="fr"><a class="button white fl" title="unread mail" href="#"><span class="icon_text mail"></span>3</a></li>
+        <li class="s_1 fr"></li>
+		<li class="fr"><a class="button white fl" title="admin" href="#"><span class="icon_text admin"></span>admin</a></li>
+		<li class="fr"><a id="logged">Logged in as</a></li>
+      </ul>
+
+      <ul id="navbar">
+        <li class="active">
+		<a HREF="dashboard.xhtml"><span class="icon_text dashboard"></span>dashboard</a>
+			<ul>
+				<li><a class="subbutton white" HREF="../template/general.xhtml"><span class="icon_text general"></span>general</a></li>
+				<li><a class="subbutton white" HREF="../template/tabs.xhtml"><span class="icon_text tab"></span>tabs</a></li>
+				<li><a class="subbutton white" HREF="../template/typography.xhtml"><span class="icon_text typography"></span>typography</a></li>
+				<li><a class="subbutton white" HREF="../template/grids.xhtml"><span class="icon_text grids"></span>grids</a></li>
+				<li><a class="subbutton white" HREF="../template/tables.xhtml"><span class="icon_text tables"></span>tables</a></li>
+				<li class="active"><a class="subbutton white" HREF="../template/forms.xhtml"><span class="icon_text forms"></span>forms</a></li>
+				<li><a class="subbutton white" HREF="../template/graphs.xhtml"><span class="icon_text graphs"></span>graphs</a></li>
+			</ul>
+		</li>
+        <li><a href="#"><span class="icon_text content"></span>content</a></li>
+        <li><a href="#"><span class="icon_text design"></span>design</a></li>
+        <li><a href="#"><span class="icon_text pages"></span>pages</a></li>
+        <li><a href="#"><span class="icon_text users"></span>users</a></li>
+        <li><a href="#"><span class="icon_text media"></span>media</a></li>
+        <li><a href="#"><span class="icon_text comment"></span>comment</a></li>
+        <li><a href="#"><span class="icon_text stats"></span>stats</a></li>
+        <li><a href="#"><span class="icon_text settings"></span>settings</a></li>
+      </ul>
+	  <div id="subnavbar">
+		<form id="search_form" method="post" action="">
+			<input type="text" name="search_input" value="Search..." id="search_input" class="fl" />
+		</form>
+	  </div>
+
+        </ui:composition>
+    </body>
+</html>
