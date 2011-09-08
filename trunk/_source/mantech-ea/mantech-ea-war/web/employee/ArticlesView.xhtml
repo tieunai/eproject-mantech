@@ -24,7 +24,7 @@
                                 <h:outputText styleClass="form-label full" style="color:red" value="#{articlesController.selected.title}" title="#{bundle.ViewArticlesTitle_title}"/>
 
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewArticlesLabel_content}"/>
-                                <h:outputText styleClass="form-label full" style="color:red" value="#{articlesController.selected.content}" title="#{bundle.ViewArticlesTitle_content}"/>
+                                <h:outputText escape="false" styleClass="form-label full" style="color:red" value="#{articlesController.selected.content}" title="#{bundle.ViewArticlesTitle_content}"/>
 
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewArticlesLabel_createTime}"/>
                                 <h:outputText styleClass="form-label full" style="color:red" value="#{articlesController.selected.createTime}" title="#{bundle.ViewArticlesTitle_createTime}">

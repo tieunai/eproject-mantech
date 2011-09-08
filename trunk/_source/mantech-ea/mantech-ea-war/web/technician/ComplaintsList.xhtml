@@ -40,12 +40,6 @@
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListComplaintsTitle_isEnable}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.isEnable}"/>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
                                             <h:outputText value="#{bundle.ListComplaintsTitle_isFinished}"/>
                                         </f:facet>
                                         <h:outputText value="#{item.isFinished}"/>
@@ -55,12 +49,6 @@
                                             <h:outputText value="#{bundle.ListComplaintsTitle_hasReplied}"/>
                                         </f:facet>
                                         <h:outputText value="#{item.hasReplied}"/>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListComplaintsTitle_userRef}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.userRef.username}"/>
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
@@ -78,6 +66,9 @@
                                         <f:facet name="header">
                                             <h:outputText value="&nbsp;"/>
                                         </f:facet>
+                                        <h:commandLink styleClass="button white tip" title="#{bundle.ActionLabel_View}" action="#{complaintsController.prepareView}">
+                                            <span class="icon_single preview"/>
+                                        </h:commandLink>
                                     </h:column>
                                 </h:dataTable>
                             </h:form>

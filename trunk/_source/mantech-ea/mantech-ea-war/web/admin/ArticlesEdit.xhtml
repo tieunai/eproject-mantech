@@ -20,7 +20,7 @@
                                 <h:outputLabel styleClass="form-label" value="#{bundle.EditArticlesLabel_title}" for="title" />
                                 <h:inputText styleClass="form-field full" id="title" value="#{articlesController.selected.title}" title="#{bundle.EditArticlesTitle_title}" required="true" requiredMessage="#{bundle.EditArticlesRequiredMessage_title}"/>
                                 <h:outputLabel styleClass="form-label" value="#{bundle.EditArticlesLabel_content}" for="content" />
-                                <h:inputTextarea styleClass="form-field full" rows="4" id="content" value="#{articlesController.selected.content}" title="#{bundle.EditArticlesTitle_content}" required="true" requiredMessage="#{bundle.EditArticlesRequiredMessage_content}"/>
+                                <h:inputTextarea styleClass="wysiwyg full" id="content" value="#{articlesController.selected.content}" title="#{bundle.EditArticlesTitle_content}" required="true" requiredMessage="#{bundle.EditArticlesRequiredMessage_content}"/>
                                 <h:outputLabel styleClass="form-label" value="#{bundle.EditArticlesLabel_isEnable}" for="isEnable" />
                                 <h:selectOneMenu styleClass="form-field" id="isEnable" value="#{articlesController.selected.isEnable}" title="#{bundle.EditArticlesTitle_isEnable}" required="true" requiredMessage="#{bundle.EditArticlesRequiredMessage_isEnable}">
                                     <f:selectItems value="#{articlesController.trueFalseAvailableSelectOne}"/>

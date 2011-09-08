@@ -151,7 +151,7 @@ $(document).ready(function() {
 		$(".radiocheck").buttonset();
 		
 		//WYSIWYG//
-		$('#wysiwyg').wysiwyg();
+		$('.wysiwyg').wysiwyg();
 		
 		//TABLE//
 		oTable = $('.tabledata').dataTable({
