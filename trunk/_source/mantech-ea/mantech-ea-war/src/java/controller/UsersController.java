@@ -42,7 +42,7 @@ public class UsersController {
     private PaginationHelper pagination;
     private int selectedItemIndex;
     private String tmpPassword;
-    private static int currentLoggedUserID = 1;
+    private static int currentLoggedUserID = -1;
     private String tmpCurrentPassword;
 
     public String getTmpCurrentPassword() {
@@ -103,6 +103,14 @@ public class UsersController {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
+    }
+
+    public int getUserIDByUserName(String userName){
+        Users u = getFacade().find(getSelected().getUsername());
+        if (u != null) {
+            return u.getUserID();
+        }
+        return -1;
     }
 
     public String userLogin() {
