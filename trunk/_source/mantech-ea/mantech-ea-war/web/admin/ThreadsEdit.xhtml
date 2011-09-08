@@ -5,40 +5,39 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:body>
-       
-
-                <div class="grid_12">
-                    <div class="box_top">
-                        <h2 class="icon frames">
-                            <h:outputText value="#{bundle.EditThreadsTitle}"/>
-                        </h2>
-                    </div>
-                    <div class="box_content padding">
-                        <!--START JSF CODE-->
+ <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+                <div class="column half fl">
+                    <div class="box black_box">
+                        <h2 class="box-header">#{bundle.EditThreadsTitle} </h2>
+                        <div class="box-content">
                         <h:panelGroup id="messagePanel" layout="block">
                             <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                         </h:panelGroup>
                         <h:form>
-                            <h:outputLabel value="#{bundle.EditThreadsLabel_threadName}" for="threadName" />
-                            <h:inputText id="threadName" value="#{threadsController.selected.threadName}" title="#{bundle.EditThreadsTitle_threadName}" required="true" requiredMessage="#{bundle.EditThreadsRequiredMessage_threadName}"/>
-                            <h:outputLabel value="#{bundle.EditThreadsLabel_isEnable}" for="isEnable" />
-                            <h:inputText id="isEnable" value="#{threadsController.selected.isEnable}" title="#{bundle.EditThreadsTitle_isEnable}" required="true" requiredMessage="#{bundle.EditThreadsRequiredMessage_isEnable}"/>
-                            <h:outputLabel value="#{bundle.EditDepartmentsLabel_departmentName}" for="departmentID" />
+                            <h:outputLabel styleClass="form-label" value="#{bundle.EditThreadsLabel_threadName}" for="threadName" />
+                            <h:inputText styleClass="form-field full" id="threadName" value="#{threadsController.selected.threadName}" title="#{bundle.EditThreadsTitle_threadName}" required="true" requiredMessage="#{bundle.EditThreadsRequiredMessage_threadName}"/>
+                            <h:outputLabel styleClass="form-label" value="#{bundle.EditThreadsLabel_isEnable}" for="isEnable" />
+                            <h:selectOneMenu id="isEnable" value="#{threadsController.selected.isEnable}" title="#{bundle.EditThreadsLabel_isEnable}" required="true" requiredMessage="#{bundle.EditThreadsRequiredMessage_isEnable}">
+                                    <f:selectItems value="#{threadsController.trueFalseAvailableSelectOne}"/>
+                             </h:selectOneMenu>
+                            <h:outputLabel styleClass="form-label" value="#{bundle.EditDepartmentsLabel_departmentName}" for="departmentID" />
                             <h:selectOneMenu id="departmentID" value="#{threadsController.selected.departmentID}" title="#{bundle.EditDepartmentsRequiredMessage_departmentName}" required="true" requiredMessage="#{bundle.EditDepartmentsRequiredMessage_departmentName}">
                                 <f:selectItems value="#{departmentsController.itemsAvailableSelectOne}"/>
                             </h:selectOneMenu>
                             <br/>
                             <br/>
-                            <h:commandLink styleClass="button" action="#{threadsController.update}" value="#{bundle.EditThreadsSaveLink}"/>
-                            <br />
-                            <br />
-                            <h:commandLink styleClass="button" action="View" value="#{bundle.EditThreadsViewLink}" immediate="true"/>
-                            <br />
-                            <h:commandLink styleClass="button" action="#{threadsController.prepareList}" value="#{bundle.EditThreadsShowAllLink}" immediate="true"/>
+                            <h:commandLink styleClass="button white " action="#{threadsController.update}" value="#{bundle.EditThreadsSaveLink}"/>
+     
+                            <h:commandLink styleClass="button white " action="ThreadsView" value="#{bundle.EditThreadsViewLink}" immediate="true"/>
+                  
+                            <h:commandLink styleClass="button white " action="#{threadsController.prepareList}" value="#{bundle.EditThreadsShowAllLink}" immediate="true"/>
                         </h:form>
                         <!--END JSF CODE-->
+                     </div>
                     </div>
                 </div>
-          
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
