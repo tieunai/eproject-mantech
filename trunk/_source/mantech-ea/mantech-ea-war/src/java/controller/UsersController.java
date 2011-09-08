@@ -155,13 +155,13 @@ public class UsersController {
 
     public String prepareList() {
         recreateModel();
-        return "List";
+        return "UsersList";
     }
 
     public String prepareView() {
         current = (Users) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return "UsersView";
     }
 
     public String prepareCreate() {
@@ -207,7 +207,7 @@ public class UsersController {
     public String prepareEdit() {
         current = (Users) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        return "UsersEdit";
     }
 
     public String prepareResetPassword() {
@@ -236,7 +236,7 @@ public class UsersController {
 
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsersUpdated"));
-            return "View";
+            return "UsersView";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -258,7 +258,7 @@ public class UsersController {
 
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsersUpdated"));
-            return "View";
+            return "UsersView";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -284,7 +284,7 @@ public class UsersController {
 
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsersUpdated"));
-            return "View";
+            return "UsersView";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -296,7 +296,7 @@ public class UsersController {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreateModel();
-        return "List";
+        return "UsersList";
     }
 
     public String enable() {
@@ -304,7 +304,7 @@ public class UsersController {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performEnable();
         recreateModel();
-        return "List";
+        return "UsersList";
     }
 
     public String destroyAndView() {
@@ -312,11 +312,11 @@ public class UsersController {
         recreateModel();
         updateCurrentItem();
         if (selectedItemIndex >= 0) {
-            return "View";
+            return "UsersView";
         } else {
             // all items were removed - go back to list
             recreateModel();
-            return "List";
+            return "UsersList";
         }
     }
 
@@ -325,11 +325,11 @@ public class UsersController {
         recreateModel();
         updateCurrentItem();
         if (selectedItemIndex >= 0) {
-            return "View";
+            return "UsersView";
         } else {
             // all items were removed - go back to list
             recreateModel();
-            return "List";
+            return "UsersList";
         }
     }
 
@@ -388,13 +388,13 @@ public class UsersController {
     public String next() {
         getPagination().nextPage();
         recreateModel();
-        return "List";
+        return "UsersList";
     }
 
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return "List";
+        return "UsersList";
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
