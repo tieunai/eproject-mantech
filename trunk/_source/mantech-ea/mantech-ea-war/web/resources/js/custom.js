@@ -262,4 +262,38 @@ $(document).ready(function() {
 		$(".progressbaractive .ui-progressbar-value").animate({width:'60%'}, 1500);
 		$(".progressbarpending .ui-progressbar-value").animate({width:'30%'}, 1500);
 		$(".progressbarsuspended .ui-progressbar-value").animate({width:'10%'}, 1500);
+
+                $('.tip').poshytip({
+		className: 'tip-theme',
+		showTimeout: 1,
+		alignTo: 'target',
+		alignX: 'center',
+		alignY: 'top',
+		offsetX: 0,
+		offsetY: 16,
+		allowTipHover: false,
+		fade: false,
+		slide: false
+	});
+
+	// Tip that stays
+	$('.tip-stay').poshytip({
+		className: 'tip-theme',
+		showOn:'focus',
+		showTimeout: 1,
+		alignTo: 'target',
+		alignX: 'center',
+		alignY: 'top',
+		offsetX: 0,
+		offsetY: 16,
+		allowTipHover: false,
+		fade: false,
+		slide: false
+	});
+
 });
+
+//-------------------------------------------------------------- */
+
+	// Tip for home icon etc.
+	
