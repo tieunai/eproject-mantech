@@ -6,6 +6,7 @@
 package facades;
 
 import entities.Complaints;
+import entities.Users;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -31,5 +32,7 @@ public interface ComplaintsFacadeRemote {
 
     List<Complaints> findByPriority(int priority);
 
-    List<Complaints> findByUserID(int userID);
+    List<Complaints> findByUserID(Users userID);
+
+    List<Complaints> findByUserRef(Users userRef);
 }

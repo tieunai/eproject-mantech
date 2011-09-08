@@ -34,6 +34,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Complaints.findAll", query = "SELECT c FROM Complaints c"),
     @NamedQuery(name = "Complaints.findByComplaintID", query = "SELECT c FROM Complaints c WHERE c.complaintID = :complaintID"),
+    @NamedQuery(name = "Complaints.findByUserID", query = "SELECT c FROM Complaints c WHERE c.userID = :userID ORDER BY c.createTime DESC"),
+    @NamedQuery(name = "Complaints.findByUserRef", query = "SELECT c FROM Complaints c WHERE c.userRef = :userRef ORDER BY c.createTime DESC"),
     @NamedQuery(name = "Complaints.findByTitle", query = "SELECT c FROM Complaints c WHERE c.title = :title"),
     @NamedQuery(name = "Complaints.findByCreateTime", query = "SELECT c FROM Complaints c WHERE c.createTime = :createTime"),
     @NamedQuery(name = "Complaints.findByCreateIP", query = "SELECT c FROM Complaints c WHERE c.createIP = :createIP"),
@@ -43,8 +45,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Complaints.findByFinishedTime", query = "SELECT c FROM Complaints c WHERE c.finishedTime = :finishedTime"),
     @NamedQuery(name = "Complaints.findByHasReplied", query = "SELECT c FROM Complaints c WHERE c.hasReplied = :hasReplied"),
     @NamedQuery(name = "Complaints.findByRepliedTime", query = "SELECT c FROM Complaints c WHERE c.repliedTime = :repliedTime"),
-    @NamedQuery(name = "Complaints.findByPriority", query = "SELECT c FROM Complaints c WHERE c.priority = :priority"),
-    @NamedQuery(name = "Complaints.findByUserID", query = "SELECT c FROM Complaints c WHERE c.userID = :userID")})
+    @NamedQuery(name = "Complaints.findByPriority", query = "SELECT c FROM Complaints c WHERE c.priority = :priority")})
 public class Complaints implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

@@ -6,6 +6,7 @@
 package facades;
 
 import entities.Complaints;
+import entities.Users;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -91,10 +92,21 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
     }
 
     @Override
-    public List<Complaints> findByUserID(int userID) {
+    public List<Complaints> findByUserID(Users userID) {
         try {
             Query q = getEntityManager().createNamedQuery("Complaints.findByUserID");
             q.setParameter("userID", userID);
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
+    }
+
+    @Override
+    public List<Complaints> findByUserRef(Users userRef) {
+        try {
+            Query q = getEntityManager().createNamedQuery("Complaints.findByUserRef");
+            q.setParameter("userRef", userRef);
             return q.getResultList();
         } catch (NoResultException noReEx) {
         }
