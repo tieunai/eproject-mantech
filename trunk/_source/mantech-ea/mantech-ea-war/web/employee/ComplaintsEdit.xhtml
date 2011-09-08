@@ -22,13 +22,13 @@
                                 <h:inputTextarea styleClass="form-field full" rows="4" id="complaintContent" value="#{complaintsController.selected.complaintContent}" title="#{bundle.EditComplaintsTitle_complaintContent}" required="true" requiredMessage="#{bundle.EditComplaintsRequiredMessage_complaintContent}"/>
                                 <br/>
                                 <br/>
-                                <h:commandLink styleClass="button white" action="#{complaintsController.update}" value="#{bundle.EditComplaintsSaveLink}">
-                                    <span class="icon_text save"/>
+                                <h:commandLink styleClass="button themed" action="#{complaintsController.update}" value="#{bundle.EditComplaintsSaveLink}">
+                              
                                 </h:commandLink>
                                 <br />
                                 <br />
-                                <h:commandLink styleClass="button white" action="ComplaintsView" value="#{bundle.EditComplaintsViewLink}" immediate="true">
-                                    <span class="icon_text viewDetails"/>
+                                <h:commandLink styleClass="button " action="ComplaintsView" value="#{bundle.EditComplaintsViewLink}" immediate="true">
+                         
                                 </h:commandLink>
                                 <br />
                                 <h:commandLink styleClass="button " action="#{complaintsController.prepareList}" value="#{bundle.EditComplaintsShowAllLink}" immediate="true">

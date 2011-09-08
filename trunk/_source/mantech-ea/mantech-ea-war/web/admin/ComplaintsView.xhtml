@@ -70,28 +70,27 @@
 
                                 <br/>
                                 <br />
-                                <h:commandLink styleClass="button " action="#{complaintsController.destroyAndView}" value="#{bundle.ActionLabel_Disable}">
-                                  
+                                <h:commandLink styleClass="button red" action="#{complaintsController.destroyAndView}" value="#{bundle.ActionLabel_Disable}">
+
                                 </h:commandLink>
-                        
-                                <h:commandLink styleClass="button " action="#{complaintsController.enableAndView}" value="#{bundle.ActionLabel_Enable}">
-                                    
+
+                                <h:commandLink styleClass="button themed" action="#{complaintsController.enableAndView}" value="#{bundle.ActionLabel_Enable}">
+
                                 </h:commandLink>
+                                <h:commandLink styleClass="button black" title="#{bundle.ListComplaintsAssignLink}" action="#{complaintsController.prepareAssign}" value="#{bundle.ListComplaintsAssignLink}" />
                                 <br/>
                                 <br/>
                                 <h:commandLink styleClass="button " action="ComplaintsEdit" value="#{bundle.ViewComplaintsEditLink}">
-                                  
+
                                 </h:commandLink>
-                            
+
                                 <h:commandLink styleClass="button " action="#{complaintsController.prepareCreate}" value="#{bundle.ViewComplaintsCreateLink}" >
-                                    
+
                                 </h:commandLink>
-                          
+
                                 <h:commandLink styleClass="button " action="#{complaintsController.prepareList}" value="#{bundle.ViewComplaintsShowAllLink}">
-                                    
+
                                 </h:commandLink>
-
-
                             </h:form>
                             <!--END JSF CODE-->
                         </div>
