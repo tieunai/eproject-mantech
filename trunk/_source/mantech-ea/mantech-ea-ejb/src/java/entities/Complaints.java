@@ -43,7 +43,8 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Complaints.findByFinishedTime", query = "SELECT c FROM Complaints c WHERE c.finishedTime = :finishedTime"),
     @NamedQuery(name = "Complaints.findByHasReplied", query = "SELECT c FROM Complaints c WHERE c.hasReplied = :hasReplied"),
     @NamedQuery(name = "Complaints.findByRepliedTime", query = "SELECT c FROM Complaints c WHERE c.repliedTime = :repliedTime"),
-    @NamedQuery(name = "Complaints.findByPriority", query = "SELECT c FROM Complaints c WHERE c.priority = :priority")})
+    @NamedQuery(name = "Complaints.findByPriority", query = "SELECT c FROM Complaints c WHERE c.priority = :priority"),
+    @NamedQuery(name = "Complaints.findByUserID", query = "SELECT c FROM Complaints c WHERE c.userID = :userID")})
 public class Complaints implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

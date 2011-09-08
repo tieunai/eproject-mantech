@@ -56,6 +56,8 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
         return getEntityManager().createQuery(cq).getResultList();
     }
 
+
+
     @Override
     public List<Complaints> findRange(int[] range) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
@@ -87,4 +89,17 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
         }
         return null;
     }
+
+    @Override
+    public List<Complaints> findByUserID(int userID) {
+        try {
+            Query q = getEntityManager().createNamedQuery("Complaints.findByUserID");
+            q.setParameter("userID", userID);
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
+    }
+
+
 }

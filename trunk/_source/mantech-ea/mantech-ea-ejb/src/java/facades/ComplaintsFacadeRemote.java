@@ -30,4 +30,6 @@ public interface ComplaintsFacadeRemote {
     int count();
 
     List<Complaints> findByPriority(int priority);
+
+    List<Complaints> findByUserID(int userID);
 }
