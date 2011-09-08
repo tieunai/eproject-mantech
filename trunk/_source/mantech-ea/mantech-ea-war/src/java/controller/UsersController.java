@@ -39,10 +39,12 @@ public class UsersController {
     private DataModel items = null;
     @EJB
     private facades.UsersFacadeRemote ejbFacade;
+  
+    private static facades.UsersFacadeRemote ejbFacade2;
     private PaginationHelper pagination;
     private int selectedItemIndex;
     private String tmpPassword;
-    private static int currentLoggedUserID = -1;
+    private static int currentLoggedUserID = 2;
     private String tmpCurrentPassword;
 
     public String getTmpCurrentPassword() {
@@ -55,6 +57,12 @@ public class UsersController {
 
     public static int getCurrentLoggedUserID() {
         return currentLoggedUserID;
+    }
+
+    public static Users getCurrentLoggedUser(){
+        if(ejbFacade2 == null)
+            ejbFacade2 = lookupUsersFacadeRemote();
+        return ejbFacade2.find(currentLoggedUserID);
     }
 
     public static void setCurrentLoggedUserID(int currentLoggedUserID) {
@@ -75,12 +83,12 @@ public class UsersController {
         rolesFacade = lookupRolesFacadeRemote();
     }
 
-    private UsersFacadeRemote lookupUsersFacadeRemote() {
+    private static UsersFacadeRemote lookupUsersFacadeRemote() {
         try {
             Context c = new InitialContext();
             return (UsersFacadeRemote) c.lookup("java:global/mantech-ea/mantech-ea-ejb/UsersFacade!facades.UsersFacadeRemote");
         } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            //Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
     }

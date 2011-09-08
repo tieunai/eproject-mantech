@@ -24,13 +24,14 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-@ManagedBean (name="complaintsController")
+@ManagedBean(name = "complaintsController")
 @SessionScoped
 public class ComplaintsController {
 
     private Complaints current;
     private DataModel items = null;
-    @EJB private facades.ComplaintsFacadeRemote ejbFacade;
+    @EJB
+    private facades.ComplaintsFacadeRemote ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -61,21 +62,61 @@ public class ComplaintsController {
     }
 
     public PaginationHelper getPagination() {
-        if (pagination == null) {
-            pagination = new PaginationHelper(10) {
 
-                @Override
-                public int getItemsCount() {
-                    return getFacade().count();
-                }
+        pagination = new PaginationHelper(10) {
 
-                @Override
-                public DataModel createPageDataModel() {
-                    //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
-                    return new ListDataModel(getFacade().findAll());
-                }
-            };
-        }
+            @Override
+            public int getItemsCount() {
+                return getFacade().count();
+            }
+
+            @Override
+            public DataModel createPageDataModel() {
+                //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
+                return new ListDataModel(getFacade().findAll());
+            }
+        };
+
+        return pagination;
+    }
+
+    public PaginationHelper getPaginationByUserID() {
+
+        pagination = new PaginationHelper(10) {
+
+            @Override
+            public int getItemsCount() {
+                return getFacade().count();
+            }
+
+            @Override
+            public DataModel createPageDataModel() {
+                //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
+                Users u = UsersController.getCurrentLoggedUser();
+                return new ListDataModel(getFacade().findByUserID(u));
+            }
+        };
+
+        return pagination;
+    }
+
+    public PaginationHelper getPaginationByUserRef() {
+
+        pagination = new PaginationHelper(10) {
+
+            @Override
+            public int getItemsCount() {
+                return getFacade().count();
+            }
+
+            @Override
+            public DataModel createPageDataModel() {
+                //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
+                Users u = UsersController.getCurrentLoggedUser();
+                return new ListDataModel(getFacade().findByUserRef(u));
+            }
+        };
+
         return pagination;
     }
 
@@ -85,7 +126,7 @@ public class ComplaintsController {
     }
 
     public String prepareView() {
-        current = (Complaints)getItems().getRowData();
+        current = (Complaints) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ComplaintsView";
     }
@@ -118,14 +159,14 @@ public class ComplaintsController {
     }
 
     public String prepareEdit() {
-        current = (Complaints)getItems().getRowData();
+        current = (Complaints) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ComplaintsEdit";
     }
 
     public String prepareAssign() {
         System.out.println("PREPARE ASSIGN");
-        current = (Complaints)getItems().getRowData();
+        current = (Complaints) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ComplaintsAssign";
     }
@@ -135,9 +176,9 @@ public class ComplaintsController {
             Users tmpUser = new Users();
             tmpUser.setUserID(1);
             tmpUser.setUsername("demo");
-            
+
             getSelected().setEditorID(tmpUser);
-            getSelected().setEditIP("192.168.1.1");            
+            getSelected().setEditIP("192.168.1.1");
 
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ComplaintsUpdated"));
@@ -149,7 +190,7 @@ public class ComplaintsController {
     }
 
     public String destroy() {
-        current = (Complaints)getItems().getRowData();
+        current = (Complaints) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreateModel();
@@ -157,7 +198,7 @@ public class ComplaintsController {
     }
 
     public String enable() {
-        current = (Complaints)getItems().getRowData();
+        current = (Complaints) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performEnable();
         recreateModel();
@@ -177,7 +218,7 @@ public class ComplaintsController {
         }
     }
 
-     public String enableAndView() {
+    public String enableAndView() {
         performEnable();
         recreateModel();
         updateCurrentItem();
@@ -192,7 +233,7 @@ public class ComplaintsController {
 
     private void performDestroy() {
         try {
-             Users tmpUser = new Users();
+            Users tmpUser = new Users();
             tmpUser.setUserID(1);
             tmpUser.setUsername("demo");
 
@@ -209,7 +250,7 @@ public class ComplaintsController {
 
     private void performEnable() {
         try {
-             Users tmpUser = new Users();
+            Users tmpUser = new Users();
             tmpUser.setUserID(1);
             tmpUser.setUsername("demo");
 
@@ -228,21 +269,41 @@ public class ComplaintsController {
         int count = getFacade().count();
         if (selectedItemIndex >= count) {
             // selected index cannot be bigger than number of items:
-            selectedItemIndex = count-1;
+            selectedItemIndex = count - 1;
             // go to previous page if last page disappeared:
             if (pagination.getPageFirstItem() >= count) {
                 pagination.previousPage();
             }
         }
         if (selectedItemIndex >= 0) {
-            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex+1}).get(0);
+            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
         }
     }
 
     public DataModel getItems() {
-        if (items == null) {
-            items = getPagination().createPageDataModel();
-        }
+        //if (items == null) {
+        items = getPagination().createPageDataModel();
+        //}
+        return items;
+    }
+
+    public DataModel getItemsByUserID() {
+        //if (items == null) {
+        items = null;
+        // if (UsersController.getCurrentLoggedUserID() > 0) {
+        items = getPaginationByUserID().createPageDataModel();
+        //}
+        //}
+        return items;
+    }
+
+    public DataModel getItemsByUserRef() {
+        //if (items == null) {
+        items = null;
+        //if (UsersController.getCurrentLoggedUserID() > 0) {
+        items = getPaginationByUserRef().createPageDataModel();
+        //}
+        //}
         return items;
     }
 
@@ -270,7 +331,7 @@ public class ComplaintsController {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    @FacesConverter(forClass=Complaints.class)
+    @FacesConverter(forClass = Complaints.class)
     public static class ComplaintsControllerConverter implements Converter {
 
         @Override
@@ -278,7 +339,7 @@ public class ComplaintsController {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ComplaintsController controller = (ComplaintsController)facesContext.getApplication().getELResolver().
+            ComplaintsController controller = (ComplaintsController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "complaintsController");
             return controller.ejbFacade.find(getKey(value));
         }
@@ -304,10 +365,8 @@ public class ComplaintsController {
                 Complaints o = (Complaints) object;
                 return getStringKey(o.getComplaintID());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: "+ComplaintsController.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + ComplaintsController.class.getName());
             }
         }
-
     }
-
 }

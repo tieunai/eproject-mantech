@@ -17,7 +17,7 @@
                         </h2>
                         <div class="box-content">
                             <h:form styleClass="jsfcrud_list_form">
-                                <h:dataTable value="#{complaintsController.items}" var="item" styleClass="display tabledata"  id="tabledata">
+                                <h:dataTable value="#{complaintsController.itemsByUserRef}" var="item" styleClass="display tabledata"  id="tabledata">
                                     <h:column>
                                         <f:facet name="header">
                                             <h:outputText value="#{bundle.ListComplaintsTitle_title}"/>
@@ -80,7 +80,6 @@
                                         </f:facet>
                                     </h:column>
                                 </h:dataTable>
-                                </h:panelGroup>
                             </h:form>
                             <div class="clear"></div>
                         </div>
