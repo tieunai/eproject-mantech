@@ -32,20 +32,20 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Complaints", catalog = "MantechHelpdesk", schema = "dbo")
 @NamedQueries({
-    @NamedQuery(name = "Complaints.findAll", query = "SELECT c FROM Complaints c"),
+    @NamedQuery(name = "Complaints.findAll", query = "SELECT c FROM Complaints c ORDER BY c.createTime DESC"),
     @NamedQuery(name = "Complaints.findByComplaintID", query = "SELECT c FROM Complaints c WHERE c.complaintID = :complaintID"),
     @NamedQuery(name = "Complaints.findByUserID", query = "SELECT c FROM Complaints c WHERE c.userID = :userID ORDER BY c.createTime DESC"),
     @NamedQuery(name = "Complaints.findByUserRef", query = "SELECT c FROM Complaints c WHERE c.userRef = :userRef ORDER BY c.createTime DESC"),
-    @NamedQuery(name = "Complaints.findByTitle", query = "SELECT c FROM Complaints c WHERE c.title = :title"),
-    @NamedQuery(name = "Complaints.findByCreateTime", query = "SELECT c FROM Complaints c WHERE c.createTime = :createTime"),
-    @NamedQuery(name = "Complaints.findByCreateIP", query = "SELECT c FROM Complaints c WHERE c.createIP = :createIP"),
-    @NamedQuery(name = "Complaints.findByEditIP", query = "SELECT c FROM Complaints c WHERE c.editIP = :editIP"),
-    @NamedQuery(name = "Complaints.findByIsEnable", query = "SELECT c FROM Complaints c WHERE c.isEnable = :isEnable"),
-    @NamedQuery(name = "Complaints.findByIsFinished", query = "SELECT c FROM Complaints c WHERE c.isFinished = :isFinished"),
-    @NamedQuery(name = "Complaints.findByFinishedTime", query = "SELECT c FROM Complaints c WHERE c.finishedTime = :finishedTime"),
-    @NamedQuery(name = "Complaints.findByHasReplied", query = "SELECT c FROM Complaints c WHERE c.hasReplied = :hasReplied"),
-    @NamedQuery(name = "Complaints.findByRepliedTime", query = "SELECT c FROM Complaints c WHERE c.repliedTime = :repliedTime"),
-    @NamedQuery(name = "Complaints.findByPriority", query = "SELECT c FROM Complaints c WHERE c.priority = :priority")})
+    @NamedQuery(name = "Complaints.findByTitle", query = "SELECT c FROM Complaints c WHERE c.title = :title ORDER BY c.createTime DESC"),
+    @NamedQuery(name = "Complaints.findByCreateTime", query = "SELECT c FROM Complaints c WHERE c.createTime = :createTime ORDER BY c.createTime DESC"),
+    @NamedQuery(name = "Complaints.findByCreateIP", query = "SELECT c FROM Complaints c WHERE c.createIP = :createIP ORDER BY c.createTime DESC"),
+    @NamedQuery(name = "Complaints.findByEditIP", query = "SELECT c FROM Complaints c WHERE c.editIP = :editIP ORDER BY c.createTime DESC"),
+    @NamedQuery(name = "Complaints.findByIsEnable", query = "SELECT c FROM Complaints c WHERE c.isEnable = :isEnable ORDER BY c.createTime DESC"),
+    @NamedQuery(name = "Complaints.findByIsFinished", query = "SELECT c FROM Complaints c WHERE c.isFinished = :isFinished ORDER BY c.createTime DESC"),
+    @NamedQuery(name = "Complaints.findByFinishedTime", query = "SELECT c FROM Complaints c WHERE c.finishedTime = :finishedTime ORDER BY c.createTime DESC"),
+    @NamedQuery(name = "Complaints.findByHasReplied", query = "SELECT c FROM Complaints c WHERE c.hasReplied = :hasReplied ORDER BY c.createTime DESC"),
+    @NamedQuery(name = "Complaints.findByRepliedTime", query = "SELECT c FROM Complaints c WHERE c.repliedTime = :repliedTime ORDER BY c.createTime DESC"),
+    @NamedQuery(name = "Complaints.findByPriority", query = "SELECT c FROM Complaints c WHERE c.priority = :priority ORDER BY c.createTime DESC")})
 public class Complaints implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
