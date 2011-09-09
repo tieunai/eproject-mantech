@@ -2,7 +2,77 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
+        <Node id="articleView.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="employee/AnswersView.xhtml" x="900" y="1200" zoom="true"/>
+        <Node id="template/grids.xhtml" x="2400" y="150" zoom="true"/>
+        <Node id="employee/ArticlesList.xhtml" x="1150" y="1050" zoom="true"/>
+        <Node id="admin/UsersList.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="account/ProfileEdit.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="template/tabs.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="technician/AnswersEdit.xhtml" x="650" y="1200" zoom="true"/>
+        <Node id="resources/gfx/search.html" x="900" y="900" zoom="true"/>
+        <Node id="template/typography.xhtml" x="2150" y="600" zoom="true"/>
+        <Node id="admin/ComplaintsAssign.xhtml" x="1900" y="600" zoom="true"/>
+        <Node id="employee/ComplaintsView.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="technician/AnswersCreate.xhtml" x="1400" y="900" zoom="true"/>
+        <Node id="admin/ThreadsEdit.xhtml" x="1900" y="300" zoom="true"/>
+        <Node id="admin/ComplaintsList.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="_include/content.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="account/ChangePwd.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="Login.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="template/dashboard.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="admin/ReportsView.xhtml" x="400" y="1500" zoom="true"/>
+        <Node id="admin/FAQsCreate.xhtml" x="650" y="1350" zoom="true"/>
+        <Node id="account/View.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="admin/ComplaintsCreate.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="employee/ThreadsView.xhtml" x="150" y="1350" zoom="true"/>
+        <Node id="_include/header.xhtml" x="1400" y="600" zoom="true"/>
+        <Node id="employee/ThreadsList.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="admin/index.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="_include/master.xhtml" x="2400" y="450" zoom="true"/>
+        <Node id="admin/ThreadsCreate.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="employee/ComplaintsCreate.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="admin/ThreadsList.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="employee/ComplaintsList.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="employee/ReportsView.xhtml" x="1650" y="750" zoom="true"/>
+        <Node id="admin/FAQsView.xhtml" x="2650" y="300" zoom="true"/>
+        <Node id="admin/UsersCreate.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="admin/FAQsEdit.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="admin/UsersView.xhtml" x="2900" y="150" zoom="true"/>
+        <Node id="employee/DepartmentsList.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="employee/AnswersList.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="employee/DepartmentsView.xhtml" x="150" y="1650" zoom="true"/>
+        <Node id="template/login.xhtml" x="2400" y="300" zoom="true"/>
+        <Node id="template.xhtml" x="1150" y="750" zoom="true"/>
+        <Node id="admin/DepartmentsView.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="employee/FAQsList.xhtml" x="650" y="1050" zoom="true"/>
+        <Node id="resources/gfx/back_tab_active.html" x="400" y="1050" zoom="true"/>
+        <Node id="namTest.xhtml" x="1900" y="450" zoom="true"/>
+        <Node id="admin/ComplaintsView.xhtml" x="1900" y="750" zoom="true"/>
+        <Node id="admin/ArticlesEdit.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="template/tables.xhtml" x="900" y="1050" zoom="true"/>
+        <Node id="admin/DepartmentsList.xhtml" x="2150" y="300" zoom="true"/>
+        <Node id="admin/ArticlesCreate.xhtml" x="2150" y="450" zoom="true"/>
+        <Node id="template/general.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="technician/ComplaintsList.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="technician/AnswersView.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="admin/ArticlesView.xhtml" x="400" y="1200" zoom="true"/>
+        <Node id="technician/ComplaintsView.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="admin/ThreadsView.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="admin/ArticlesList.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="admin/FAQsList.xhtml" x="2650" y="150" zoom="true"/>
+        <Node id="employee/ArticlesView.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="employee/FAQsView.xhtml" x="1650" y="600" zoom="true"/>
+        <Node id="admin/DepartmentsCreate.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="template/graphs.xhtml" x="1150" y="900" zoom="true"/>
+        <Node id="template/forms.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="admin/DepartmentsEdit.xhtml" x="400" y="1350" zoom="true"/>
+        <Node id="admin/ComplaintsEdit.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="admin/UsersEdit.xhtml" x="150" y="1500" zoom="true"/>
         <Node id="index.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="_include/footer.xhtml" x="1400" y="750" zoom="true"/>
+        <Node id="admin/UsersResetPwd.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="technician/AnswersList.xhtml" x="650" y="150" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
