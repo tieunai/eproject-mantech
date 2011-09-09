@@ -69,6 +69,18 @@
                                         </f:facet>
                                         <h:outputText value="#{item.userID.username}"/>
                                     </h:column>
+                                     <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ActionLabel_Like}"/>
+                                        </f:facet>
+                                        <h:outputText style="color: #0173B9" value="#{item.likeCount}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ActionLabel_Dislike}"/>
+                                        </f:facet>
+                                        <h:outputText style="color: #E10000" value="#{item.dislikeCount}"/>
+                                    </h:column>
                                     <h:column>
                                         <f:facet name="header">
                                             <h:outputText value="&nbsp;"/>
