@@ -64,7 +64,7 @@ public class ArticlesController {
     }
 
     public PaginationHelper getPagination() {
-        if (pagination == null) {
+     
             pagination = new PaginationHelper(10) {
 
                 @Override
@@ -78,7 +78,27 @@ public class ArticlesController {
                     return new ListDataModel(getFacade().findAll());
                 }
             };
-        }
+        
+        return pagination;
+    }
+
+     public PaginationHelper getPaginationByEnable() {
+   
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+        
+                    //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
+                    return new ListDataModel(getFacade().findByEnable(true));
+                }
+            };
+        
         return pagination;
     }
 
@@ -102,7 +122,7 @@ public class ArticlesController {
     public String create() {
         try {
             Users tmpUser = new Users();
-            tmpUser.setUserID(1);
+            tmpUser.setUserID(2);
 
             getSelected().setCreateTime(new Date());
             getSelected().setCreateIP("192.168.1.1");
@@ -229,6 +249,14 @@ public class ArticlesController {
         return items;
     }
 
+     public DataModel getItemsByEnable() {
+  
+        items = null;
+
+        items = getPaginationByEnable().createPageDataModel();
+
+        return items;
+    }
     private void recreateModel() {
         items = null;
     }

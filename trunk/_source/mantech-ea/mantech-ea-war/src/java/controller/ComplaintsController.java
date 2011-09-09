@@ -164,7 +164,7 @@ public class ComplaintsController {
     public String create() {
         try {
             Users tmpUser = new Users();
-            tmpUser.setUserID(1);
+            tmpUser.setUserID(2);
 
             getSelected().setUserID(tmpUser);
             getSelected().setCreateTime(new Date());
