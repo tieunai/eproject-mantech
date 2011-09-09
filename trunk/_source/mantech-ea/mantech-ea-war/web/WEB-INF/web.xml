@@ -67,6 +67,6 @@
     <location>/ea/AccessDenied.xhtml</location>
   </error-page>
     <welcome-file-list>
-        <welcome-file>ea/index.xhtml</welcome-file>
+        <welcome-file>ea/Login.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>
