@@ -101,7 +101,7 @@ public class ComplaintsController {
             public DataModel createPageDataModel() {
                 //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
                 Users u = UsersController.getCurrentLoggedUser();
-                return new ListDataModel(getFacade().findByUserID(u));
+                return new ListDataModel(getFacade().emplFindByUserID(u));
             }
         };
 
@@ -120,7 +120,7 @@ public class ComplaintsController {
             public DataModel createPageDataModel() {
                 //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
                 Users u = UsersController.getCurrentLoggedUser();
-                return new ListDataModel(getFacade().findByUserRef(u));
+                return new ListDataModel(getFacade().emplFindByUserRef(u));
             }
         };
 

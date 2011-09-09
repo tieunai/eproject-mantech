@@ -22,13 +22,14 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-@ManagedBean (name="departmentsController")
+@ManagedBean(name = "departmentsController")
 @SessionScoped
 public class DepartmentsController {
 
     private Departments current;
     private DataModel items = null;
-    @EJB private facades.DepartmentsFacadeRemote ejbFacade;
+    @EJB
+    private facades.DepartmentsFacadeRemote ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -59,21 +60,40 @@ public class DepartmentsController {
     }
 
     public PaginationHelper getPagination() {
-        if (pagination == null) {
-            pagination = new PaginationHelper(10) {
 
-                @Override
-                public int getItemsCount() {
-                    return getFacade().count();
-                }
+        pagination = new PaginationHelper(10) {
 
-                @Override
-                public DataModel createPageDataModel() {
-                    //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
-                    return new ListDataModel(getFacade().findAll());
-                }
-            };
-        }
+            @Override
+            public int getItemsCount() {
+                return getFacade().count();
+            }
+
+            @Override
+            public DataModel createPageDataModel() {
+                //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
+                return new ListDataModel(getFacade().findAll());
+            }
+        };
+
+        return pagination;
+    }
+
+    public PaginationHelper getPaginationForClient() {
+
+        pagination = new PaginationHelper(10) {
+
+            @Override
+            public int getItemsCount() {
+                return getFacade().count();
+            }
+
+            @Override
+            public DataModel createPageDataModel() {
+                //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
+                return new ListDataModel(getFacade().emplFindAll());
+            }
+        };
+
         return pagination;
     }
 
@@ -83,7 +103,7 @@ public class DepartmentsController {
     }
 
     public String prepareView() {
-        current = (Departments)getItems().getRowData();
+        current = (Departments) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "DepartmentsView";
     }
@@ -107,7 +127,7 @@ public class DepartmentsController {
     }
 
     public String prepareEdit() {
-        current = (Departments)getItems().getRowData();
+        current = (Departments) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "DepartmentsEdit";
     }
@@ -124,7 +144,7 @@ public class DepartmentsController {
     }
 
     public String destroy() {
-        current = (Departments)getItems().getRowData();
+        current = (Departments) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreateModel();
@@ -132,7 +152,7 @@ public class DepartmentsController {
     }
 
     public String enable() {
-        current = (Departments)getItems().getRowData();
+        current = (Departments) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performEnable();
         recreateModel();
@@ -189,21 +209,28 @@ public class DepartmentsController {
         int count = getFacade().count();
         if (selectedItemIndex >= count) {
             // selected index cannot be bigger than number of items:
-            selectedItemIndex = count-1;
+            selectedItemIndex = count - 1;
             // go to previous page if last page disappeared:
             if (pagination.getPageFirstItem() >= count) {
                 pagination.previousPage();
             }
         }
         if (selectedItemIndex >= 0) {
-            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex+1}).get(0);
+            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
         }
     }
 
     public DataModel getItems() {
-        if (items == null) {
-            items = getPagination().createPageDataModel();
-        }
+
+        items = getPagination().createPageDataModel();
+
+        return items;
+    }
+
+    public DataModel getItemsForClient() {
+
+        items = getPaginationForClient().createPageDataModel();
+
         return items;
     }
 
@@ -231,7 +258,7 @@ public class DepartmentsController {
         return JsfUtil.getDepartmentsSelectItems(ejbFacade.findAll(), true);
     }
 
-    @FacesConverter(forClass=Departments.class)
+    @FacesConverter(forClass = Departments.class)
     public static class DepartmentsControllerConverter implements Converter {
 
         @Override
@@ -239,7 +266,7 @@ public class DepartmentsController {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            DepartmentsController controller = (DepartmentsController)facesContext.getApplication().getELResolver().
+            DepartmentsController controller = (DepartmentsController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "departmentsController");
             return controller.ejbFacade.find(getKey(value));
         }
@@ -265,10 +292,8 @@ public class DepartmentsController {
                 Departments o = (Departments) object;
                 return getStringKey(o.getDepartmentID());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: "+DepartmentsController.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + DepartmentsController.class.getName());
             }
         }
-
     }
-
 }

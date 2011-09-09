@@ -23,13 +23,14 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-@ManagedBean (name="articlesController")
+@ManagedBean(name = "articlesController")
 @SessionScoped
 public class ArticlesController {
 
     private Articles current;
     private DataModel items = null;
-    @EJB private facades.ArticlesFacadeRemote ejbFacade;
+    @EJB
+    private facades.ArticlesFacadeRemote ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -61,41 +62,60 @@ public class ArticlesController {
     }
 
     public PaginationHelper getPagination() {
-     
-            pagination = new PaginationHelper(10) {
 
-                @Override
-                public int getItemsCount() {
-                    return getFacade().count();
-                }
+        pagination = new PaginationHelper(10) {
 
-                @Override
-                public DataModel createPageDataModel() {
-                    //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
-                    return new ListDataModel(getFacade().findAll());
-                }
-            };
-        
+            @Override
+            public int getItemsCount() {
+                return getFacade().count();
+            }
+
+            @Override
+            public DataModel createPageDataModel() {
+                //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
+                return new ListDataModel(getFacade().findAll());
+            }
+        };
+
         return pagination;
     }
 
-     public PaginationHelper getPaginationByEnable() {
-   
-            pagination = new PaginationHelper(10) {
+    public PaginationHelper getPaginationForClient() {
 
-                @Override
-                public int getItemsCount() {
-                    return getFacade().count();
-                }
+        pagination = new PaginationHelper(10) {
 
-                @Override
-                public DataModel createPageDataModel() {
-        
-                    //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
-                    return new ListDataModel(getFacade().findByEnable(true));
-                }
-            };
-        
+            @Override
+            public int getItemsCount() {
+                return getFacade().count();
+            }
+
+            @Override
+            public DataModel createPageDataModel() {
+                //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
+                return new ListDataModel(getFacade().emplFindAll());
+            }
+        };
+
+        return pagination;
+    }
+
+    public PaginationHelper getPaginationByEnable() {
+
+        pagination = new PaginationHelper(10) {
+
+            @Override
+            public int getItemsCount() {
+                return getFacade().count();
+            }
+
+            @Override
+            public DataModel createPageDataModel() {
+
+                //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
+                return new ListDataModel(getFacade().findByEnable(true));
+            }
+        };
+
         return pagination;
     }
 
@@ -105,7 +125,7 @@ public class ArticlesController {
     }
 
     public String prepareView() {
-        current = (Articles)getGeneralItems().getRowData();
+        current = (Articles) getGeneralItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ArticlesView";
     }
@@ -134,7 +154,7 @@ public class ArticlesController {
     }
 
     public String prepareEdit() {
-        current = (Articles)getGeneralItems().getRowData();
+        current = (Articles) getGeneralItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ArticlesEdit";
     }
@@ -155,7 +175,7 @@ public class ArticlesController {
 
     public String increaseLike() {
         try {
-            getSelected().setLikeCount(getSelected().getLikeCount()+1);
+            getSelected().setLikeCount(getSelected().getLikeCount() + 1);
 
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ArticlesUpdated"));
@@ -168,7 +188,7 @@ public class ArticlesController {
 
     public String increaseDislike() {
         try {
-            getSelected().setDislikeCount(getSelected().getDislikeCount()+1);
+            getSelected().setDislikeCount(getSelected().getDislikeCount() + 1);
 
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ArticlesUpdated"));
@@ -180,7 +200,7 @@ public class ArticlesController {
     }
 
     public String destroy() {
-        current = (Articles)getGeneralItems().getRowData();
+        current = (Articles) getGeneralItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreateModel();
@@ -188,7 +208,7 @@ public class ArticlesController {
     }
 
     public String enable() {
-        current = (Articles)getGeneralItems().getRowData();
+        current = (Articles) getGeneralItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performEnable();
         recreateModel();
@@ -251,21 +271,28 @@ public class ArticlesController {
         int count = getFacade().count();
         if (selectedItemIndex >= count) {
             // selected index cannot be bigger than number of items:
-            selectedItemIndex = count-1;
+            selectedItemIndex = count - 1;
             // go to previous page if last page disappeared:
             if (pagination.getPageFirstItem() >= count) {
                 pagination.previousPage();
             }
         }
         if (selectedItemIndex >= 0) {
-            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex+1}).get(0);
+            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
         }
     }
 
     public DataModel getItems() {
-        if (items == null) {
-            items = getPagination().createPageDataModel();
-        }
+
+        items = getPagination().createPageDataModel();
+
+        return items;
+    }
+
+    public DataModel getItemsForClient() {
+
+        items = getPaginationForClient().createPageDataModel();
+
         return items;
     }
 
@@ -273,14 +300,15 @@ public class ArticlesController {
         return items;
     }
 
-     public DataModel getItemsByEnable() {
-  
+    public DataModel getItemsByEnable() {
+
         items = null;
 
         items = getPaginationByEnable().createPageDataModel();
 
         return items;
     }
+
     private void recreateModel() {
         items = null;
     }
@@ -313,7 +341,7 @@ public class ArticlesController {
         return trueFalseItems;
     }
 
-    @FacesConverter(forClass=Articles.class)
+    @FacesConverter(forClass = Articles.class)
     public static class ArticlesControllerConverter implements Converter {
 
         @Override
@@ -321,7 +349,7 @@ public class ArticlesController {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ArticlesController controller = (ArticlesController)facesContext.getApplication().getELResolver().
+            ArticlesController controller = (ArticlesController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "articlesController");
             return controller.ejbFacade.find(getKey(value));
         }
@@ -347,10 +375,8 @@ public class ArticlesController {
                 Articles o = (Articles) object;
                 return getStringKey(o.getArticleID());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: "+ArticlesController.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + ArticlesController.class.getName());
             }
         }
-
     }
-
 }
