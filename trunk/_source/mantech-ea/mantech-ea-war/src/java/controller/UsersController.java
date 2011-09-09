@@ -70,6 +70,8 @@ public class UsersController {
     }
 
     public static void setCurrentLoggedUserID(String userName) {
+        if(ejbFacade2 == null)
+            ejbFacade2 = lookupUsersFacadeRemote();
         Users u = ejbFacade2.findByUsername(userName);
         if(u != null)
             UsersController.currentLoggedUserID = u.getUserID();
