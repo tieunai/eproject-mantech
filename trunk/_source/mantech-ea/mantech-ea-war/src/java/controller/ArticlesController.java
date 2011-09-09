@@ -80,10 +80,12 @@ public class ArticlesController {
         return pagination;
     }
 
-    public PaginationHelper getPaginationForClient() {
 
-        pagination = new PaginationHelper(10) {
+     public PaginationHelper getPaginationForClient() {
+   
+        pagination = new PaginationHelper(5) {
 
+        
             @Override
             public int getItemsCount() {
                 return getFacade().count();
@@ -130,6 +132,11 @@ public class ArticlesController {
         return "ArticlesView";
     }
 
+    public String prepareViewByEnable(){
+        current = (Articles)getGeneralItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "client";
+    }
     public String prepareCreate() {
         current = new Articles();
         selectedItemIndex = -1;
@@ -214,7 +221,6 @@ public class ArticlesController {
         recreateModel();
         return "ArticlesList";
     }
-
     public String destroyAndView() {
         performDestroy();
         recreateModel();
@@ -227,7 +233,6 @@ public class ArticlesController {
             return "ArticlesList";
         }
     }
-
     public String enableAndView() {
         performEnable();
         recreateModel();
@@ -240,7 +245,6 @@ public class ArticlesController {
             return "ArticlesList";
         }
     }
-
     private void performDestroy() {
         try {
             getSelected().setEditIP("192.168.1.1");
@@ -281,11 +285,10 @@ public class ArticlesController {
             current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
         }
     }
-
     public DataModel getItems() {
-
-        items = getPagination().createPageDataModel();
-
+     
+            items = getPagination().createPageDataModel();
+       
         return items;
     }
 
@@ -302,8 +305,9 @@ public class ArticlesController {
 
     public DataModel getItemsByEnable() {
 
-        items = null;
 
+
+        items = null;
         items = getPaginationByEnable().createPageDataModel();
 
         return items;
@@ -311,6 +315,7 @@ public class ArticlesController {
 
     private void recreateModel() {
         items = null;
+
     }
 
     public String next() {
@@ -319,6 +324,11 @@ public class ArticlesController {
         return "ArticlesList";
     }
 
+    public String nextE(){
+        getPaginationByEnable().nextPage();
+        recreateModel();
+        return "namTest";
+    }
     public String previous() {
         getPagination().previousPage();
         recreateModel();
