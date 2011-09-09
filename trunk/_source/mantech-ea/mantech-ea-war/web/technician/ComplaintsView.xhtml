@@ -69,12 +69,8 @@
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.threadID.threadName}" title="#{bundle.ListThreadsTitle_threadName}"/>
 
                                 <hr/>
-
-                                <h:commandLink styleClass="button  themed" action="#{complaintsController.prepareList}" value="#{bundle.ViewComplaintsShowAllLink}">
-
-                                </h:commandLink>
-
-
+                                <h:commandLink styleClass="button  themed" action="#{complaintsController.prepareAnswer}" value="#{bundle.CreateAnswersTitle}"/>
+                                <h:commandLink styleClass="button  themed" action="#{complaintsController.prepareList}" value="#{bundle.ViewComplaintsShowAllLink}"/>
                             </h:form>
                             <!--END JSF CODE-->
                         </div>

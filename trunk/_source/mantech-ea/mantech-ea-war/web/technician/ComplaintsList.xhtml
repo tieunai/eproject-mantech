@@ -69,6 +69,12 @@
                                         <h:commandLink styleClass="button white tip" title="#{bundle.ActionLabel_View}" action="#{complaintsController.prepareView}">
                                             <span class="icon_single preview"/>
                                         </h:commandLink>
+                                        <h:commandLink styleClass="button white tip" title="#{bundle.ActionLabel_ViewAnswer}" action="#{complaintsController.prepareViewAnswers}">
+                                            <span class="icon_single preview"/>
+                                        </h:commandLink>
+                                        <h:commandLink styleClass="button white tip" title="#{bundle.CreateAnswersTitle}" action="#{complaintsController.prepareAnswer}">
+                                            <span class="icon_single addnew"/>
+                                        </h:commandLink>
                                     </h:column>
                                 </h:dataTable>
                             </h:form>

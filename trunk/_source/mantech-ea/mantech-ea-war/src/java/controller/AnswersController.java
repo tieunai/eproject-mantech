@@ -99,6 +99,10 @@ public class AnswersController {
     public String create() {
         try {
             getSelected().setIsEnable(true);
+            getSelected().setComplaintID(ComplaintsController.getStaticSelected());
+            getSelected().setCreateIP("192.168.1.1");
+            getSelected().setCreateTime(new Date());
+
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AnswersCreated"));
             return prepareCreate();

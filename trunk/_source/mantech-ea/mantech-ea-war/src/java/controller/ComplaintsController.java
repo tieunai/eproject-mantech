@@ -29,6 +29,7 @@ import javax.naming.NamingException;
 public class ComplaintsController {
 
     private Complaints current;
+    private static Complaints currentToAnswer;
     private DataModel items = null;
     @EJB
     private facades.ComplaintsFacadeRemote ejbFacade;
@@ -55,6 +56,13 @@ public class ComplaintsController {
             selectedItemIndex = -1;
         }
         return current;
+    }
+
+    public static Complaints getStaticSelected() {
+        if (currentToAnswer == null) {
+            currentToAnswer = new Complaints();
+        }
+        return currentToAnswer;
     }
 
     private ComplaintsFacadeRemote getFacade() {
@@ -129,6 +137,17 @@ public class ComplaintsController {
         current = (Complaints) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ComplaintsView";
+    }
+
+    public String prepareViewAnswers() {
+        current = (Complaints) getItems().getRowData();
+        return "AnswersList";
+    }
+
+    public String prepareAnswer() {
+        currentToAnswer = (Complaints) getItems().getRowData();
+        current = (Complaints) getItems().getRowData();
+        return "AnswersCreate";
     }
 
     public String prepareCreate() {
