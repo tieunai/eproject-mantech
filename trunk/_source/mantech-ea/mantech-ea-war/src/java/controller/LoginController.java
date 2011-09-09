@@ -5,9 +5,10 @@
 package controller;
 
 import java.security.Principal;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Default;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Nam Eco
  */
-@Named(value = "loginController")
-@RequestScoped
+@ManagedBean (name="loginController")
+@RequestScoped @Default
 public class LoginController {
 
     /** Creates a new instance of LoginController */
@@ -60,12 +61,16 @@ public class LoginController {
             Principal principal = request.getUserPrincipal();
             UsersController.setCurrentLoggedUserID(username);
             //Display a message based on the User role
-            if (request.isUserInRole("Administrator")) {
+            if (request.isUserInRole("admin")) {
+
                 message = "Username : " + principal.getName() + " You are an Administrator, you can really f**k things up now";
-            } else if (request.isUserInRole("Employee")) {
+                return "admin";
+            } else if (request.isUserInRole("employee")) {
                 message = "Username : " + principal.getName() + " You are only a Employee, Don't you have a Spreadsheet to be working on??";
-            } else if (request.isUserInRole("Guest")) {
+                return "employee";
+            } else if (request.isUserInRole("technician")) {
                 message = "Username : " + principal.getName() + " You're wasting my resources...";
+                return "technician";
             }
 
             //Add the welcome message to the faces context
