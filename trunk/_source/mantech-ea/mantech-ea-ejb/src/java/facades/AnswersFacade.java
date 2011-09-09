@@ -6,10 +6,13 @@
 package facades;
 
 import entities.Answers;
+import entities.Users;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -73,4 +76,6 @@ public class AnswersFacade implements AnswersFacadeRemote {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
+
+    
 }

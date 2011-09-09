@@ -29,7 +29,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Answers", catalog = "MantechHelpdesk", schema = "dbo")
 @NamedQueries({
-    @NamedQuery(name = "Answers.findAll", query = "SELECT a FROM Answers a"),
+    @NamedQuery(name = "Answers.findAll", query = "SELECT a FROM Answers a ORDER BY a.createTime DESC"),
     @NamedQuery(name = "Answers.findByAnswerID", query = "SELECT a FROM Answers a WHERE a.answerID = :answerID"),
     @NamedQuery(name = "Answers.findByCreateTime", query = "SELECT a FROM Answers a WHERE a.createTime = :createTime"),
     @NamedQuery(name = "Answers.findByCreateIP", query = "SELECT a FROM Answers a WHERE a.createIP = :createIP"),

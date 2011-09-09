@@ -92,10 +92,10 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
     }
 
     @Override
-    public List<Complaints> findByUserID(Users userID) {
+    public List<Complaints> findByUserID(Users user) {
         try {
             Query q = getEntityManager().createNamedQuery("Complaints.findByUserID");
-            q.setParameter("userID", userID);
+            q.setParameter("userID", user);
             return q.getResultList();
         } catch (NoResultException noReEx) {
         }
