@@ -118,6 +118,15 @@ insert into Roles(RoleName) values('employee')
 
 go
 
+CREATE VIEW [dbo].[v_role_user]
+AS
+SELECT     dbo.Roles.RoleName, dbo.Users.Username, dbo.Users.Password
+FROM         dbo.Roles INNER JOIN
+                      dbo.Roles_Users ON dbo.Roles.RoleID = dbo.Roles_Users.RoleID INNER JOIN
+                      dbo.Users ON dbo.Roles.RoleID = dbo.Users.RoleID AND dbo.Roles_Users.UserID = dbo.Users.UserID
+
+GO
+
 /*create procedure Roles_SelectAll(@pageIndex int, @pageSize int) as
 begin
 	WITH OrdersRN AS
