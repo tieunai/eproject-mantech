@@ -27,9 +27,9 @@ public class LoginController {
     /** Creates a new instance of LoginController */
     public LoginController() {
        
-        if (session != null) {
-            session.invalidate();
-        }
+//        if (session != null) {
+//            session.invalidate();
+//        }
     }
     private String username;
     private String password;
@@ -73,16 +73,13 @@ public class LoginController {
             UsersController.setCurrentLoggedUserID(username);
             //Display a message based on the User role
             if (request.isUserInRole("admin")) {
-                rolename =null;
-                this.setRolename("admin");
+                session.setAttribute("rolename", "admin");
                 return "admin";
             } else if (request.isUserInRole("employee")) {
-                rolename =null;
-                this.setRolename("employee");
+                session.setAttribute("rolename", "employee");
                 return "employee";
             } else if (request.isUserInRole("technician")) {
-                rolename =null;
-                this.setRolename("technician");
+                session.setAttribute("rolename", "technician");
                 return "technician";
             }
 
