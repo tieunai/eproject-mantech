@@ -17,6 +17,9 @@
                         </h2>
                         <div class="box-content">
                             <h:form styleClass="sorting">
+                                <h:commandLink styleClass="button white" action="#{complaintsController.prepareList}" immediate="true">
+                                    <span class="icon_text preview"/>View Complaints
+                                </h:commandLink>
                                 <h:dataTable value="#{answersController.itemsByComplaint}" var="item" styleClass="display tabledata"  id="tabledata">
                                     <h:column>
                                         <f:facet name="header">

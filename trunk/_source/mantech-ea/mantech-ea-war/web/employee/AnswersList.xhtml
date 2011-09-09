@@ -2,8 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:body>
         <ui:composition template="/_include/master.xhtml">
             <ui:define name="content">
@@ -17,7 +17,10 @@
                         </h2>
                         <div class="box-content">
                             <h:form styleClass="sorting">
-                                <h:dataTable value="#{answersController.items}" var="item" styleClass="display tabledata"  id="tabledata">
+                                <h:commandLink styleClass="button white" action="#{complaintsController.prepareList}" immediate="true">
+                                    <span class="icon_text preview"/>View Complaints
+                                </h:commandLink>
+                                <h:dataTable value="#{answersController.itemsByComplaint}" var="item" styleClass="display tabledata"  id="tabledata">
                                     <h:column>
                                         <f:facet name="header">
                                             <h:outputText value="#{bundle.ListAnswersTitle_answerID}"/>
@@ -66,15 +69,15 @@
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListAnswersTitle_editorID}"/>
+                                            <h:outputText value="#{bundle.ListAnswersTitle_editorName}"/>
                                         </f:facet>
-                                        <h:outputText value="#{item.editorID}"/>
+                                        <h:outputText value="#{item.editorID.username}"/>
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListAnswersTitle_complaintID}"/>
+                                            <h:outputText value="#{bundle.ListAnswersTitle_complaintName}"/>
                                         </f:facet>
-                                        <h:outputText value="#{item.complaintID}"/>
+                                        <h:outputText value="#{item.complaintID.title}"/>
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
@@ -85,7 +88,6 @@
                                         </h:commandLink>
                                     </h:column>
                                 </h:dataTable>
-                                </h:panelGroup>
                             </h:form>
                             <div class="clear"></div>
                         </div>

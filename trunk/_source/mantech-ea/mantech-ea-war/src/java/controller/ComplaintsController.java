@@ -141,12 +141,17 @@ public class ComplaintsController {
 
     public String prepareViewAnswers() {
         current = (Complaints) getItems().getRowData();
+        currentToAnswer = null;
+        currentToAnswer = current;
+
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "AnswersList";
     }
 
     public String prepareAnswer() {
         currentToAnswer = (Complaints) getItems().getRowData();
         current = (Complaints) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "AnswersCreate";
     }
 

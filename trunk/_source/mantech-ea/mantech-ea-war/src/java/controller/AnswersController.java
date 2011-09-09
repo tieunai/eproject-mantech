@@ -26,14 +26,16 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-@ManagedBean (name="answersController")
+@ManagedBean(name = "answersController")
 @SessionScoped
 public class AnswersController {
 
     private Answers current;
     private DataModel items = null;
-    @EJB private facades.AnswersFacadeRemote ejbFacade;
-    @EJB private facades.ComplaintsFacadeRemote complaintFacade;
+    @EJB
+    private facades.AnswersFacadeRemote ejbFacade;
+    @EJB
+    private facades.ComplaintsFacadeRemote complaintFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -79,21 +81,41 @@ public class AnswersController {
     }
 
     public PaginationHelper getPagination() {
-        if (pagination == null) {
-            pagination = new PaginationHelper(10) {
 
-                @Override
-                public int getItemsCount() {
-                    return getFacade().count();
-                }
+        pagination = new PaginationHelper(10) {
 
-                @Override
-                public DataModel createPageDataModel() {
-                    //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
-                    return new ListDataModel(getFacade().findAll());
-                }
-            };
-        }
+            @Override
+            public int getItemsCount() {
+                return getFacade().count();
+            }
+
+            @Override
+            public DataModel createPageDataModel() {
+                //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
+                return new ListDataModel(getFacade().findAll());
+            }
+        };
+
+        return pagination;
+    }
+
+    public PaginationHelper getPaginationByComplaint() {
+
+        pagination = new PaginationHelper(10) {
+
+            @Override
+            public int getItemsCount() {
+                return getFacade().count();
+            }
+
+            @Override
+            public DataModel createPageDataModel() {
+                //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
+                System.out.println("COMPLAINT: " + ComplaintsController.getStaticSelected().toString());
+                return new ListDataModel(getFacade().findByComplaint(ComplaintsController.getStaticSelected()));
+            }
+        };
+
         return pagination;
     }
 
@@ -103,7 +125,7 @@ public class AnswersController {
     }
 
     public String prepareView() {
-        current = (Answers)getItems().getRowData();
+        current = (Answers) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "AnswersView";
     }
@@ -124,7 +146,7 @@ public class AnswersController {
             getFacade().create(current);
 
             updateComplaint(ComplaintsController.getStaticSelected());
-            
+
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AnswersCreated"));
             return prepareCreate();
         } catch (Exception e) {
@@ -133,7 +155,7 @@ public class AnswersController {
         }
     }
 
-    private void updateComplaint(Complaints complaint) throws Exception{
+    private void updateComplaint(Complaints complaint) throws Exception {
         try {
             complaint.setIsFinished(true);
             complaint.setFinishedTime(new Date());
@@ -145,7 +167,7 @@ public class AnswersController {
     }
 
     public String prepareEdit() {
-        current = (Answers)getItems().getRowData();
+        current = (Answers) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "AnswersEdit";
     }
@@ -170,7 +192,7 @@ public class AnswersController {
     }
 
     public String destroy() {
-        current = (Answers)getItems().getRowData();
+        current = (Answers) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreateModel();
@@ -178,7 +200,7 @@ public class AnswersController {
     }
 
     public String enable() {
-        current = (Answers)getItems().getRowData();
+        current = (Answers) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performEnable();
         recreateModel();
@@ -251,20 +273,27 @@ public class AnswersController {
         int count = getFacade().count();
         if (selectedItemIndex >= count) {
             // selected index cannot be bigger than number of items:
-            selectedItemIndex = count-1;
+            selectedItemIndex = count - 1;
             // go to previous page if last page disappeared:
             if (pagination.getPageFirstItem() >= count) {
                 pagination.previousPage();
             }
         }
         if (selectedItemIndex >= 0) {
-            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex+1}).get(0);
+            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
         }
     }
 
     public DataModel getItems() {
         if (items == null) {
             items = getPagination().createPageDataModel();
+        }
+        return items;
+    }
+
+    public DataModel getItemsByComplaint() {
+        if (items == null) {
+            items = getPaginationByComplaint().createPageDataModel();
         }
         return items;
     }
@@ -293,7 +322,7 @@ public class AnswersController {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    @FacesConverter(forClass=Answers.class)
+    @FacesConverter(forClass = Answers.class)
     public static class AnswersControllerConverter implements Converter {
 
         @Override
@@ -301,7 +330,7 @@ public class AnswersController {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            AnswersController controller = (AnswersController)facesContext.getApplication().getELResolver().
+            AnswersController controller = (AnswersController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "answersController");
             return controller.ejbFacade.find(getKey(value));
         }
@@ -327,10 +356,8 @@ public class AnswersController {
                 Answers o = (Answers) object;
                 return getStringKey(o.getAnswerID());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: "+AnswersController.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + AnswersController.class.getName());
             }
         }
-
     }
-
 }
