@@ -62,6 +62,9 @@
   <security-role>
     <role-name>employee</role-name>
   </security-role>
+    <security-role>
+    <role-name>technician</role-name>
+  </security-role>
   <error-page>
     <error-code>403</error-code>
     <location>/ea/AccessDenied.xhtml</location>
