@@ -44,7 +44,7 @@ public class UsersController {
     private PaginationHelper pagination;
     private int selectedItemIndex;
     private String tmpPassword;
-    private static int currentLoggedUserID = 2;
+    private static int currentLoggedUserID=-1;
     private String tmpCurrentPassword;
 
     public String getTmpCurrentPassword() {
