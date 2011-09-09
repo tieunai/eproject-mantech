@@ -41,6 +41,12 @@
 
                                 <h:outputText styleClass="form-label" value="#{bundle.ListArticlesTitle_userName}"/>
                                 <h:outputText styleClass="form-label full" style="color:red" value="#{articlesController.selected.userID.username}" title="#{bundle.ListArticlesTitle_userName}"/>
+
+                                <h:outputText value="#{bundle.ActionLabel_Like}"/>
+                                <h:outputText style="color: #0173B9" value="#{articlesController.selected.likeCount}"/>
+                                &nbsp;
+                                <h:outputText value="#{bundle.ActionLabel_Dislike}"/>
+                                <h:outputText style="color: #E10000" styleClass="spam" value="#{articlesController.selected.dislikeCount}"/>
                                 <hr/>
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewArticlesLabel_content}"/>
                                 <div class="bordered">
