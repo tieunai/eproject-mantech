@@ -35,38 +35,6 @@
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListArticlesTitle_createIP}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.createIP}"/>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListArticlesTitle_editTime}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.editTime}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                        </h:outputText>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListArticlesTitle_editIP}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.editIP}"/>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListArticlesTitle_isEnable}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.isEnable}"/>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListArticlesTitle_userName}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.userID.username}"/>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
                                             <h:outputText value="&nbsp;"/>
                                         </f:facet>
                                         <h:commandLink styleClass="button white tip" title="#{bundle.ActionLabel_View}" action="#{articlesController.prepareView}" >
@@ -74,7 +42,6 @@
                                         </h:commandLink>
                                     </h:column>
                                 </h:dataTable>
-                                </h:panelGroup>
                             </h:form>
                             <div class="clear"></div>
                         </div>

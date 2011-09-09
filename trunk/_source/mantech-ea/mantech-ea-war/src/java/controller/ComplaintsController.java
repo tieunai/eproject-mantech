@@ -162,10 +162,7 @@ public class ComplaintsController {
 
     public String create() {
         try {
-            Users tmpUser = new Users();
-            tmpUser.setUserID(2);
-
-            getSelected().setUserID(tmpUser);
+            getSelected().setUserID(UsersController.getCurrentLoggedUser());
             getSelected().setCreateTime(new Date());
             getSelected().setCreateIP("192.168.1.1");
             getSelected().setIsEnable(true);
@@ -189,7 +186,6 @@ public class ComplaintsController {
     }
 
     public String prepareAssign() {
-        System.out.println("PREPARE ASSIGN");
         current = (Complaints) getCurrentItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ComplaintsAssign";
@@ -197,11 +193,7 @@ public class ComplaintsController {
 
     public String update() {
         try {
-            Users tmpUser = new Users();
-            tmpUser.setUserID(1);
-            tmpUser.setUsername("demo");
-
-            getSelected().setEditorID(tmpUser);
+            getSelected().setEditorID(UsersController.getCurrentLoggedUser());
             getSelected().setEditIP("192.168.1.1");
 
             getFacade().edit(current);
@@ -257,11 +249,7 @@ public class ComplaintsController {
 
     private void performDestroy() {
         try {
-            Users tmpUser = new Users();
-            tmpUser.setUserID(1);
-            tmpUser.setUsername("demo");
-
-            getSelected().setEditorID(tmpUser);
+            getSelected().setEditorID(UsersController.getCurrentLoggedUser());
             getSelected().setEditIP("192.168.1.1");
             getSelected().setIsEnable(false);
 
@@ -274,11 +262,7 @@ public class ComplaintsController {
 
     private void performEnable() {
         try {
-            Users tmpUser = new Users();
-            tmpUser.setUserID(1);
-            tmpUser.setUsername("demo");
-
-            getSelected().setEditorID(tmpUser);
+            getSelected().setEditorID(UsersController.getCurrentLoggedUser());
             getSelected().setEditIP("192.168.1.1");
             getSelected().setIsEnable(true);
 

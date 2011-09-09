@@ -4,7 +4,6 @@ import entities.Answers;
 import entities.Complaints;
 import util.JsfUtil;
 import util.PaginationHelper;
-import entities.Users;
 import facades.AnswersFacadeRemote;
 import facades.ComplaintsFacadeRemote;
 import java.util.Date;
@@ -174,11 +173,7 @@ public class AnswersController {
 
     public String update() {
         try {
-            Users tmpUser = new Users();
-            tmpUser.setUserID(1);
-            tmpUser.setUsername("demo");
-
-            getSelected().setEditorID(tmpUser);
+            getSelected().setEditorID(UsersController.getCurrentLoggedUser());
             getSelected().setEditIP("192.168.1.1");
             getSelected().setEditTime(new Date());
 
@@ -235,11 +230,7 @@ public class AnswersController {
 
     private void performDestroy() {
         try {
-            Users tmpUser = new Users();
-            tmpUser.setUserID(1);
-            tmpUser.setUsername("demo");
-
-            getSelected().setEditorID(tmpUser);
+            getSelected().setEditorID(UsersController.getCurrentLoggedUser());
             getSelected().setEditIP("192.168.1.1");
             getSelected().setEditTime(new Date());
             getSelected().setIsEnable(false);
@@ -253,11 +244,7 @@ public class AnswersController {
 
     private void performEnable() {
         try {
-            Users tmpUser = new Users();
-            tmpUser.setUserID(1);
-            tmpUser.setUsername("demo");
-
-            getSelected().setEditorID(tmpUser);
+            getSelected().setEditorID(UsersController.getCurrentLoggedUser());
             getSelected().setEditIP("192.168.1.1");
             getSelected().setEditTime(new Date());
             getSelected().setIsEnable(true);

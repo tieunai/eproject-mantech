@@ -3,11 +3,8 @@ package controller;
 import entities.Articles;
 import util.JsfUtil;
 import util.PaginationHelper;
-import entities.Users;
 import facades.ArticlesFacadeRemote;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -121,12 +118,9 @@ public class ArticlesController {
 
     public String create() {
         try {
-            Users tmpUser = new Users();
-            tmpUser.setUserID(2);
-
             getSelected().setCreateTime(new Date());
             getSelected().setCreateIP("192.168.1.1");
-            getSelected().setUserID(tmpUser);
+            getSelected().setUserID(UsersController.getCurrentLoggedUser());
             getSelected().setDislikeCount(0);
             getSelected().setLikeCount(0);
 
@@ -149,6 +143,32 @@ public class ArticlesController {
         try {
             getSelected().setEditIP("192.168.1.1");
             getSelected().setEditTime(new Date());
+
+            getFacade().edit(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ArticlesUpdated"));
+            return "ArticlesView";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
+    public String increaseLike() {
+        try {
+            getSelected().setLikeCount(getSelected().getLikeCount()+1);
+
+            getFacade().edit(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ArticlesUpdated"));
+            return "ArticlesView";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
+    public String increaseDislike() {
+        try {
+            getSelected().setDislikeCount(getSelected().getDislikeCount()+1);
 
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ArticlesUpdated"));
