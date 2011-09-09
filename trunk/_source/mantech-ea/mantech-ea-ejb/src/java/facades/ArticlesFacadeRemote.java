@@ -27,7 +27,7 @@ public interface ArticlesFacadeRemote {
 
     List<Articles> findRange(int[] range);
 
-    List<Articles> findByEnable(Boolean isEnable);
+    List<Articles> findByEnable(boolean isEnable);
 
     List<Articles> emplFindAll();
 

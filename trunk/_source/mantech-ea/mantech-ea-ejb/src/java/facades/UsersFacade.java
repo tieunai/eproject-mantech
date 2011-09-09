@@ -98,5 +98,16 @@ public class UsersFacade implements UsersFacadeRemote {
         return null;
     }
 
+    @Override
+    public Users findByUsername(String userName) {
+        try {
+            Query q = getEntityManager().createNamedQuery("Users.findByUsername");
+            q.setParameter("username", userName);
+            return (Users)q.getSingleResult();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
+    }
+
 
 }

@@ -32,4 +32,6 @@ public interface UsersFacadeRemote {
     Users find(String userName);
 
     List<Users> FindByDepartment(int departmentID);
+
+    Users findByUsername(String userName);
 }

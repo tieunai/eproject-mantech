@@ -76,10 +76,13 @@ public class ArticlesFacade implements ArticlesFacadeRemote {
     }
 
     @Override
-    public List<Articles> findByEnable(Boolean isEnable) {
+    public List<Articles> findByEnable(boolean isEnable) {
         try {
-            Query q = getEntityManager().createNamedQuery("Articles.findByIsEnable");
-            q.setParameter("isEnable",isEnable );
+          //  javax.persistence.Query q = getEntityManager().createQuery(cq);
+           javax.persistence.Query q = getEntityManager().createNamedQuery("Articles.findByIsEnable");
+            q.setParameter("isEnable",isEnable);
+//            q.setMaxResults(range[1] - range[0]);
+//            q.setFirstResult(range[0]);
             return q.getResultList();
         } catch (NoResultException noReEx) {
         }
