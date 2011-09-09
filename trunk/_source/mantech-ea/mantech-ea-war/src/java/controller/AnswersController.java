@@ -1,10 +1,12 @@
 package controller;
 
 import entities.Answers;
+import entities.Complaints;
 import util.JsfUtil;
 import util.PaginationHelper;
 import entities.Users;
 import facades.AnswersFacadeRemote;
+import facades.ComplaintsFacadeRemote;
 import java.util.Date;
 
 import java.util.ResourceBundle;
@@ -31,11 +33,23 @@ public class AnswersController {
     private Answers current;
     private DataModel items = null;
     @EJB private facades.AnswersFacadeRemote ejbFacade;
+    @EJB private facades.ComplaintsFacadeRemote complaintFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public AnswersController() {
         ejbFacade = lookupAnswersFacadeRemote();
+        complaintFacade = lookupComplaintsFacadeRemote();
+    }
+
+    private ComplaintsFacadeRemote lookupComplaintsFacadeRemote() {
+        try {
+            Context c = new InitialContext();
+            return (ComplaintsFacadeRemote) c.lookup("java:global/mantech-ea/mantech-ea-ejb/ComplaintsFacade!facades.ComplaintsFacadeRemote");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
     }
 
     private AnswersFacadeRemote lookupAnswersFacadeRemote() {
@@ -58,6 +72,10 @@ public class AnswersController {
 
     private AnswersFacadeRemote getFacade() {
         return ejbFacade;
+    }
+
+    private ComplaintsFacadeRemote getComplaintFacade() {
+        return complaintFacade;
     }
 
     public PaginationHelper getPagination() {
@@ -104,11 +122,25 @@ public class AnswersController {
             getSelected().setCreateTime(new Date());
 
             getFacade().create(current);
+
+            updateComplaint(ComplaintsController.getStaticSelected());
+            
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AnswersCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
+        }
+    }
+
+    private void updateComplaint(Complaints complaint) throws Exception{
+        try {
+            complaint.setIsFinished(true);
+            complaint.setFinishedTime(new Date());
+
+            getComplaintFacade().edit(complaint);
+        } catch (Exception e) {
+            throw e;
         }
     }
 
