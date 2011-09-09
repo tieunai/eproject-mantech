@@ -17,7 +17,10 @@
                             </h:panelGroup>
                             <h:form>
                                 <h:outputLabel styleClass="form-label" value="#{bundle.CreateComplaintsLabel_complaintName}"/>
-                                <h:outputLabel styleClass="form-label red" value="#{complaintsController.selected.title}"/>
+                                <h:outputLabel styleClass="form-label" style="border: 1px solid #EB0000; padding: 5px; -moz-border-radius: 5px 5px 5px 5px; -moz-box-shadow: 0 1px 2px #343434;" value="#{complaintsController.selected.title}"/>
+
+                                <h:outputLabel styleClass="form-label" value="#{bundle.CreateComplaintsLabel_complaintContent}"/>
+                                <h:outputLabel styleClass="form-label" style="border: 1px solid #2A9FEE; padding: 5px; -moz-border-radius: 5px 5px 5px 5px; -moz-box-shadow: 0 1px 2px #343434;" value="#{complaintsController.selected.complaintContent}"/>
                                 <hr/>
                                 <h:outputLabel styleClass="form-label" value="#{bundle.CreateAnswersLabel_answerContent}" for="answerContent" />
                                 <h:inputTextarea styleClass="form-label full" rows="4" id="answerContent" value="#{answersController.selected.answerContent}" title="#{bundle.CreateAnswersTitle_answerContent}" required="true" requiredMessage="#{bundle.CreateAnswersRequiredMessage_answerContent}"/>
