@@ -22,6 +22,7 @@ import javax.faces.model.SelectItem;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import util.IPAddressUtil;
 
 @ManagedBean(name = "articlesController")
 @SessionScoped
@@ -146,7 +147,7 @@ public class ArticlesController {
     public String create() {
         try {
             getSelected().setCreateTime(new Date());
-            getSelected().setCreateIP("192.168.1.1");
+            getSelected().setCreateIP(IPAddressUtil.getClientIP());
             getSelected().setUserID(UsersController.getCurrentLoggedUser());
             getSelected().setDislikeCount(0);
             getSelected().setLikeCount(0);
@@ -168,7 +169,7 @@ public class ArticlesController {
 
     public String update() {
         try {
-            getSelected().setEditIP("192.168.1.1");
+            getSelected().setEditIP(IPAddressUtil.getClientIP());
             getSelected().setEditTime(new Date());
 
             getFacade().edit(current);
@@ -247,7 +248,7 @@ public class ArticlesController {
     }
     private void performDestroy() {
         try {
-            getSelected().setEditIP("192.168.1.1");
+            getSelected().setEditIP(IPAddressUtil.getClientIP());
             getSelected().setEditTime(new Date());
             getSelected().setIsEnable(false);
 
@@ -260,7 +261,7 @@ public class ArticlesController {
 
     private void performEnable() {
         try {
-            getSelected().setEditIP("192.168.1.1");
+            getSelected().setEditIP(IPAddressUtil.getClientIP());
             getSelected().setEditTime(new Date());
             getSelected().setIsEnable(true);
 

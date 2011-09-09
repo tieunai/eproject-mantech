@@ -24,6 +24,7 @@ import javax.faces.model.SelectItem;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import util.IPAddressUtil;
 
 @ManagedBean(name = "answersController")
 @SessionScoped
@@ -139,7 +140,7 @@ public class AnswersController {
         try {
             getSelected().setIsEnable(true);
             getSelected().setComplaintID(ComplaintsController.getStaticSelected());
-            getSelected().setCreateIP("192.168.1.1");
+            getSelected().setCreateIP(IPAddressUtil.getClientIP());
             getSelected().setCreateTime(new Date());
 
             getFacade().create(current);
@@ -174,7 +175,7 @@ public class AnswersController {
     public String update() {
         try {
             getSelected().setEditorID(UsersController.getCurrentLoggedUser());
-            getSelected().setEditIP("192.168.1.1");
+            getSelected().setEditIP(IPAddressUtil.getClientIP());
             getSelected().setEditTime(new Date());
 
             getFacade().edit(current);
@@ -231,7 +232,7 @@ public class AnswersController {
     private void performDestroy() {
         try {
             getSelected().setEditorID(UsersController.getCurrentLoggedUser());
-            getSelected().setEditIP("192.168.1.1");
+            getSelected().setEditIP(IPAddressUtil.getClientIP());
             getSelected().setEditTime(new Date());
             getSelected().setIsEnable(false);
 
@@ -245,7 +246,7 @@ public class AnswersController {
     private void performEnable() {
         try {
             getSelected().setEditorID(UsersController.getCurrentLoggedUser());
-            getSelected().setEditIP("192.168.1.1");
+            getSelected().setEditIP(IPAddressUtil.getClientIP());
             getSelected().setEditTime(new Date());
             getSelected().setIsEnable(true);
 

@@ -23,6 +23,7 @@ import javax.faces.model.SelectItem;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import util.IPAddressUtil;
 
 @ManagedBean(name = "complaintsController")
 @SessionScoped
@@ -164,7 +165,7 @@ public class ComplaintsController {
         try {
             getSelected().setUserID(UsersController.getCurrentLoggedUser());
             getSelected().setCreateTime(new Date());
-            getSelected().setCreateIP("192.168.1.1");
+            getSelected().setCreateIP(IPAddressUtil.getClientIP());
             getSelected().setIsEnable(true);
             getSelected().setIsFinished(false);
             getSelected().setHasReplied(false);
@@ -194,7 +195,7 @@ public class ComplaintsController {
     public String update() {
         try {
             getSelected().setEditorID(UsersController.getCurrentLoggedUser());
-            getSelected().setEditIP("192.168.1.1");
+            getSelected().setEditIP(IPAddressUtil.getClientIP());
 
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ComplaintsUpdated"));
@@ -250,7 +251,7 @@ public class ComplaintsController {
     private void performDestroy() {
         try {
             getSelected().setEditorID(UsersController.getCurrentLoggedUser());
-            getSelected().setEditIP("192.168.1.1");
+            getSelected().setEditIP(IPAddressUtil.getClientIP());
             getSelected().setIsEnable(false);
 
             getFacade().edit(current);
@@ -263,7 +264,7 @@ public class ComplaintsController {
     private void performEnable() {
         try {
             getSelected().setEditorID(UsersController.getCurrentLoggedUser());
-            getSelected().setEditIP("192.168.1.1");
+            getSelected().setEditIP(IPAddressUtil.getClientIP());
             getSelected().setIsEnable(true);
 
             getFacade().edit(current);
