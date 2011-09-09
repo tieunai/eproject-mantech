@@ -69,6 +69,12 @@ public class UsersController {
         UsersController.currentLoggedUserID = currentLoggedUserID;
     }
 
+    public static void setCurrentLoggedUserID(String userName) {
+        Users u = ejbFacade2.findByUsername(userName);
+        if(u != null)
+            UsersController.currentLoggedUserID = u.getUserID();
+    }
+
     public String getTmpPassword() {
         return tmpPassword;
     }
@@ -195,7 +201,7 @@ public class UsersController {
             } else if (!getTmpPassword().equals(getSelected().getPassword())) {
                 throw new Exception("New Password and Confirm Password musth match!");
             }
-
+            getSelected().setPassword(JsfUtil.hash(getSelected().getPassword()));
             getSelected().setIsOnline(false);
             getSelected().setLastVisit(new Date());
             getSelected().setCreateTime(new Date());
@@ -246,6 +252,7 @@ public class UsersController {
 
     public String update() {
         try {
+                  getSelected().setPassword(JsfUtil.hash(getSelected().getPassword()));
             getSelected().setEditIP("192.168.1.1");
             getSelected().setEditTime(new Date());
             getSelected().setIsOnline(false);
@@ -268,7 +275,7 @@ public class UsersController {
             } else if (!getTmpPassword().equals(getSelected().getPassword())) {
                 throw new Exception("New Password and Confirm Password musth match!");
             }
-
+                  getSelected().setPassword(JsfUtil.hash(getSelected().getPassword()));
             getSelected().setEditIP("192.168.1.1");
             getSelected().setEditTime(new Date());
 
@@ -294,7 +301,7 @@ public class UsersController {
             } else if (!getSelected().getPassword().equals(tmpCurrentPassword)) {
                 throw new Exception("Current password is not match.");
             }
-
+                  getSelected().setPassword(JsfUtil.hash(getSelected().getPassword()));
             getSelected().setEditIP("192.168.1.1");
             getSelected().setEditTime(new Date());
 
