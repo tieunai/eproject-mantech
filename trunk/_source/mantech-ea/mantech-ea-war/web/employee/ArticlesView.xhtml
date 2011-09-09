@@ -30,7 +30,10 @@
                                 <br/>
                                 <hr/>
                                 <h:commandLink styleClass="button  themed" action="#{articlesController.increaseLike}" value="#{bundle.ActionLabel_Like}"/>
+                                <h:outputText style="color: #0173B9" value="#{articlesController.selected.likeCount}"/>
+                                &nbsp;
                                 <h:commandLink styleClass="button  red" action="#{articlesController.increaseDislike}" value="#{bundle.ActionLabel_Dislike}"/>
+                                <h:outputText style="color: #E10000" styleClass="spam" value="#{articlesController.selected.dislikeCount}"/>
                                 <br/>
                                 <h:commandLink styleClass="button  themed" action="#{articlesController.prepareList}" value="#{bundle.ViewArticlesShowAllLink}"/>
 
