@@ -109,4 +109,37 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
         }
         return null;
     }
+
+    @Override
+    public List<Complaints> emplFindByPriority(int priority) {
+        try {
+            Query q = getEntityManager().createNamedQuery("Complaints.emplFindByPriority");
+            q.setParameter("priority", priority);
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
+    }
+
+    @Override
+    public List<Complaints> emplFindByUserID(Users user) {
+        try {
+            Query q = getEntityManager().createNamedQuery("Complaints.emplFindByUserID");
+            q.setParameter("userID", user);
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
+    }
+
+    @Override
+    public List<Complaints> emplFindByUserRef(Users userRef) {
+        try {
+            Query q = getEntityManager().createNamedQuery("Complaints.emplFindByUserRef");
+            q.setParameter("userRef", userRef);
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
+    }
 }

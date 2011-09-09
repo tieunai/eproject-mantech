@@ -9,7 +9,9 @@ import entities.Departments;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -72,4 +74,16 @@ public class DepartmentsFacade implements DepartmentsFacadeRemote {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
+
+    @Override
+    public List<Departments> emplFindAll() {
+        try {
+            Query q = getEntityManager().createNamedQuery("Departments.emplFindAll");
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
+    }
+
+
 }

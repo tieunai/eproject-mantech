@@ -85,4 +85,14 @@ public class ArticlesFacade implements ArticlesFacadeRemote {
         }
         return null;
     }
+
+    @Override
+    public List<Articles> emplFindAll() {
+        try {
+            Query q = getEntityManager().createNamedQuery("Articles.emplFindAll");
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
+    }
 }

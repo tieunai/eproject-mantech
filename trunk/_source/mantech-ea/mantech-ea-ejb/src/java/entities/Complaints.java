@@ -45,7 +45,10 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Complaints.findByFinishedTime", query = "SELECT c FROM Complaints c WHERE c.finishedTime = :finishedTime ORDER BY c.createTime DESC"),
     @NamedQuery(name = "Complaints.findByHasReplied", query = "SELECT c FROM Complaints c WHERE c.hasReplied = :hasReplied ORDER BY c.createTime DESC"),
     @NamedQuery(name = "Complaints.findByRepliedTime", query = "SELECT c FROM Complaints c WHERE c.repliedTime = :repliedTime ORDER BY c.createTime DESC"),
-    @NamedQuery(name = "Complaints.findByPriority", query = "SELECT c FROM Complaints c WHERE c.priority = :priority ORDER BY c.createTime DESC")})
+    @NamedQuery(name = "Complaints.findByPriority", query = "SELECT c FROM Complaints c WHERE c.priority = :priority ORDER BY c.createTime DESC"),
+    @NamedQuery(name = "Complaints.emplFindByUserID", query = "SELECT c FROM Complaints c WHERE c.userID = :userID AND c.isEnable = 1 ORDER BY c.createTime DESC"),
+    @NamedQuery(name = "Complaints.emplFindByUserRef", query = "SELECT c FROM Complaints c WHERE c.userRef = :userRef AND c.isEnable = 1 ORDER BY c.createTime DESC"),
+    @NamedQuery(name = "Complaints.emplFindByPriority", query = "SELECT c FROM Complaints c WHERE c.priority = :priority AND c.isEnable = 1 ORDER BY c.createTime DESC")})
 public class Complaints implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

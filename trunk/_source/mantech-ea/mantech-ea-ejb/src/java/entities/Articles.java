@@ -36,7 +36,9 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Articles.findByCreateIP", query = "SELECT a FROM Articles a WHERE a.createIP = :createIP ORDER BY a.createTime DESC"),
     @NamedQuery(name = "Articles.findByEditTime", query = "SELECT a FROM Articles a WHERE a.editTime = :editTime ORDER BY a.createTime DESC"),
     @NamedQuery(name = "Articles.findByEditIP", query = "SELECT a FROM Articles a WHERE a.editIP = :editIP ORDER BY a.createTime DESC"),
-    @NamedQuery(name = "Articles.findByIsEnable", query = "SELECT a FROM Articles a WHERE a.isEnable = :isEnable ORDER BY a.createTime DESC")})
+    @NamedQuery(name = "Articles.findByIsEnable", query = "SELECT a FROM Articles a WHERE a.isEnable = :isEnable ORDER BY a.createTime DESC"),
+
+    @NamedQuery(name = "Articles.emplFindAll", query = "SELECT a FROM Articles a WHERE a.isEnable = 1 ORDER BY a.createTime DESC")})
 public class Articles implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

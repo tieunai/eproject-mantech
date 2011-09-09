@@ -28,4 +28,6 @@ public interface DepartmentsFacadeRemote {
     List<Departments> findRange(int[] range);
 
     int count();
+
+    List<Departments> emplFindAll();
 }

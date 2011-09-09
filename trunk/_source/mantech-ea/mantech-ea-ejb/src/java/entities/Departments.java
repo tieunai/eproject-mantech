@@ -31,7 +31,9 @@ import javax.persistence.UniqueConstraint;
     @NamedQuery(name = "Departments.findAll", query = "SELECT d FROM Departments d"),
     @NamedQuery(name = "Departments.findByDepartmentID", query = "SELECT d FROM Departments d WHERE d.departmentID = :departmentID"),
     @NamedQuery(name = "Departments.findByDepartmentName", query = "SELECT d FROM Departments d WHERE d.departmentName = :departmentName"),
-    @NamedQuery(name = "Departments.findByIsEnable", query = "SELECT d FROM Departments d WHERE d.isEnable = :isEnable")})
+    @NamedQuery(name = "Departments.findByIsEnable", query = "SELECT d FROM Departments d WHERE d.isEnable = :isEnable"),
+
+    @NamedQuery(name = "Departments.emplFindAll", query = "SELECT d FROM Departments d WHERE d.isEnable = 1")})
 public class Departments implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

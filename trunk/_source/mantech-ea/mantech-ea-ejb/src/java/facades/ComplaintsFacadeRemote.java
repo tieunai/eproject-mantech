@@ -35,4 +35,10 @@ public interface ComplaintsFacadeRemote {
     List<Complaints> findByUserID(Users userID);
 
     List<Complaints> findByUserRef(Users userRef);
+
+    List<Complaints> emplFindByPriority(int priority);
+
+    List<Complaints> emplFindByUserID(Users userID);
+
+    List<Complaints> emplFindByUserRef(Users userRef);
 }
