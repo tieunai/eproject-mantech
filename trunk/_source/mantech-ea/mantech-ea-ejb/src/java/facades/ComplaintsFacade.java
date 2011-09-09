@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package facades;
 
 import entities.Complaints;
@@ -20,13 +19,13 @@ import javax.persistence.Query;
  */
 @Stateless
 public class ComplaintsFacade implements ComplaintsFacadeRemote {
+
     @PersistenceContext(unitName = "mantech-ea-ejbPU")
     private EntityManager em;
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-
-    private EntityManager getEntityManager(){
+    private EntityManager getEntityManager() {
         return em;
     }
 
@@ -47,7 +46,9 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
 
     @Override
     public Complaints find(Object id) {
-        return getEntityManager().find(Complaints.class, id);
+        Query q = getEntityManager().createNamedQuery("Complaints.findByComplaintID");
+        q.setParameter("complaintID", id);
+        return (Complaints) q.getSingleResult();
     }
 
     @Override
@@ -56,8 +57,6 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
         cq.select(cq.from(Complaints.class));
         return getEntityManager().createQuery(cq).getResultList();
     }
-
-
 
     @Override
     public List<Complaints> findRange(int[] range) {
@@ -68,8 +67,6 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
         q.setFirstResult(range[0]);
         return q.getResultList();
     }
-
-
 
     @Override
     public int count() {
@@ -112,6 +109,4 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
         }
         return null;
     }
-
-
 }
