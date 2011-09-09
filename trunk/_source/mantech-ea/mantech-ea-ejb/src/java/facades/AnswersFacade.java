@@ -6,7 +6,7 @@
 package facades;
 
 import entities.Answers;
-import entities.Users;
+import entities.Complaints;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -75,6 +75,17 @@ public class AnswersFacade implements AnswersFacadeRemote {
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
+    }
+
+    @Override
+    public List<Answers> findByComplaint(Complaints complaint) {
+        try {
+            Query q = getEntityManager().createNamedQuery("Answers.findByComplaintID");
+            q.setParameter("complaintID", complaint);
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
     }
 
     

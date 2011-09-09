@@ -5,6 +5,7 @@
 package facades;
 
 import entities.Answers;
+import entities.Complaints;
 import entities.Users;
 import java.util.List;
 import javax.ejb.Remote;
@@ -29,5 +30,7 @@ public interface AnswersFacadeRemote {
     List<Answers> findRange(int[] range);
 
     int count();
+
+    List<Answers> findByComplaint(Complaints complaint);
 
 }
