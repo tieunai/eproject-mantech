@@ -31,7 +31,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Answers.findAll", query = "SELECT a FROM Answers a ORDER BY a.createTime DESC"),
     @NamedQuery(name = "Answers.findByAnswerID", query = "SELECT a FROM Answers a WHERE a.answerID = :answerID"),
-     @NamedQuery(name = "Answers.findByComplaintID", query = "SELECT a FROM Answers a WHERE a.complaintID = :complaintID"),
+    @NamedQuery(name = "Answers.findByComplaintID", query = "SELECT a FROM Answers a WHERE a.complaintID = :complaintID"),
     @NamedQuery(name = "Answers.findByCreateTime", query = "SELECT a FROM Answers a WHERE a.createTime = :createTime"),
     @NamedQuery(name = "Answers.findByCreateIP", query = "SELECT a FROM Answers a WHERE a.createIP = :createIP"),
     @NamedQuery(name = "Answers.findByEditTime", query = "SELECT a FROM Answers a WHERE a.editTime = :editTime"),
