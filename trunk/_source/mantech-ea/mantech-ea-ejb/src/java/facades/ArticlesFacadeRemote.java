@@ -27,5 +27,7 @@ public interface ArticlesFacadeRemote {
 
     List<Articles> findRange(int[] range);
 
+    List<Articles> findByEnable(Boolean isEnable);
+
     int count();
 }
