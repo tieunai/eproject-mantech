@@ -29,14 +29,14 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Articles", catalog = "MantechHelpdesk", schema = "dbo")
 @NamedQueries({
-    @NamedQuery(name = "Articles.findAll", query = "SELECT a FROM Articles a"),
+    @NamedQuery(name = "Articles.findAll", query = "SELECT a FROM Articles a ORDER BY a.createTime DESC"),
     @NamedQuery(name = "Articles.findByArticleID", query = "SELECT a FROM Articles a WHERE a.articleID = :articleID"),
     @NamedQuery(name = "Articles.findByTitle", query = "SELECT a FROM Articles a WHERE a.title = :title"),
-    @NamedQuery(name = "Articles.findByCreateTime", query = "SELECT a FROM Articles a WHERE a.createTime = :createTime"),
-    @NamedQuery(name = "Articles.findByCreateIP", query = "SELECT a FROM Articles a WHERE a.createIP = :createIP"),
-    @NamedQuery(name = "Articles.findByEditTime", query = "SELECT a FROM Articles a WHERE a.editTime = :editTime"),
-    @NamedQuery(name = "Articles.findByEditIP", query = "SELECT a FROM Articles a WHERE a.editIP = :editIP"),
-    @NamedQuery(name = "Articles.findByIsEnable", query = "SELECT a FROM Articles a WHERE a.isEnable = :isEnable")})
+    @NamedQuery(name = "Articles.findByCreateTime", query = "SELECT a FROM Articles a WHERE a.createTime = :createTime ORDER BY a.createTime DESC"),
+    @NamedQuery(name = "Articles.findByCreateIP", query = "SELECT a FROM Articles a WHERE a.createIP = :createIP ORDER BY a.createTime DESC"),
+    @NamedQuery(name = "Articles.findByEditTime", query = "SELECT a FROM Articles a WHERE a.editTime = :editTime ORDER BY a.createTime DESC"),
+    @NamedQuery(name = "Articles.findByEditIP", query = "SELECT a FROM Articles a WHERE a.editIP = :editIP ORDER BY a.createTime DESC"),
+    @NamedQuery(name = "Articles.findByIsEnable", query = "SELECT a FROM Articles a WHERE a.isEnable = :isEnable ORDER BY a.createTime DESC")})
 public class Articles implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
