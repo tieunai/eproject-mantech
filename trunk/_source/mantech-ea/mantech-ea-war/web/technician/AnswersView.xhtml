@@ -43,11 +43,11 @@
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewAnswersLabel_isEnable}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{answersController.selected.isEnable}" title="#{bundle.ViewAnswersTitle_isEnable}"/>
 
-                                <h:outputText styleClass="form-label" value="#{bundle.ViewAnswersLabel_editorID}"/>
-                                <h:outputText styleClass="form-label" style="color:red" value="#{answersController.selected.editorID}" title="#{bundle.ViewAnswersTitle_editorID}"/>
+                                <h:outputText styleClass="form-label" value="#{bundle.ListAnswersTitle_editorName}"/>
+                                <h:outputText styleClass="form-label" style="color:red" value="#{answersController.selected.editorID.username}" title="#{bundle.ListAnswersTitle_editorName}"/>
 
-                                <h:outputText styleClass="form-label" value="#{bundle.ViewAnswersLabel_complaintID}"/>
-                                <h:outputText styleClass="form-label" style="color:red" value="#{answersController.selected.complaintID}" title="#{bundle.ViewAnswersTitle_complaintID}"/>
+                                <h:outputText styleClass="form-label" value="#{bundle.ListAnswersTitle_complaintName}"/>
+                                <h:outputText styleClass="form-label" style="color:red" value="#{answersController.selected.complaintID.title}" title="#{bundle.ListAnswersTitle_complaintName}"/>
 
                                 <hr/>
                                 <h:commandLink styleClass="button red" action="#{answersController.destroyAndView}" value="#{bundle.ActionLabel_Disable}">
@@ -61,13 +61,7 @@
                                 <br />
                                 <br />
                                 <h:commandLink styleClass="button themed " action="AnswersEdit" value="#{bundle.ViewAnswersEditLink}">
-
                                 </h:commandLink>
-                                <br />
-                                <h:commandLink styleClass="button  themed" action="#{answersController.prepareCreate}" value="#{bundle.ViewAnswersCreateLink}" >
-                                    >
-                                </h:commandLink>
-                                <br />
                                 <h:commandLink styleClass="button  themed" action="#{answersController.prepareList}" value="#{bundle.ViewAnswersShowAllLink}">
 
                                 </h:commandLink>
