@@ -94,11 +94,9 @@ public class LoginController {
     }
 
     public void logout() throws IOException {
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         if (session != null) {
             session.invalidate();
         }
-        //FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/Login.xhtml");
-        FacesContext.getCurrentInstance().getExternalContext().redirect("Login.xhtml");
+       FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/Login.xhtml");
     }
 }
