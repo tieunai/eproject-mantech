@@ -4,6 +4,7 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.security.Principal;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Default;
@@ -22,15 +23,25 @@ import javax.servlet.http.HttpSession;
 @RequestScoped @Default
 public class LoginController {
 
+     HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     /** Creates a new instance of LoginController */
     public LoginController() {
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+       
         if (session != null) {
             session.invalidate();
         }
     }
     private String username;
     private String password;
+    private String rolename;
+
+    public String getRolename() {
+        return rolename;
+    }
+
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
+    }
 
     public String getUsername() {
         return username;
@@ -62,14 +73,16 @@ public class LoginController {
             UsersController.setCurrentLoggedUserID(username);
             //Display a message based on the User role
             if (request.isUserInRole("admin")) {
-
-                message = "Username : " + principal.getName() + " You are an Administrator, you can really f**k things up now";
+                rolename =null;
+                this.setRolename("admin");
                 return "admin";
             } else if (request.isUserInRole("employee")) {
-                message = "Username : " + principal.getName() + " You are only a Employee, Don't you have a Spreadsheet to be working on??";
+                rolename =null;
+                this.setRolename("employee");
                 return "employee";
             } else if (request.isUserInRole("technician")) {
-                message = "Username : " + principal.getName() + " You're wasting my resources...";
+                rolename =null;
+                this.setRolename("technician");
                 return "technician";
             }
 
@@ -83,11 +96,12 @@ public class LoginController {
         return "failure";
     }
 
-    public void logout() {
+    public void logout() throws IOException {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         if (session != null) {
             session.invalidate();
         }
-        FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/Login.xhtml");
+        //FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/Login.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("Login.xhtml");
     }
 }
