@@ -125,7 +125,7 @@ public class AnswersController {
     }
 
     public String prepareView() {
-        current = (Answers) getItems().getRowData();
+        current = (Answers) getGeneralItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "AnswersView";
     }
@@ -167,7 +167,7 @@ public class AnswersController {
     }
 
     public String prepareEdit() {
-        current = (Answers) getItems().getRowData();
+        current = (Answers) getGeneralItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "AnswersEdit";
     }
@@ -192,7 +192,7 @@ public class AnswersController {
     }
 
     public String destroy() {
-        current = (Answers) getItems().getRowData();
+        current = (Answers) getGeneralItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreateModel();
@@ -200,7 +200,7 @@ public class AnswersController {
     }
 
     public String enable() {
-        current = (Answers) getItems().getRowData();
+        current = (Answers) getGeneralItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performEnable();
         recreateModel();
@@ -288,6 +288,10 @@ public class AnswersController {
         if (items == null) {
             items = getPagination().createPageDataModel();
         }
+        return items;
+    }
+
+    public DataModel getGeneralItems() {
         return items;
     }
 

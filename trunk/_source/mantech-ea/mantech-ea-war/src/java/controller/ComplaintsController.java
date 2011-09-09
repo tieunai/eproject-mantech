@@ -29,12 +29,12 @@ import javax.naming.NamingException;
 public class ComplaintsController {
 
     private Complaints current;
-    private static Complaints currentToAnswer;
     private DataModel items = null;
     @EJB
     private facades.ComplaintsFacadeRemote ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private static Complaints currentToAnswer;
 
     public ComplaintsController() {
         ejbFacade = lookupComplaintsFacadeRemote();
@@ -109,7 +109,6 @@ public class ComplaintsController {
     }
 
     public PaginationHelper getPaginationByUserRef() {
-
         pagination = new PaginationHelper(10) {
 
             @Override
@@ -134,13 +133,13 @@ public class ComplaintsController {
     }
 
     public String prepareView() {
-        current = (Complaints) getItems().getRowData();
+        current = (Complaints)getCurrentItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ComplaintsView";
     }
 
     public String prepareViewAnswers() {
-        current = (Complaints) getItems().getRowData();
+        current = (Complaints) getCurrentItems().getRowData();
         currentToAnswer = null;
         currentToAnswer = current;
 
@@ -149,7 +148,7 @@ public class ComplaintsController {
     }
 
     public String prepareAnswer() {
-        currentToAnswer = (Complaints) getItems().getRowData();
+        currentToAnswer = (Complaints) getCurrentItems().getRowData();
         current = (Complaints) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "AnswersCreate";
@@ -184,14 +183,14 @@ public class ComplaintsController {
     }
 
     public String prepareEdit() {
-        current = (Complaints) getItems().getRowData();
+        current = (Complaints)getCurrentItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ComplaintsEdit";
     }
 
     public String prepareAssign() {
         System.out.println("PREPARE ASSIGN");
-        current = (Complaints) getItems().getRowData();
+        current = (Complaints) getCurrentItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ComplaintsAssign";
     }
@@ -215,7 +214,7 @@ public class ComplaintsController {
     }
 
     public String destroy() {
-        current = (Complaints) getItems().getRowData();
+        current = (Complaints) getCurrentItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreateModel();
@@ -223,7 +222,7 @@ public class ComplaintsController {
     }
 
     public String enable() {
-        current = (Complaints) getItems().getRowData();
+        current = (Complaints) getCurrentItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performEnable();
         recreateModel();
@@ -309,6 +308,10 @@ public class ComplaintsController {
         //if (items == null) {
         items = getPagination().createPageDataModel();
         //}
+        return items;
+    }
+
+    public DataModel getCurrentItems() {
         return items;
     }
 
