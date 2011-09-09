@@ -5,6 +5,9 @@ import entities.Departments;
 import entities.Roles;
 import entities.Threads;
 import entities.Users;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -117,5 +120,26 @@ public class JsfUtil {
         String theId = JsfUtil.getRequestParameter(requestParameterName);
         return converter.getAsObject(FacesContext.getCurrentInstance(), component, theId);
     }
-    
+
+    	public static String hash(String string){
+		try {
+			//Create MessageDigest and encoding for input String
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			byte[] hash = digest.digest(string.getBytes("UTF-8"));
+
+			//Hash the Input String
+			StringBuilder sb = new StringBuilder();
+	        for (int i = 0; i < hash.length; i++) {
+	          sb.append(Integer.toString((hash[i] & 0xff) + 0x100, 16).substring(1));
+	        }
+	        return sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 }
