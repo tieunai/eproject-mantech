@@ -3,52 +3,195 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html">
     <body>
         <ui:composition>
+            <script type="text/javascript">
 
-                  <ul id="topbar">
-        <li><a class="button white fl" title="preview" HREF="../template/login.xhtml"><span class="icon_single preview"></span></a></li>
-		<li class="s_1"></li>
-        <li class="logo"><strong>Mantech HelpDesk</strong> ADMIN</li>
-		<li class="s_1"></li>
-        <li><a class="breadcrumb underline" href="#">Dashboard</a> &gt; <a class="breadcrumb underline" href="#"><strong>Forms</strong></a></li>
-        <li class="fr"><a class="button red fl" title="logout" HREF="../template/login.xhtml"><span class="icon_text logout"></span>logout</a></li>
-        <li class="s_1 fr"></li>
-		<li class="fr"><a class="button white fl" title="unread mail" href="#"><span class="icon_text mail"></span>3</a></li>
-        <li class="s_1 fr"></li>
-		<li class="fr"><a class="button white fl" title="admin" href="#"><span class="icon_text admin"></span>admin</a></li>
-		<li class="fr"><a id="logged">Logged in as</a></li>
-      </ul>
-
-      <ul id="navbar">
-        <li class="active">
-		<a HREF="dashboard.xhtml"><span class="icon_text dashboard"></span>dashboard</a>
-			<ul>
-				<li><a class="subbutton white" HREF="../template/general.xhtml"><span class="icon_text general"></span>general</a></li>
-				<li><a class="subbutton white" HREF="../template/tabs.xhtml"><span class="icon_text tab"></span>tabs</a></li>
-				<li><a class="subbutton white" HREF="../template/typography.xhtml"><span class="icon_text typography"></span>typography</a></li>
-				<li><a class="subbutton white" HREF="../template/grids.xhtml"><span class="icon_text grids"></span>grids</a></li>
-				<li><a class="subbutton white" HREF="../template/tables.xhtml"><span class="icon_text tables"></span>tables</a></li>
-				<li class="active"><a class="subbutton white" HREF="../template/forms.xhtml"><span class="icon_text forms"></span>forms</a></li>
-				<li><a class="subbutton white" HREF="../template/graphs.xhtml"><span class="icon_text graphs"></span>graphs</a></li>
-			</ul>
-		</li>
-        <li><a href="#"><span class="icon_text content"></span>content</a></li>
-        <li><a href="#"><span class="icon_text design"></span>design</a></li>
-        <li><a href="#"><span class="icon_text pages"></span>pages</a></li>
-        <li><a href="#"><span class="icon_text users"></span>users</a></li>
-        <li><a href="#"><span class="icon_text media"></span>media</a></li>
-        <li><a href="#"><span class="icon_text comment"></span>comment</a></li>
-        <li><a href="#"><span class="icon_text stats"></span>stats</a></li>
-        <li><a href="#"><span class="icon_text settings"></span>settings</a></li>
-      </ul>
-	  <div id="subnavbar">
-		<form id="search_form" method="post" action="">
-			<input type="text" name="search_input" value="Search..." id="search_input" class="fl" />
-		</form>
-	  </div>
-
+//build menu with DIV ID="myslidemenu" on page:
+    //    droplinemenu.buildmenu("mydroplinemenu")
+$(document).ready(function(){
+	$("#navbar li a.main-link").hover(function(){
+		$("#navbar li a.close").fadeIn();
+		$("#navbar li a.main-link").removeClass("active");
+		$(this).addClass("active");
+		$("#sub-link-bar").animate({
+			height: "40px"
+		});
+		$(".sub-links").hide();
+		$(this).siblings(".sub-links").fadeIn();
+	});
+	$("#navbar li a.close").click(function(){
+		$("#navbar li a.main-link").removeClass("active");
+		$(".sub-links").fadeOut();
+		$("#sub-link-bar").animate({
+			height: "10px"
+		});
+		$("#navbar li a.close").fadeOut();
+	});
+});
+            </script>
+            <h:form>
+                <ul id="topbar">
+                    <li><a class="button white fl" title="preview" HREF="../ea/template/login.xhtml"><span class="icon_single preview"></span></a></li>
+                    <li class="s_1"></li>
+                    <li class="logo"><strong>Mantech HelpDesk</strong> ADMIN</li>
+                    <li class="s_1"></li>
+                    <li class="fr">
+                        <h:commandLink styleClass="button red fl" title="Logout" action="#{loginController.logout}">
+                            <span class="icon_text logout"></span>Logout
+                        </h:commandLink>
+                    </li>
+                    <li class="s_1 fr"></li>
+                    <li class="fr"><a class="button white fl" title="unread mail" href="#"><span class="icon_text mail"></span>3</a></li>
+                    <li class="s_1 fr"></li>
+                    <li class="fr"><a class="button white fl" title="admin" href="#"><span class="icon_text admin"></span>#{loginController.rolename}</a></li>
+                    <li class="fr"><a id="logged">Logged in as</a></li>
+                </ul>
+            </h:form>
+         
+            <ul id="navbar">
+                <li><a class="main-link" href="#"><span class="icon_text content"></span>Articles</a>
+                <ul class="sub-links">
+                    <c:choose>
+                    <c:when test="#{loginController.rolename == 'admin'}">
+                        <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ArticlesList.xhtml">
+                            <span class="icon_text grids"></span>List
+                        </h:outputLink></li>
+                      <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ArticlesCreate.xhtml">
+                            <span class="icon_text pack _253"></span>Create
+                        </h:outputLink></li>
+                    </c:when>
+                      <c:when test="#{loginController.rolename == 'employee'}">
+                        <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/ArticlesList.xhtml">
+                            <span class="icon_text grids"></span>List
+                        </h:outputLink></li>
+                    </c:when>
+                    </c:choose>
+                </ul>
+                    </li>
+                <li><a class="main-link" href="#"><span class="icon_text design"></span>Departments</a>
+                   <ul class="sub-links">
+                    <c:choose>
+                    <c:when test="#{loginController.rolename == 'admin'}">
+                        <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/DepartmentsList.xhtml">
+                            <span class="icon_text grids"></span>List
+                        </h:outputLink></li>
+                         <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/DepartmentsCreate.xhtml">
+                            <span class="icon_text pack _253"></span>Create
+                        </h:outputLink></li>
+                    </c:when>
+                    <c:when test="#{loginController.rolename == 'employee'}">
+                        <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/DepartmentsList.xhtml">
+                            <span class="icon_text grids"></span>List
+                        </h:outputLink></li>
+                    </c:when>
+                    </c:choose>
+                </ul>
+                </li>
+                <li><a class="main-link" href="#"><span class="icon_text pages"></span>Threads</a>
+                  <ul class="sub-links">
+                    <c:choose>
+                    <c:when test="#{loginController.rolename == 'admin'}">
+                        <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ThreadsList.xhtml">
+                            <span class="icon_text grids"></span>List
+                        </h:outputLink></li>
+                         <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ThreadsCreate.xhtml">
+                            <span class="icon_text pack _253"></span>Create
+                        </h:outputLink></li>
+                    </c:when>
+                      <c:when test="#{loginController.rolename == 'employee'}">
+                        <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/ThreadsList.xhtml">
+                            <span class="icon_text grids"></span>List
+                        </h:outputLink></li>
+                    </c:when>
+                    </c:choose>
+                </ul>
+                </li>
+                <c:choose>
+                    <c:when test="#{loginController.rolename == 'admin'}">
+                     <li><a class="main-link" href="#"><span class="icon_text users"></span>Users</a>
+                          <ul class="sub-links">
+                         <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/UsersList.xhtml">
+                            <span class="icon_text grids"></span>List
+                        </h:outputLink></li>
+                         <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/UsersCreate.xhtml">
+                            <span class="icon_text pack _253"></span>Create
+                        </h:outputLink></li>
+                          </ul>
+                     </li>
+                    </c:when>
+                </c:choose>
+    
+                <li><a class="main-link" href="#"><span class="icon_text stats"></span>Complaints</a>
+              <ul class="sub-links">
+                    <c:choose>
+                    <c:when test="#{loginController.rolename == 'admin'}">
+                        <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ComplaintsList.xhtml">
+                            <span class="icon_text grids"></span>List
+                        </h:outputLink></li>
+                         <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ComplaintsCreate.xhtml">
+                            <span class="icon_text pack _253"></span>Create
+                        </h:outputLink></li>
+                    </c:when>
+                      <c:when test="#{loginController.rolename == 'employee'}">
+                        <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/ComplaintsList.xhtml">
+                            <span class="icon_text grids"></span>List
+                        </h:outputLink></li>
+                        <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/ComplaintsCreate.xhtml">
+                            <span class="icon_text pack _253"></span>Create
+                        </h:outputLink></li>
+                    </c:when>
+                      <c:when test="#{loginController.rolename == 'technician'}">
+                        <li><h:outputLink styleClass="subbutton white"  value="../ea/technician/ComplaintsList.xhtml">
+                            <span class="icon_text grids"></span>List
+                        </h:outputLink></li>
+                    </c:when>
+                    </c:choose>
+                </ul>
+                </li>
+                 <li><a class="main-link" href="#"><span class="icon_text comment"></span>FAQ</a>
+                     <ul class="sub-links">
+                   <c:choose>
+                    <c:when test="#{loginController.rolename == 'admin'}">
+                        <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/FAQsList.xhtml">
+                            <span class="icon_text grids"></span>List
+                        </h:outputLink></li>
+                         <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/FAQsCreate.xhtml">
+                            <span class="icon_text pack _253"></span>Create
+                        </h:outputLink></li>
+                    </c:when>
+                      <c:when test="#{loginController.rolename == 'employee'}">
+                        <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/FAQsList.xhtml">
+                            <span class="icon_text grids"></span>List
+                        </h:outputLink></li>
+                    </c:when>
+                    </c:choose>
+                     </ul>
+                 </li>
+                <li><a class="main-link" href="#"><span class="icon_text settings"></span>Settings</a>
+                    <c:choose>
+                        <c:when test="#{loginController.rolename !=''}">
+                            <ul class="sub-links">
+                          <li><h:outputLink styleClass="subbutton white"  value="../ea/account/ProfileEdit.xhtml">
+                            <span class="icon_text pack _108"></span>Profile Edit
+                        </h:outputLink></li>
+                        <li><h:outputLink styleClass="subbutton white"  value="../ea/account/ChangePwd.xhtml">
+                            <span class="icon_text pack _195"></span>Change Password
+                        </h:outputLink></li>
+                            </ul>
+                        </c:when>
+                    </c:choose>
+                </li>
+            </ul>
+            <div id="subnavbar">
+                <form id="search_form" method="post" action="">
+                    <input type="text" name="search_input" value="Search..." id="search_input" class="fl" />
+                </form>
+            </div>
+         
         </ui:composition>
     </body>
 </html>
