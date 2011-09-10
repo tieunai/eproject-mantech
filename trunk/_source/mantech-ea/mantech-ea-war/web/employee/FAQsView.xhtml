@@ -47,10 +47,7 @@
                                  <h:outputText styleClass="form-label"   value="#{bundle.ViewFAQsLabel_isEnable}"/>
                                  <h:outputText styleClass="form-label"  style="color:red" value="#{fAQsController.selected.isEnable}" title="#{bundle.ViewFAQsTitle_isEnable}"/>
                             </div>
-                            <br />
-                            <br />
-                            <h:commandLink styleClass="button white" action="FAQsEdit" value="#{bundle.ViewFAQsEditLink}"/>
-                            <br />
+                            <hr/>
                             <h:commandLink styleClass="button white" action="#{fAQsController.prepareCreate}" value="#{bundle.ViewFAQsCreateLink}" />
                             <br />
                             <h:commandLink styleClass="button white" action="#{fAQsController.prepareList}" value="#{bundle.ViewFAQsShowAllLink}"/>
