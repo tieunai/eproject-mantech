@@ -71,6 +71,7 @@ public class LoginController {
             //Retrieve the Principal
             Principal principal = request.getUserPrincipal();
             UsersController.setCurrentLoggedUserID(username);
+
             //Display a message based on the User role
             if (request.isUserInRole("admin")) {
                 session.setAttribute("rolename", "admin");
