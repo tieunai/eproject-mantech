@@ -136,7 +136,7 @@ public class ArticlesController {
     public String prepareViewByEnable(){
         current = (Articles)getGeneralItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "client";
+        return "/template/articleView";
     }
     public String prepareCreate() {
         current = new Articles();
