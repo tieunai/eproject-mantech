@@ -191,7 +191,7 @@ public class UsersController {
     public String prepareCreate() {
         current = new Users();
         selectedItemIndex = -1;
-        return "Create";
+        return "UsersCreate";
     }
 
     public String create() {
