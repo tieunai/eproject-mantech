@@ -185,8 +185,21 @@ public class ComplaintsController {
 
     public String prepareView() {
         current = (Complaints) getCurrentItems().getRowData();
+
+        setCompIsRead();
+
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ComplaintsView";
+    }
+
+    private void setCompIsRead(){
+        try {
+            getSelected().setIsRead(true);
+
+            getFacade().edit(current);
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+        }
     }
 
     public String prepareViewAnswers() {
@@ -227,6 +240,8 @@ public class ComplaintsController {
             getSelected().setIsFinished(false);
             getSelected().setHasReplied(false);
             getSelected().setPriority(getSelected().getPriority() == null ? 1 : getSelected().getPriority());
+            getSelected().setIsComplaintFinished(false);
+            getSelected().setIsRead(false);
 
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ComplaintsCreated"));
