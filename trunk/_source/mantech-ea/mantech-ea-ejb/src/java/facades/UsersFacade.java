@@ -4,6 +4,7 @@
  */
 package facades;
 
+import entities.Roles;
 import entities.Users;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -88,10 +89,21 @@ public class UsersFacade implements UsersFacadeRemote {
     }
 
     @Override
-    public List<Users> FindByDepartment(int departmentID) {
+    public List<Users> findByDepartment(int departmentID) {
         try {
             Query q = getEntityManager().createNamedQuery("Users.findByDepartmentID");
             q.setParameter("departmentID", departmentID);
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
+    }
+
+    @Override
+    public List<Users> findByRole(Roles role) {
+        try {
+            Query q = getEntityManager().createNamedQuery("Users.findByRoleID");
+            q.setParameter("roleID", role);
             return q.getResultList();
         } catch (NoResultException noReEx) {
         }

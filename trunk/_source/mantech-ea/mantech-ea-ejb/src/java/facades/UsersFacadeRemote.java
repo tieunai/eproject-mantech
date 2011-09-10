@@ -5,6 +5,7 @@
 
 package facades;
 
+import entities.Roles;
 import entities.Users;
 import java.util.List;
 import javax.ejb.Remote;
@@ -31,7 +32,9 @@ public interface UsersFacadeRemote {
 
     Users find(String userName);
 
-    List<Users> FindByDepartment(int departmentID);
+    List<Users> findByDepartment(int departmentID);
+
+    List<Users> findByRole(Roles role);
 
     Users findByUsername(String userName);
 }

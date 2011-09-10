@@ -46,7 +46,8 @@ import javax.persistence.UniqueConstraint;
     @NamedQuery(name = "Users.findByEditTime", query = "SELECT u FROM Users u WHERE u.editTime = :editTime"),
     @NamedQuery(name = "Users.findByEditIP", query = "SELECT u FROM Users u WHERE u.editIP = :editIP"),
     @NamedQuery(name = "Users.findByIsEnable", query = "SELECT u FROM Users u WHERE u.isEnable = :isEnable"),
-    @NamedQuery(name = "Users.findByDepartmentID", query = "SELECT u FROM Users u WHERE u.departmentID = :departmentID")})
+    @NamedQuery(name = "Users.findByDepartmentID", query = "SELECT u FROM Users u WHERE u.departmentID = :departmentID"),
+    @NamedQuery(name = "Users.findByRoleID", query = "SELECT u FROM Users u WHERE u.roleID = :roleID")})
 public class Users implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
