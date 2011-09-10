@@ -106,6 +106,9 @@ public class Complaints implements Serializable {
     @Basic(optional = false)
     @Column(name = "Priority", nullable = false)
     private Integer priority;
+    @Basic(optional = false)
+    @Column(name = "IsComplaintFinished", nullable = false)
+    private boolean isComplaintFinished;
 
     public Complaints() {
     }
@@ -123,6 +126,14 @@ public class Complaints implements Serializable {
         this.isEnable = isEnable;
         this.isFinished = isFinished;
         this.hasReplied = hasReplied;
+    }
+
+    public boolean isIsComplaintFinished() {
+        return isComplaintFinished;
+    }
+
+    public void setIsComplaintFinished(boolean isComplaintFinished) {
+        this.isComplaintFinished = isComplaintFinished;
     }
 
     public Integer getComplaintID() {
