@@ -6,7 +6,9 @@
 package facades;
 
 import entities.Complaints;
+import entities.Threads;
 import entities.Users;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -41,4 +43,8 @@ public interface ComplaintsFacadeRemote {
     List<Complaints> emplFindByUserID(Users userID);
 
     List<Complaints> emplFindByUserRef(Users userRef);
+
+    List<Complaints> findByThread(Threads thread);
+
+    List<Complaints> findBetweenTime(Threads thread, Date fromTime, Date toTime);
 }

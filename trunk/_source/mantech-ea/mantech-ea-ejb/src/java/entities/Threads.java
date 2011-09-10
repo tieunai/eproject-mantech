@@ -33,6 +33,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Threads.findAll", query = "SELECT t FROM Threads t"),
     @NamedQuery(name = "Threads.findByThreadID", query = "SELECT t FROM Threads t WHERE t.threadID = :threadID"),
+    @NamedQuery(name = "Threads.findByDepartmentID", query = "SELECT t FROM Threads t WHERE t.departmentID = :departmentID"),
     @NamedQuery(name = "Threads.findByThreadName", query = "SELECT t FROM Threads t WHERE t.threadName = :threadName"),
     @NamedQuery(name = "Threads.findByCreateTime", query = "SELECT t FROM Threads t WHERE t.createTime = :createTime"),
     @NamedQuery(name = "Threads.findByCreateIP", query = "SELECT t FROM Threads t WHERE t.createIP = :createIP"),

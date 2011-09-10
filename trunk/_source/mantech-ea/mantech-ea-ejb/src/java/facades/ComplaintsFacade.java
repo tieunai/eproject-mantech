@@ -5,13 +5,16 @@
 package facades;
 
 import entities.Complaints;
+import entities.Threads;
 import entities.Users;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -142,4 +145,29 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
         }
         return null;
     }
+
+    @Override
+    public List<Complaints> findByThread(Threads thread) {
+        try {
+            Query q = getEntityManager().createNamedQuery("Complaints.findByThreadID");
+            q.setParameter("threadID", thread);
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
+    }
+
+    @Override
+    public List<Complaints> findBetweenTime(Threads thread, Date start, Date end) {
+        try {
+            Query q = getEntityManager().createNamedQuery("Complaints.findByBetweenTime");
+            q.setParameter("threadID", thread);
+            q.setParameter("fromTime", start, TemporalType.DATE);
+            q.setParameter("toTime", end, TemporalType.DATE);
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
+    }
+
 }

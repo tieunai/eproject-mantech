@@ -5,11 +5,14 @@
 
 package facades;
 
+import entities.Departments;
 import entities.Threads;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -72,4 +75,16 @@ public class ThreadsFacade implements ThreadsFacadeRemote {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
+
+    @Override
+    public List<Threads> findByDepartment(Departments department) {
+        try {
+            Query q = getEntityManager().createNamedQuery("Threads.findByDepartmentID");
+            q.setParameter("departmentID", department);
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
+    }
+
 }

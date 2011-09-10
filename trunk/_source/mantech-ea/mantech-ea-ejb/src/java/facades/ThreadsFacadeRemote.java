@@ -5,6 +5,7 @@
 
 package facades;
 
+import entities.Departments;
 import entities.Threads;
 import java.util.List;
 import javax.ejb.Remote;
@@ -28,4 +29,6 @@ public interface ThreadsFacadeRemote {
     List<Threads> findRange(int[] range);
 
     int count();
+
+    List<Threads> findByDepartment(Departments department);
 }
