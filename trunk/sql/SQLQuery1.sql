@@ -66,7 +66,9 @@ create table Complaints(
 	HasReplied bit default 0 not null,
 	RepliedTime datetime,
 	UserRef int foreign key references Users(UserID),
-	Priority int not null
+	Priority int not null,
+	IsComplaintFinished bit default 0 not null,
+	IsRead bit default 0 not null
 );
 
 create table Answers(
