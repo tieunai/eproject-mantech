@@ -2053,3 +2053,42 @@ GRAPHS
 #main-nav li a.close:hover{
 	background: #900;
 }
+
+
+.acview table       	{ width:100%; font-size:1.2em; color:#7b858a; border-bottom:1px solid #f7f7f7; }
+.acview table th          	{ font-weight: bold; }
+.acview table thead tr    	{ background:url(../img/bg_table_top.png) repeat-x #d0d0d0; color:#515151; font-size:10px; font-family: verdana; }
+.acview table th,.acview table td,.acview table caption 	{ padding: 15px 40px; border-bottom:1px solid #c9c9c9; }
+.acview table th.center, .acview table td.center,.acview table caption.center { text-align:center; }
+
+/* Zebra-stripes for tables - First ones are the light, second are the dark uneven ones */
+.acview table tr 				{}
+.acview table tbody tr:nth-child(even),
+.acview table tbody tr.even  	{}
+
+.acview table tfoot       	{ font-style: italic; }
+.acview table caption     	{ background: #eee; }
+
+.acview table th.right_end, .acview table td.right_end, .acview table th.right_end,
+.acview table caption.right_end 		{ text-align:right; padding-left:0; }
+
+.acview table th.checkers, .acview table td.checkers, .acview table th.checkers,
+.acview table caption.checkers 		{ text-align:left; padding-right:0; width:30px; cursor:default !important; }
+
+.acview table th.right_end.small, .acview table td.right_end.small,
+.acview table caption.right_end.small { font-size:0.8em; }
+
+.acview table th.align_left, .acview table td.align_left,
+.acview table caption.align_left		{ padding: 15px 40px 15px 10px; }
+
+span.hit {
+padding: 0 30px 2px 0;
+background-repeat: no-repeat;
+background-position: left -41px;
+height: 20px;
+width: 20px;
+}
+
+.hit.pages {
+background-image: url(../resources/gfx/icon_pages.png);
+}
