@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="1complaint1" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="header" forecolor="#000099" hAlign="Center" vAlign="Middle">
+		<pen lineWidth="0.5"/>
+		<box>
+			<pen lineWidth="0.5"/>
+			<topPen lineWidth="0.5"/>
+			<leftPen lineWidth="0.5"/>
+			<bottomPen lineWidth="0.5"/>
+			<rightPen lineWidth="0.5"/>
+		</box>
+	</style>
+	<style name="body" hAlign="Center" vAlign="Middle">
+		<box>
+			<pen lineWidth="0.5"/>
+			<topPen lineWidth="0.5"/>
+			<leftPen lineWidth="0.5"/>
+			<bottomPen lineWidth="0.5"/>
+			<rightPen lineWidth="0.5"/>
+		</box>
+	</style>
+	<parameter name="REPORT_TIME" class="java.util.Date"/>
+	<field name="title" class="java.lang.String"/>
+	<field name="complaintContent" class="java.lang.String"/>
+	<field name="isEnable" class="java.lang.Boolean"/>
+	<field name="isFinished" class="java.lang.Boolean"/>
+	<field name="hasReplied" class="java.lang.Boolean"/>
+	<field name="userID.username" class="java.lang.String"/>
+	<field name="priority" class="java.lang.Integer"/>
+	<field name="threadID.threadName" class="java.lang.String"/>
+	<field name="userRef.username" class="java.lang.String"/>
+	<field name="createTime" class="java.util.Date"/>
+	<field name="finishedTime" class="java.util.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="802" height="20" forecolor="#0000CC"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUMARY REPORT]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="43" splitType="Stretch">
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="736" y="8" width="66" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_TIME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="8" width="736" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Report created date:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement style="header" x="0" y="0" width="26" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="header" x="26" y="0" width="116" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="header" x="142" y="0" width="43" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Priority]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="header" x="185" y="0" width="66" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[IsEnable]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="header" x="251" y="0" width="68" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[IsFinished]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="header" x="319" y="0" width="81" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[HasReplied]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="header" x="400" y="0" width="116" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Technician Assign]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="header" x="516" y="0" width="64" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Creator]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="header" x="580" y="0" width="90" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ThreadName]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="header" x="736" y="0" width="66" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[FinishedDate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="header" x="670" y="0" width="66" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[CreatedDate]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="body" x="0" y="0" width="26" height="20" backcolor="#330000"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="body" x="26" y="0" width="116" height="20" backcolor="#330000"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="body" x="142" y="0" width="43" height="20" backcolor="#330000"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{priority}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="body" x="185" y="0" width="66" height="20" backcolor="#330000"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{isEnable}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="body" x="251" y="0" width="68" height="20" backcolor="#330000"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{isFinished}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="body" x="319" y="0" width="81" height="20" backcolor="#330000"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hasReplied}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="body" x="516" y="0" width="64" height="20" backcolor="#330000"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{userID.username}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="body" x="580" y="0" width="90" height="20" backcolor="#00FFCC"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{threadID.threadName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="body" x="400" y="0" width="116" height="20" backcolor="#330000"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{userRef.username}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement style="body" x="670" y="0" width="66" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{createTime}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM/dd/yyyy" isBlankWhenNull="true">
+				<reportElement style="body" x="736" y="0" width="66" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{finishedTime}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="29" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
