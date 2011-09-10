@@ -65,10 +65,10 @@ public class UsersController {
         return ejbFacade2.find(currentLoggedUserID);
     }
 
-//    public Users getCurrentLoggedUserForW() {
-//
-//        return getCurrentLoggedUser();
-//    }
+    public Users getCurrentLoggedUserForW() {
+
+        return getCurrentLoggedUser();
+    }
 
     public static void setCurrentLoggedUserID(int currentLoggedUserID) {
         UsersController.currentLoggedUserID = currentLoggedUserID;
