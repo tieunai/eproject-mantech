@@ -4,6 +4,11 @@ import entities.Departments;
 import util.JsfUtil;
 import util.PaginationHelper;
 import facades.DepartmentsFacadeRemote;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -21,6 +26,7 @@ import javax.faces.model.SelectItem;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import util.IReport;
 
 @ManagedBean(name = "departmentsController")
 @SessionScoped
@@ -36,7 +42,18 @@ public class DepartmentsController {
     public DepartmentsController() {
         ejbFacade = lookupDepartmentsFacadeRemote();
     }
-
+    public void reportDepartment(){
+        try {
+            List<entities.Departments> list = new ArrayList<entities.Departments>();
+            list = getFacade().findAll();
+            Map parameters = new HashMap();
+            parameters.put("REPORT_TIME", new Date());
+            IReport.report("1department2.jrxml", "PDF", list,parameters);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("Report create successful!"));
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+        }
+    }
     private DepartmentsFacadeRemote lookupDepartmentsFacadeRemote() {
         try {
             Context c = new InitialContext();

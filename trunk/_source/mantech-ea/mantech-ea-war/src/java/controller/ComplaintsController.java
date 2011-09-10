@@ -5,7 +5,11 @@ import util.JsfUtil;
 import util.PaginationHelper;
 import entities.Users;
 import facades.ComplaintsFacadeRemote;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -24,6 +28,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import util.IPAddressUtil;
+import util.IReport;
 
 @ManagedBean(name = "complaintsController")
 @SessionScoped
@@ -36,6 +41,24 @@ public class ComplaintsController {
     private PaginationHelper pagination;
     private int selectedItemIndex;
     private static Complaints currentToAnswer;
+    private String fdate;
+    private String tdate;
+
+    public String getFdate() {
+        return fdate;
+    }
+
+    public void setFdate(String fdate) {
+        this.fdate = fdate;
+    }
+
+    public String getTdate() {
+        return tdate;
+    }
+
+    public void setTdate(String tdate) {
+        this.tdate = tdate;
+    }
 
     public ComplaintsController() {
         ejbFacade = lookupComplaintsFacadeRemote();
@@ -68,6 +91,33 @@ public class ComplaintsController {
 
     private ComplaintsFacadeRemote getFacade() {
         return ejbFacade;
+    }
+
+    public void reportComplaint() {
+        try {
+            List<entities.Complaints> list = new ArrayList<entities.Complaints>();
+            list = getFacade().findAll();
+            Map parameters = new HashMap();
+            Date date = new Date();
+            parameters.put("REPORT_TIME", date);
+            IReport.report("1complaint1.jrxml", "PDF", list,parameters);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("Report create successful!"));
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+        }
+    }
+    public void reportDetail() {
+        try {
+            List<entities.Complaints> list = new ArrayList<entities.Complaints>();
+            list.add(getFacade().find(current.getComplaintID()));
+            Map parameters = new HashMap();
+            Date date = new Date();
+            parameters.put("REPORT_TIME", date);
+            IReport.report("1complaint2.jrxml", "PDF", list,parameters);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("Report create successful!"));
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+        }
     }
 
     public PaginationHelper getPagination() {
@@ -134,7 +184,7 @@ public class ComplaintsController {
     }
 
     public String prepareView() {
-        current = (Complaints)getCurrentItems().getRowData();
+        current = (Complaints) getCurrentItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ComplaintsView";
     }
@@ -181,7 +231,7 @@ public class ComplaintsController {
     }
 
     public String prepareEdit() {
-        current = (Complaints)getCurrentItems().getRowData();
+        current = (Complaints) getCurrentItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ComplaintsEdit";
     }
