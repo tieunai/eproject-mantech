@@ -13,24 +13,24 @@
 //build menu with DIV ID="myslidemenu" on page:
     //    droplinemenu.buildmenu("mydroplinemenu")
 $(document).ready(function(){
-	$("#navbar li a.main-link").hover(function(){
-		$("#navbar li a.close").fadeIn();
-		$("#navbar li a.main-link").removeClass("active");
-		$(this).addClass("active");
-		$("#sub-link-bar").animate({
-			height: "40px"
-		});
-		$(".sub-links").hide();
-		$(this).siblings(".sub-links").fadeIn();
-	});
-	$("#navbar li a.close").click(function(){
-		$("#navbar li a.main-link").removeClass("active");
-		$(".sub-links").fadeOut();
-		$("#sub-link-bar").animate({
-			height: "10px"
-		});
-		$("#navbar li a.close").fadeOut();
-	});
+        $("#navbar li a.main-link").hover(function(){
+                $("#navbar li a.close").fadeIn();
+                $("#navbar li a.main-link").removeClass("active");
+                $(this).addClass("active");
+                $("#sub-link-bar").animate({
+                        height: "40px"
+                });
+                $(".sub-links").hide();
+                $(this).siblings(".sub-links").fadeIn();
+        });
+        $("#navbar li a.close").click(function(){
+                $("#navbar li a.main-link").removeClass("active");
+                $(".sub-links").fadeOut();
+                $("#sub-link-bar").animate({
+                        height: "10px"
+                });
+                $("#navbar li a.close").fadeOut();
+        });
 });
             </script>
             <h:form>
@@ -51,136 +51,138 @@ $(document).ready(function(){
                     <li class="fr"><a id="logged">Logged in as</a></li>
                 </ul>
             </h:form>
-         
+
             <ul id="navbar">
                 <li><a class="main-link" href="#"><span class="icon_text content"></span>Articles</a>
-                <ul class="sub-links">
-                    <c:choose>
-                    <c:when test="#{sessionScope.rolename == 'admin'}">
-                        <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ArticlesList.xhtml">
-                            <span class="icon_text grids"></span>List
-                        </h:outputLink></li>
-                      <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ArticlesCreate.xhtml">
-                            <span class="icon_text pack _253"></span>Create
-                        </h:outputLink></li>
-                    </c:when>
-                      <c:when test="#{sessionScope.rolename == 'employee'}">
-                        <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/ArticlesList.xhtml">
-                            <span class="icon_text grids"></span>List
-                        </h:outputLink></li>
-                    </c:when>
-                    </c:choose>
-                </ul>
-                    </li>
+                    <ul class="sub-links">
+                        <c:choose>
+                            <c:when test="#{sessionScope.rolename == 'admin'}">
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ArticlesList.xhtml">
+                                        <span class="icon_text grids"></span>List
+                                    </h:outputLink></li>
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ArticlesCreate.xhtml">
+                                        <span class="icon_text pack _253"></span>Create
+                                    </h:outputLink></li>
+                            </c:when>
+                            <c:when test="#{sessionScope.rolename == 'employee'}">
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/ArticlesList.xhtml">
+                                        <span class="icon_text grids"></span>List
+                                    </h:outputLink></li>
+                            </c:when>
+                        </c:choose>
+                    </ul>
+                </li>
                 <li><a class="main-link" href="#"><span class="icon_text design"></span>Departments</a>
-                   <ul class="sub-links">
-                    <c:choose>
-                        <c:when test="#{sessionScope.rolename == 'admin'}">
-                        <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/DepartmentsList.xhtml">
-                            <span class="icon_text grids"></span>List
-                        </h:outputLink></li>
-                         <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/DepartmentsCreate.xhtml">
-                            <span class="icon_text pack _253"></span>Create
-                        </h:outputLink></li>
-                    </c:when>
-                    <c:when test="#{sessionScope.rolename == 'employee'}">
-                        <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/DepartmentsList.xhtml">
-                            <span class="icon_text grids"></span>List
-                        </h:outputLink></li>
-                    </c:when>
-                    </c:choose>
-                </ul>
+                    <ul class="sub-links">
+                        <c:choose>
+                            <c:when test="#{sessionScope.rolename == 'admin'}">
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/DepartmentsList.xhtml">
+                                        <span class="icon_text grids"></span>List
+                                    </h:outputLink></li>
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/DepartmentsCreate.xhtml">
+                                        <span class="icon_text pack _253"></span>Create
+                                    </h:outputLink></li>
+                            </c:when>
+                            <c:when test="#{sessionScope.rolename == 'employee'}">
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/DepartmentsList.xhtml">
+                                        <span class="icon_text grids"></span>List
+                                    </h:outputLink></li>
+                            </c:when>
+                        </c:choose>
+                    </ul>
                 </li>
                 <li><a class="main-link" href="#"><span class="icon_text pages"></span>Threads</a>
-                  <ul class="sub-links">
-                    <c:choose>
-                    <c:when test="#{sessionScope.rolename == 'admin'}">
-                        <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ThreadsList.xhtml">
-                            <span class="icon_text grids"></span>List
-                        </h:outputLink></li>
-                         <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ThreadsCreate.xhtml">
-                            <span class="icon_text pack _253"></span>Create
-                        </h:outputLink></li>
-                    </c:when>
-                      <c:when test="#{sessionScope.rolename == 'employee'}">
-                        <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/ThreadsList.xhtml">
-                            <span class="icon_text grids"></span>List
-                        </h:outputLink></li>
-                    </c:when>
-                    </c:choose>
-                </ul>
+                    <ul class="sub-links">
+                        <c:choose>
+                            <c:when test="#{sessionScope.rolename == 'admin'}">
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ThreadsList.xhtml">
+                                        <span class="icon_text grids"></span>List
+                                    </h:outputLink></li>
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ThreadsCreate.xhtml">
+                                        <span class="icon_text pack _253"></span>Create
+                                    </h:outputLink></li>
+                            </c:when>
+                            <c:when test="#{sessionScope.rolename == 'employee'}">
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/ThreadsList.xhtml">
+                                        <span class="icon_text grids"></span>List
+                                    </h:outputLink></li>
+                            </c:when>
+                        </c:choose>
+                    </ul>
                 </li>
                 <c:choose>
                     <c:when test="#{sessionScope.rolename == 'admin'}">
-                     <li><a class="main-link" href="#"><span class="icon_text users"></span>Users</a>
-                          <ul class="sub-links">
-                         <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/UsersList.xhtml">
-                            <span class="icon_text grids"></span>List
-                        </h:outputLink></li>
-                         <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/UsersCreate.xhtml">
-                            <span class="icon_text pack _253"></span>Create
-                        </h:outputLink></li>
-                          </ul>
-                     </li>
+                        <li><a class="main-link" href="#"><span class="icon_text users"></span>Users</a>
+                            <ul class="sub-links">
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/UsersList.xhtml">
+                                        <span class="icon_text grids"></span>List
+                                    </h:outputLink></li>
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/UsersCreate.xhtml">
+                                        <span class="icon_text pack _253"></span>Create
+                                    </h:outputLink></li>
+                            </ul>
+                        </li>
                     </c:when>
                 </c:choose>
-    
+
                 <li><a class="main-link" href="#"><span class="icon_text stats"></span>Complaints</a>
-              <ul class="sub-links">
-                    <c:choose>
-                    <c:when test="#{sessionScope.rolename == 'admin'}">
-                        <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ComplaintsList.xhtml">
-                            <span class="icon_text grids"></span>List
-                        </h:outputLink></li>
-                         <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ComplaintsCreate.xhtml">
-                            <span class="icon_text pack _253"></span>Create
-                        </h:outputLink></li>
-                    </c:when>
-                      <c:when test="#{sessionScope.rolename == 'employee'}">
-                        <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/ComplaintsList.xhtml">
-                            <span class="icon_text grids"></span>List
-                        </h:outputLink></li>
-                        <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/ComplaintsCreate.xhtml">
-                            <span class="icon_text pack _253"></span>Create
-                        </h:outputLink></li>
-                    </c:when>
-                      <c:when test="#{sessionScope.rolename == 'technician'}">
-                        <li><h:outputLink styleClass="subbutton white"  value="../ea/technician/ComplaintsList.xhtml">
-                            <span class="icon_text grids"></span>List
-                        </h:outputLink></li>
-                    </c:when>
-                    </c:choose>
-                </ul>
+                    <ul class="sub-links">
+                        <c:choose>
+                            <c:when test="#{sessionScope.rolename == 'admin'}">
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ComplaintsList.xhtml">
+                                        <span class="icon_text grids"></span>List
+                                    </h:outputLink></li>
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/ComplaintsCreate.xhtml">
+                                        <span class="icon_text pack _253"></span>Create
+                                    </h:outputLink></li>
+                            </c:when>
+                            <c:when test="#{sessionScope.rolename == 'employee'}">
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/ComplaintsList.xhtml">
+                                        <span class="icon_text grids"></span>List
+                                    </h:outputLink></li>
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/ComplaintsCreate.xhtml">
+                                        <span class="icon_text pack _253"></span>Create
+                                    </h:outputLink></li>
+                            </c:when>
+                            <c:when test="#{sessionScope.rolename == 'technician'}">
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/technician/ComplaintsList.xhtml">
+                                        <span class="icon_text grids"></span>List
+                                    </h:outputLink></li>
+                            </c:when>
+                        </c:choose>
+                    </ul>
                 </li>
-                 <li><a class="main-link" href="#"><span class="icon_text comment"></span>FAQ</a>
-                     <ul class="sub-links">
-                   <c:choose>
-                    <c:when test="#{sessionScope.rolename == 'admin'}">
-                        <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/FAQsList.xhtml">
-                            <span class="icon_text grids"></span>List
-                        </h:outputLink></li>
-                         <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/FAQsCreate.xhtml">
-                            <span class="icon_text pack _253"></span>Create
-                        </h:outputLink></li>
-                    </c:when>
-                      <c:when test="#{sessionScope.rolename == 'employee'}">
-                        <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/FAQsList.xhtml">
-                            <span class="icon_text grids"></span>List
-                        </h:outputLink></li>
-                    </c:when>
-                    </c:choose>
-                     </ul>
-                 </li>
+                <li><a class="main-link" href="#"><span class="icon_text comment"></span>FAQ</a>
+                    <ul class="sub-links">
+                        <c:choose>
+                            <c:when test="#{sessionScope.rolename == 'admin'}">
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/FAQsList.xhtml">
+                                        <span class="icon_text grids"></span>List
+                                    </h:outputLink></li>
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/FAQsCreate.xhtml">
+                                        <span class="icon_text pack _253"></span>Create
+                                    </h:outputLink></li>
+                            </c:when>
+                            <c:when test="#{sessionScope.rolename == 'employee'}">
+                                <li><h:outputLink styleClass="subbutton white"  value="../ea/employee/FAQsList.xhtml">
+                                        <span class="icon_text grids"></span>List
+                                    </h:outputLink></li>
+                            </c:when>
+                        </c:choose>
+                    </ul>
+                </li>
                 <li><a class="main-link" href="#"><span class="icon_text settings"></span>Settings</a>
                     <c:choose>
                         <c:when test="#{sessionScope.rolename !=''}">
                             <ul class="sub-links">
-                          <li><h:outputLink styleClass="subbutton white"  value="../ea/account/ProfileEdit.xhtml">
-                            <span class="icon_text pack _108"></span>Profile Edit
-                        </h:outputLink></li>
-                        <li><h:outputLink styleClass="subbutton white"  value="../ea/account/ChangePwd.xhtml">
-                            <span class="icon_text pack _195"></span>Change Password
-                        </h:outputLink></li>
+                                <h:form>
+                                    <li><h:commandLink styleClass="subbutton white"  action="#{usersController.prepareUpdateProfile}">
+                                            <span class="icon_text pack _108"></span>Profile Edit
+                                        </h:commandLink></li>
+                                    <li><h:commandLink styleClass="subbutton white"  action="#{usersController.prepareUpdatePassword}">
+                                            <span class="icon_text pack _195"></span>Change Password
+                                        </h:commandLink></li>
+                                </h:form>
                             </ul>
                         </c:when>
                     </c:choose>
@@ -191,7 +193,7 @@ $(document).ready(function(){
                     <input type="text" name="search_input" value="Search..." id="search_input" class="fl" />
                 </form>
             </div>
-         
+
         </ui:composition>
     </body>
 </html>

@@ -24,7 +24,7 @@
                                 <h:dataTable value="#{complaintsController.items}" var="item" styleClass="display tabledata"  id="tabledata">
                                     <h:column>
                                         <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListComplaintsTitle_title}"/>
+                                            <h:outputText escape="false" value="#{bundle.ListComplaintsTitle_title}"/>
                                         </f:facet>
                                         <h:outputText style="font-weight: bold; color: red" value="#{item.title}"/>
                                     </h:column>
@@ -77,6 +77,12 @@
                                             <h:outputText value="#{bundle.ListThreadsTitle_threadName}"/>
                                         </f:facet>
                                         <h:outputText value="#{item.threadID.threadName}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComplaintsTitle_isComplaintFinished}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.isComplaintFinished}"/>
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">

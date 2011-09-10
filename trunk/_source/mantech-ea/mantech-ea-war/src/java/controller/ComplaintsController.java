@@ -198,6 +198,13 @@ public class ComplaintsController {
         return "AnswersList";
     }
 
+    public String prepareUpdateCompToFinished() {
+        current = (Complaints) getCurrentItems().getRowData();
+
+        updateCompToFinished();
+        return "ComplaintsList";
+    }
+
     public String prepareAnswer() {
         currentToAnswer = (Complaints) getCurrentItems().getRowData();
         current = (Complaints) getItems().getRowData();
@@ -246,6 +253,19 @@ public class ComplaintsController {
         try {
             getSelected().setEditorID(UsersController.getCurrentLoggedUser());
             getSelected().setEditIP(IPAddressUtil.getClientIP());
+
+            getFacade().edit(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ComplaintsUpdated"));
+            return "ComplaintsView";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
+    public String updateCompToFinished() {
+        try {
+            getSelected().setIsComplaintFinished(true);
 
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ComplaintsUpdated"));

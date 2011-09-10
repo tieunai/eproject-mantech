@@ -16,12 +16,8 @@
                                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                             </h:panelGroup>
                            <h:form>
-                            <h:outputLabel styleClass="form-label" value="#{bundle.CreateUsersLabel_username}" for="username" />
-                            <h:inputText  styleClass="form-field full" id="username" value="#{usersController.selected.username}" title="#{bundle.CreateUsersTitle_username}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_username}"/>
-                            <h:outputLabel styleClass="form-label"  value="#{bundle.EditUsersLabel_password}" for="password" />
-                            <h:inputSecret styleClass="form-field full" id="newPassword" value="#{usersController.tmpPassword}" title="#{bundle.EditUsersTitle_password}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_password}"/>
-                            <h:outputLabel styleClass="form-label" value="#{bundle.EditUsersLabel_confirmPassword}" for="confirmPassword" />
-                            <h:inputSecret styleClass="form-field full" id="confirmPassword" value="#{usersController.selected.password}" title="#{bundle.EditUsersTitle_confirmPassword}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_confirmPassword}"/>
+                            <h:outputLabel styleClass="form-label" value="#{bundle.CreateUsersLabel_username}"  />
+                            <h:outputLabel style="color: red"  styleClass="form-label full"  value="#{usersController.selected.username}" />
                             <h:outputLabel styleClass="form-label" value="#{bundle.CreateUsersLabel_firstName}" for="firstName" />
                             <h:inputText styleClass="form-field full" id="firstName" value="#{usersController.selected.firstName}" title="#{bundle.CreateUsersTitle_firstName}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_firstName}"/>
                             <h:outputLabel styleClass="form-label" value="#{bundle.CreateUsersLabel_lastName}" for="lastName" />

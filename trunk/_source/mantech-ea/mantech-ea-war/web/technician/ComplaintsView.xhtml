@@ -21,10 +21,10 @@
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.complaintID}" title="#{bundle.ViewComplaintsTitle_complaintID}"/>
 
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_title}"/>
-                                <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.title}" title="#{bundle.ViewComplaintsTitle_title}"/>
+                                <h:outputText escape="false" styleClass="form-label" style="color:red" value="#{complaintsController.selected.title}" title="#{bundle.ViewComplaintsTitle_title}"/>
 
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_complaintContent}"/>
-                                <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.complaintContent}" title="#{bundle.ViewComplaintsTitle_complaintContent}"/>
+                                <h:outputText escape="false" styleClass="form-label" style="color:red" value="#{complaintsController.selected.complaintContent}" title="#{bundle.ViewComplaintsTitle_complaintContent}"/>
 
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_createTime}"/>
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.createTime}" title="#{bundle.ViewComplaintsTitle_createTime}">
@@ -66,7 +66,10 @@
                                 <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.userID.username}" title="#{bundle.ListComplaintsTitle_userName}"/>
 
                                 <h:outputText styleClass="form-label" value="#{bundle.ListThreadsTitle_threadName}"/>
-                                <h:outputText styleClass="form-label" style="color:red" value="#{complaintsController.selected.threadID.threadName}" title="#{bundle.ListThreadsTitle_threadName}"/>
+                                <h:outputText escape="false" styleClass="form-label" style="color:red" value="#{complaintsController.selected.threadID.threadName}" title="#{bundle.ListThreadsTitle_threadName}"/>
+
+                                <h:outputText styleClass="form-label" value="#{bundle.ListComplaintsTitle_isComplaintFinished}"/>
+                                <h:outputText escape="false" styleClass="form-label" style="color:red" value="#{complaintsController.selected.isComplaintFinished}" title="#{bundle.ListComplaintsTitle_isComplaintFinished}"/>
 
                                 <hr/>
                                 <h:commandLink styleClass="button  themed" action="#{complaintsController.prepareAnswer}" value="#{bundle.CreateAnswersTitle}"/>

@@ -29,7 +29,7 @@
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListAnswersTitle_answerContent}"/>
+                                            <h:outputText escape="false" value="#{bundle.ListAnswersTitle_answerContent}"/>
                                         </f:facet>
                                         <h:outputText value="#{item.answerContent}"/>
                                     </h:column>
@@ -75,7 +75,7 @@
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListAnswersTitle_complaintName}"/>
+                                            <h:outputText escape="false" value="#{bundle.ListAnswersTitle_complaintName}"/>
                                         </f:facet>
                                         <h:outputText value="#{item.complaintID.title}"/>
                                     </h:column>

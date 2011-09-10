@@ -39,12 +39,11 @@ public class UsersController {
     private DataModel items = null;
     @EJB
     private facades.UsersFacadeRemote ejbFacade;
-  
     private static facades.UsersFacadeRemote ejbFacade2;
     private PaginationHelper pagination;
     private int selectedItemIndex;
     private String tmpPassword;
-    private static int currentLoggedUserID=-1;
+    private static int currentLoggedUserID = -1;
     private String tmpCurrentPassword;
 
     public String getTmpCurrentPassword() {
@@ -59,9 +58,10 @@ public class UsersController {
         return currentLoggedUserID;
     }
 
-    public static Users getCurrentLoggedUser(){
-        if(ejbFacade2 == null)
+    public static Users getCurrentLoggedUser() {
+        if (ejbFacade2 == null) {
             ejbFacade2 = lookupUsersFacadeRemote();
+        }
         return ejbFacade2.find(currentLoggedUserID);
     }
 
@@ -70,11 +70,13 @@ public class UsersController {
     }
 
     public static void setCurrentLoggedUserID(String userName) {
-        if(ejbFacade2 == null)
+        if (ejbFacade2 == null) {
             ejbFacade2 = lookupUsersFacadeRemote();
+        }
         Users u = ejbFacade2.findByUsername(userName);
-        if(u != null)
+        if (u != null) {
             UsersController.currentLoggedUserID = u.getUserID();
+        }
     }
 
     public String getTmpPassword() {
@@ -121,7 +123,7 @@ public class UsersController {
         }
     }
 
-    public int getUserIDByUserName(String userName){
+    public int getUserIDByUserName(String userName) {
         Users u = getFacade().find(getSelected().getUsername());
         if (u != null) {
             return u.getUserID();
@@ -239,7 +241,7 @@ public class UsersController {
         current.setPassword(null);
 
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "ResetPwd";
+        return "UsersResetPwd";
     }
 
     public String prepareUpdateProfile() {
@@ -254,7 +256,7 @@ public class UsersController {
 
     public String update() {
         try {
-                  getSelected().setPassword(JsfUtil.hash(getSelected().getPassword()));
+            //getSelected().setPassword(JsfUtil.hash(getSelected().getPassword()));
             getSelected().setEditIP("192.168.1.1");
             getSelected().setEditTime(new Date());
             getSelected().setIsOnline(false);
@@ -277,7 +279,7 @@ public class UsersController {
             } else if (!getTmpPassword().equals(getSelected().getPassword())) {
                 throw new Exception("New Password and Confirm Password musth match!");
             }
-                  getSelected().setPassword(JsfUtil.hash(getSelected().getPassword()));
+            getSelected().setPassword(JsfUtil.hash(getSelected().getPassword()));
             getSelected().setEditIP("192.168.1.1");
             getSelected().setEditTime(new Date());
 
@@ -303,7 +305,7 @@ public class UsersController {
             } else if (!getSelected().getPassword().equals(tmpCurrentPassword)) {
                 throw new Exception("Current password is not match.");
             }
-                  getSelected().setPassword(JsfUtil.hash(getSelected().getPassword()));
+            getSelected().setPassword(JsfUtil.hash(getSelected().getPassword()));
             getSelected().setEditIP("192.168.1.1");
             getSelected().setEditTime(new Date());
 

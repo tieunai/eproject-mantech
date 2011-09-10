@@ -18,7 +18,7 @@
                             <h:form>
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewArticlesLabel_articleID}"/>
                                 <h:outputText styleClass="form-label full" style="color:red"  value="#{articlesController.selected.articleID}" title="#{bundle.ViewArticlesTitle_articleID}"/>
-                                <h:outputText styleClass="form-label" value="#{bundle.ViewArticlesLabel_title}"/>
+                                <h:outputText escape="false" styleClass="form-label" value="#{bundle.ViewArticlesLabel_title}"/>
                                 <h:outputText styleClass="form-label full" style="color:red" value="#{articlesController.selected.title}" title="#{bundle.ViewArticlesTitle_title}"/>
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewArticlesLabel_createTime}"/>
                                 <h:outputText styleClass="form-label full" style="color:red" value="#{articlesController.selected.createTime}" title="#{bundle.ViewArticlesTitle_createTime}">
