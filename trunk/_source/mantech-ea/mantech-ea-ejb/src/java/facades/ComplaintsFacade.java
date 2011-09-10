@@ -158,10 +158,10 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
     }
 
     @Override
-    public List<Complaints> findBetweenTime(Threads thread, Date start, Date end) {
+    public List<Complaints> findBetweenTime(int threadID, Date start, Date end) {
         try {
             Query q = getEntityManager().createNamedQuery("Complaints.findByBetweenTime");
-            q.setParameter("threadID", thread);
+            q.setParameter("threadID", threadID);
             q.setParameter("fromTime", start, TemporalType.DATE);
             q.setParameter("toTime", end, TemporalType.DATE);
             return q.getResultList();
