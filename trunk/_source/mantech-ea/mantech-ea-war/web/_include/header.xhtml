@@ -28,6 +28,23 @@
             </h:form>
 
             <ul id="navbar">
+                        <c:choose>
+                    <c:when test="#{sessionScope.rolename == 'admin'}">
+                                   <li><h:outputLink  value="../ea/admin/index.xhtml">
+                                        <span class="icon_text dashboard"></span>Dashboard
+                                    </h:outputLink></li>
+                    </c:when>
+                    <c:when test="#{sessionScope.rolename == 'employee'}">
+                                   <li><h:outputLink   value="../ea/employee/index.xhtml">
+                                        <span class="icon_text dashboard"></span>Dashboard
+                                    </h:outputLink></li>
+                    </c:when>
+                    <c:when test="#{sessionScope.rolename == 'technician'}">
+                                   <li><h:outputLink  value="../ea/technician/index.xhtml">
+                                        <span class="icon_text dashboard"></span>Dashboard
+                                    </h:outputLink></li>
+                    </c:when>
+                </c:choose>
                 <li><a class="main-link" href="#"><span class="icon_text content"></span>Articles</a>
                     <ul class="sub-links">
                         <c:choose>
