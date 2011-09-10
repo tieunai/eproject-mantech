@@ -17,7 +17,9 @@
                         </h2>
                         <div class="box-content">
                             <h:form >
-                                <h:commandLink styleClass="button" action="#{complaintsController.prepareCreate}" value="#{bundle.ListComplaintsCreateLink}" immediate="true"/>
+                                <h:commandLink styleClass="button white" action="#{complaintsController.prepareCreate}" immediate="true">
+                                    <span class="icon_text addnew"/><h:outputText value="#{bundle.ListComplaintsCreateLink}"/>
+                                </h:commandLink>
                                 <br/>
                                 <h:dataTable value="#{complaintsController.itemsByUserID}" var="item" styleClass="display tabledata"  id="tabledata">
                                     <h:column>

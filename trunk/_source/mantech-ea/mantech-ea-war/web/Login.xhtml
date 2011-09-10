@@ -7,6 +7,7 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
+        <title><h:outputText value="#{bundle.WebsiteTitle}"/></title>
         <h:outputStylesheet library="css" name="jquery.ui.all.css" />
         <h:outputStylesheet library="css" name="table_data.css" />
         <h:outputStylesheet library="css" name="style.css" />
@@ -27,31 +28,31 @@ and open the template in the editor.
     <h:body>
         <div id="wrapper">
             <ul id="topbar">
-                <li><a class="button white fl" title="preview" HREF="index.html"><span class="icon_single preview"></span></a></li>
+                <li><a class="button white fl" title="preview" HREF="index.xhtml"><span class="icon_single preview"></span></a></li>
                 <li class="s_1"></li>
-                <li class="logo"><strong>Mantech HelpDesk</strong> ADMIN</li>
+                <li class="logo"><strong><h:outputText value="#{bundle.WebsiteTitle}"/></strong> ADMIN</li>
             </ul>
 
             <div id="content-login">
                 <div class="logo"></div>
-                <h2 class="header-login">Login </h2>
+                <h2 class="header-login"><h:outputText value="#{bundle.ActionLabel_Login}"/> </h2>
                 <h:messages errorClass="errorMessage" ></h:messages>
                 <h:form id="box-login">
                     <p>
-                        <label class="req"> username </label>
+                        <label class="req"><h:outputText value="#{bundle.LoginLabel_username}"/></label>
                         <br/>
-                        <h:inputText id="username" value="#{loginController.username}" size="30"></h:inputText>
+                        <h:inputText styleClass="form-field full" id="username" value="#{loginController.username}" size="30"></h:inputText>
                     </p>
                     <p>
-                        <label class="req"> password </label>
+                        <label class="req"> <h:outputText value="#{bundle.LoginLabel_password}"/></label>
                         <br/>
-                        <h:inputSecret id="password" size="30" value="#{loginController.password}"></h:inputSecret>
+                        <h:inputSecret styleClass="form-field full" id="password" size="30" value="#{loginController.password}"></h:inputSecret>
                     </p>
 
                     <p class="fr">
-                        <h:commandButton value="Submit" styleClass="button themed" action="#{loginController.login}"
-                                         type="submit"></h:commandButton>
-                        <h:commandButton value="Clear" type="reset" styleClass="button black"></h:commandButton>
+                        <h:commandButton value="#{bundle.ActionLabel_Login}" styleClass="button themed" action="#{loginController.login}" type="submit"></h:commandButton>
+                        &nbsp;
+                        <h:commandButton value="#{bundle.ActionLabel_Reset}" type="reset" styleClass="button black"></h:commandButton>
                     </p>
                     <div class="clear"></div>
                 </h:form>
