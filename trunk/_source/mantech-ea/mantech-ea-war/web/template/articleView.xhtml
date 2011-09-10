@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:body>
+        <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+<div class="column full fl">
+                    <div class="box">
+                        <h2 class="box-header">#{articlesController.selected.title} /
+                            <h:outputText  style="color:red;font-size: xx-small" value="#{articlesController.selected.createTime}" title="#{bundle.ViewArticlesTitle_createTime}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                             </h:outputText>
+                        </h2>
+                        <div class="box-content">
+
+                            <h:form>                    
+                                <h:outputText escape="false" style="color:red" value="#{articlesController.selected.content}" />
+                                <h:outputText styleClass="form-label" value="#{bundle.ViewArticlesLabel_createTime}"/>
+                                 <h:commandLink styleClass="button  themed" action="#{articlesController.increaseLike}" value="#{bundle.ActionLabel_Like}"/>
+                                 <h:outputText style="color: #0173B9" value="#{articlesController.selected.likeCount}"/>
+                                  &nbsp;
+                                <h:commandLink styleClass="button  red" action="#{articlesController.increaseDislike}" value="#{bundle.ActionLabel_Dislike}"/>
+                                <h:outputText style="color: #E10000" styleClass="spam" value="#{articlesController.selected.dislikeCount}"/>
+                            </h:form>
+                            <!--END JSF CODE-->
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
