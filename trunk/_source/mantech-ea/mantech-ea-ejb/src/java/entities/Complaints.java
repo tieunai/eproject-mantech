@@ -109,6 +109,9 @@ public class Complaints implements Serializable {
     @Basic(optional = false)
     @Column(name = "IsComplaintFinished", nullable = false)
     private boolean isComplaintFinished;
+    @Basic(optional = false)
+    @Column(name = "IsRead", nullable = false)
+    private boolean isRead;
 
     public Complaints() {
     }
@@ -126,6 +129,14 @@ public class Complaints implements Serializable {
         this.isEnable = isEnable;
         this.isFinished = isFinished;
         this.hasReplied = hasReplied;
+    }
+
+    public boolean isIsRead() {
+        return isRead;
+    }
+
+    public void setIsRead(boolean isRead) {
+        this.isRead = isRead;
     }
 
     public boolean isIsComplaintFinished() {
