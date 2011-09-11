@@ -169,20 +169,20 @@
                                     </h:commandLink></li>
                             </c:when>
                             <c:when test="#{sessionScope.rolename == 'employee'}">
-                             <li> <h:commandLink styleClass="subbutton white"  action="#{fAQsController.prepareList}">
+                                <li> <h:outputLink styleClass="subbutton white"  value="../ea/template/FAQsList.xhtml">
                                             <span class="icon_text pack _10"></span>View
-                                        </h:commandLink></li>
-                                <li><h:commandLink styleClass="subbutton white" action="#{fAQsController.prepareCreate}">
+                                 </h:outputLink></li>
+                                <li><h:outputLink styleClass="subbutton white" value="../ea/template/FAQsCreate.xhtml">
                                         <span class="icon_text pack _253"></span>Create
-                                    </h:commandLink></li>
+                                    </h:outputLink></li>
                             </c:when>
                             <c:when test="#{sessionScope.rolename == 'technician'}">
-                      <li> <h:commandLink styleClass="subbutton white"  action="#{fAQsController.prepareList}">
+                   <li> <h:outputLink styleClass="subbutton white"  value="../ea/template/FAQsList.xhtml">
                                             <span class="icon_text pack _10"></span>View
-                                        </h:commandLink></li>
-                                <li><h:commandLink styleClass="subbutton white" action="#{fAQsController.prepareCreate}">
+                                 </h:outputLink></li>
+                                <li><h:outputLink styleClass="subbutton white" value="../ea/template/FAQsCreate.xhtml">
                                         <span class="icon_text pack _253"></span>Create
-                                    </h:commandLink></li>
+                                    </h:outputLink></li>
                             </c:when>
                         </c:choose>
                         </h:form>
