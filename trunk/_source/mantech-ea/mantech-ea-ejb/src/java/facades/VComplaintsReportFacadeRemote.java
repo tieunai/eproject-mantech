@@ -26,6 +26,8 @@ public interface VComplaintsReportFacadeRemote {
 
     List<VcomplaintsReport> findBetweenTime(int department, int threadid, Date fromTime, Date toTime);
 
+    List<VcomplaintsReport> findBetweenTime(int department, int threadid, int user, Date fromTime, Date toTime);
+
     List<VcomplaintsReport> findBetweenTimeUser(int userref, Date fromTime, Date toTime);
 
     List<VcomplaintsReport> findBetweenTime(Date fromTime, Date toTime);

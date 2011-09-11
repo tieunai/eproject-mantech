@@ -39,6 +39,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "VcomplaintsReport.findByBetweenTimeUser", query = "SELECT v FROM VcomplaintsReport v WHERE v.userRef = :userRef AND v.createTime BETWEEN :start AND :end"),
     @NamedQuery(name = "VcomplaintsReport.findByBetweenTime2", query = "SELECT v FROM VcomplaintsReport v WHERE v.createTime BETWEEN :start AND :end"),
     @NamedQuery(name = "VcomplaintsReport.findByBetweenTime3", query = "SELECT v FROM VcomplaintsReport v WHERE v.departmentID = :departmentID AND v.threadID = :threadID AND v.createTime BETWEEN :start AND :end"),
+    @NamedQuery(name = "VcomplaintsReport.findByBetweenTime3", query = "SELECT v FROM VcomplaintsReport v WHERE v.departmentID = :departmentID AND v.threadID = :threadID AND v.userRef = :userRef AND v.createTime BETWEEN :start AND :end"),
     @NamedQuery(name = "VcomplaintsReport.findByThreadID", query = "SELECT v FROM VcomplaintsReport v WHERE v.threadID = :threadID")})
 public class VcomplaintsReport implements Serializable {
     private static final long serialVersionUID = 1L;

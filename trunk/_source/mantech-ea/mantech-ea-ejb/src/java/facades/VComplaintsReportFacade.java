@@ -109,7 +109,7 @@ public class VComplaintsReportFacade implements VComplaintsReportFacadeRemote {
     public List<VcomplaintsReport> findBetweenTime(int department, int threadid, Date fromTime, Date toTime) {
         try {
             Query q = getEntityManager().createNamedQuery("VcomplaintsReport.findByBetweenTime3");
-            q.setParameter("threadID", department);
+            q.setParameter("departmentID", department);
             q.setParameter("threadID", threadid);
             q.setParameter("start", fromTime, TemporalType.TIMESTAMP);
             q.setParameter("end", toTime, TemporalType.TIMESTAMP);
@@ -123,7 +123,22 @@ public class VComplaintsReportFacade implements VComplaintsReportFacadeRemote {
     public List<VcomplaintsReport> findBetweenTimeUser(int userref, Date fromTime, Date toTime) {
         try {
             Query q = getEntityManager().createNamedQuery("VcomplaintsReport.findByBetweenTimeUser");
-            q.setParameter("threadID",userref);
+            q.setParameter("userRef", userref);
+            q.setParameter("start", fromTime, TemporalType.TIMESTAMP);
+            q.setParameter("end", toTime, TemporalType.TIMESTAMP);
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
+    }
+
+    @Override
+    public List<VcomplaintsReport> findBetweenTime(int department, int threadid, int user, Date fromTime, Date toTime) {
+        try {
+            Query q = getEntityManager().createNamedQuery("VcomplaintsReport.findByBetweenTime4");
+            q.setParameter("departmentID", department);
+            q.setParameter("threadID", threadid);
+            q.setParameter("userRef", user);
             q.setParameter("start", fromTime, TemporalType.TIMESTAMP);
             q.setParameter("end", toTime, TemporalType.TIMESTAMP);
             return q.getResultList();
