@@ -10,6 +10,7 @@ import facades.Roles_UsersFacadeRemote;
 import util.JsfUtil;
 import util.PaginationHelper;
 import facades.UsersFacadeRemote;
+import java.io.Serializable;
 import java.util.Date;
 
 import java.util.ResourceBundle;
@@ -31,7 +32,7 @@ import javax.naming.NamingException;
 
 @ManagedBean(name = "usersController")
 @SessionScoped
-public class UsersController {
+public class UsersController implements Serializable {
 
     @EJB
     private RolesFacadeRemote rolesFacade;
