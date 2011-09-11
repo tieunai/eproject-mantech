@@ -16,41 +16,75 @@ and open the template in the editor.
             <ui:define name="content">
                 <div class="clear"></div>
                 <div class="column full">
-                    <span class="message information"><strong>Last login</strong>&nbsp;&nbsp;&nbsp;&nbsp;<h:outputText value="#{usersController.currentLoggedUserForW.lastVisit}" >
+                    <span class="message information"><strong>Welcome</strong> &nbsp;&nbsp;<h:outputText style="color: red" value="#{usersController.currentLoggedUserForW.username}" /><strong> Last login</strong>&nbsp;&nbsp;&nbsp;&nbsp;<h:outputText value="#{usersController.currentLoggedUserForW.lastVisit}" >
                             <f:convertDateTime type="date" dateStyle="long"/>
                         </h:outputText> </span>
                 </div>
+                                    <script type="text/javascript">
 
+$(document).ready(function() {
+$('.comview .hi').each(function()
+{
+ var read = $(this).html();
+
+ if( read == 'UnRead'){
+    $(this).parent().parent().addClass('test');
+    $('.comview .test').css('color', '#FD1212');
+ }
+
+});
+});
+
+</script>
                 <div class="column half fl">
-                    <div class="box themed_box">
+                       <div class="box themed_box">
+                <h2 class="box-header">New Complaints</h2>
+                        <div class="box-content box-table">
+                            <div class="acview">
+                                <div id="example">
+                                    <h:form>
+                                        <h:dataTable value="#{complaintsController.itemsByUserID}" var="item" styleClass="comview">
+                                            <h:column>
+                                                <span class="hit news"></span>
+                                                <h:commandLink value="#{item.title}" action="#{complaintsController.prepareView}">
+                                                </h:commandLink>
+                                            </h:column>
+      
+                                        </h:dataTable>
+                                    </h:form>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+                </div>
+                <div class="column half fr">
+                            <div class="box themed_box">
                         <h2 class="box-header"> Statistics</h2>
                         <div class="box-content typo">
 
                             <ul class="width50 fl">
                                 <li><h3><i class="title"> Content </i></h3></li>
-                                <li><a href="#"><strong>15</strong> Posts</a></li>
-                                <li><a href="#"><strong>23</strong> Pages</a></li>
-                                <li><a href="#"><strong>8</strong> Category</a></li>
-                                <li><a href="#"><strong>5</strong> Tags</a></li>
+
+                                <li><a href="#"><strong>#{articlesController.items.rowCount}</strong> Article</a></li>
+                                <li><a href="#"><strong>#{complaintsController.items.rowCount}</strong> Complaints</a></li>
+                                <li><a href="#"><strong>#{threadsController.items.rowCount}</strong> Threads</a></li>
+
                             </ul>
                             <ul class="width40 fl">
                                 <li><h3><i class="title"> Discussione </i></h3></li>
-                                <li><a href="#"><strong>40</strong> Comments</a></li>
-                                <li><a class="approved" href="#"><strong>21</strong> Approved</a></li>
-                                <li><a class="pending" href="#"><strong>18</strong> Pending </a></li>
-                                <li><a class="spam" href="#"><strong>1</strong> Spam</a></li>
+                                <li><a class="approved" href="#"><strong>#{usersController.items.rowCount}</strong> User</a></li>
+                                <li><a class="pending" href="#"><strong>#{fAQsController.items.rowCount}</strong> FAQ </a></li>
+                                <li><a class="spam" href="#"><strong>#{departmentsController.items.rowCount}</strong> Departments</a></li>
                             </ul>
                             <div class="clear"></div>
                         </div>
                     </div>
-                </div>
-
-                <div class="column half fr">
-
                     <div class="box">
                         <h2 class="box-header">#{bundle.ArticleNew}</h2>
                         <div class="box-content box-table">
-
                             <div class="acview">
                                 <div id="example">
                                     <h:form>
@@ -60,6 +94,10 @@ and open the template in the editor.
                                                 <h:commandLink value="#{item.title}" action="#{articlesController.prepareViewByEnable}">
                                                 </h:commandLink>
                                             </h:column>
+                                                                  <h:column >
+                   <h:outputText rendered="#{item.isAdminRead == 'true'}" value="Read" styleClass="hi"/>
+                   <h:outputText rendered="#{item.isAdminRead == 'false'}" value="UnRead" styleClass="hi"/>
+                                    </h:column>
                                         </h:dataTable>
                                     </h:form>
 
@@ -68,6 +106,7 @@ and open the template in the editor.
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </ui:define>
