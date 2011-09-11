@@ -26,6 +26,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.mail.internet.MailDateFormat;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -77,6 +78,8 @@ public class ComplaintsController implements Serializable{
 
     public ComplaintsController() {
         ejbFacade = lookupComplaintsFacadeRemote();
+        sdf = new SimpleDateFormat("MM/dd/yyyy");
+        tdate = sdf.format(new Date());
     }
 
     private ComplaintsFacadeRemote lookupComplaintsFacadeRemote() {
@@ -116,12 +119,13 @@ public class ComplaintsController implements Serializable{
             sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
             Date fd = new Date();
             Date td = new Date();
+            if(fdate ==null){fdate ="01/01/2011";}
             String strFDate = fdate +" 00:00:00";
             String strTDate = tdate +" 23:59:59";
             fd = sdf.parse(strFDate);
             td = sdf.parse(strTDate);
             list = getFacade().findBetweenTime(fd, td);
-            if(getSelected().getThreadID() !=null){
+            if(getSelected().getUserRef() !=null){
                 list = getFacade().findBetweenTime(getSelected().getThreadID(), fd, td);
             }
             parameters.put("REPORT_TIME", new Date());
