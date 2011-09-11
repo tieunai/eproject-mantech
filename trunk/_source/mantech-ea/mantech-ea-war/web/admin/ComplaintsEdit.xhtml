@@ -20,7 +20,9 @@
                             <h:outputLabel styleClass="form-label" value="#{bundle.EditComplaintsLabel_title}" for="title" />
                             <h:inputText styleClass="form-field full" id="title" value="#{complaintsController.selected.title}" title="#{bundle.EditComplaintsTitle_title}" required="true" requiredMessage="#{bundle.EditComplaintsRequiredMessage_title}"/>
                             <h:outputLabel styleClass="form-label" value="#{bundle.EditComplaintsLabel_priority}" for="priority" />
-                            <h:inputText styleClass="form-field full" id="priority" value="#{complaintsController.selected.priority}" title="#{bundle.EditComplaintsTitle_priority}" required="true" requiredMessage="#{bundle.EditComplaintsRequiredMessage_priority}"/>
+                            <h:selectOneMenu styleClass="form-field full" id="priority" value="#{complaintsController.selected.priority}" title="#{bundle.EditComplaintsTitle_priority}" >
+                                <f:selectItems value="#{complaintsController.priorityLevelSelectOne}"/>
+                            </h:selectOneMenu>
                             <h:outputLabel styleClass="form-label" value="#{bundle.EditComplaintsLabel_complaintContent}" for="complaintContent" />
                             <h:inputTextarea styleClass="wysiwyg full" id="complaintContent" value="#{complaintsController.selected.complaintContent}" title="#{bundle.EditComplaintsTitle_complaintContent}" required="true" requiredMessage="#{bundle.EditComplaintsRequiredMessage_complaintContent}"/>
                             <h:outputLabel styleClass="form-label" value="#{bundle.EditComplaintsLabel_userRef}" for="userRef" />
