@@ -28,6 +28,7 @@ import javax.persistence.TemporalType;
 @Table(name = "FAQs", catalog = "MantechHelpdesk", schema = "dbo")
 @NamedQueries({
     @NamedQuery(name = "FAQs.findAll", query = "SELECT f FROM FAQs f"),
+    @NamedQuery(name = "FAQs.emplfindAll", query = "SELECT f FROM FAQs f WHERE f.isEnable = 1"),
     @NamedQuery(name = "FAQs.findByFaqid", query = "SELECT f FROM FAQs f WHERE f.faqid = :faqid"),
     @NamedQuery(name = "FAQs.findByTitle", query = "SELECT f FROM FAQs f WHERE f.title = :title"),
     @NamedQuery(name = "FAQs.findByCreateIP", query = "SELECT f FROM FAQs f WHERE f.createIP = :createIP"),

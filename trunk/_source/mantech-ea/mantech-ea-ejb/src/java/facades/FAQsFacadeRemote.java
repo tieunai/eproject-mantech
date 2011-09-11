@@ -28,4 +28,6 @@ public interface FAQsFacadeRemote {
     List<FAQs> findRange(int[] range);
 
     int count();
+
+    List<FAQs> emplFindAll();
 }

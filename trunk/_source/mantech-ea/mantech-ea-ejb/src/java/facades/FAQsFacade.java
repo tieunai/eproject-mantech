@@ -2,14 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package facades;
 
 import entities.FAQs;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -17,13 +18,13 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class FAQsFacade implements FAQsFacadeRemote {
+
     @PersistenceContext(unitName = "mantech-ea-ejbPU")
     private EntityManager em;
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-
-    private EntityManager getEntityManager(){
+    private EntityManager getEntityManager() {
         return em;
     }
 
@@ -71,5 +72,15 @@ public class FAQsFacade implements FAQsFacadeRemote {
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
+    }
+
+    @Override
+    public List<FAQs> emplFindAll() {
+        try {
+            Query q = getEntityManager().createNamedQuery("FAQs.emplfindAll");
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
     }
 }
