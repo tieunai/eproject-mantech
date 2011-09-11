@@ -28,7 +28,7 @@ import javax.naming.NamingException;
 
 @ManagedBean(name = "threadsController")
 @SessionScoped
-public class ThreadsController implements Serializable{
+public class ThreadsController implements Serializable {
 
     private Threads current;
     private DataModel items = null;
@@ -276,6 +276,16 @@ public class ThreadsController implements Serializable{
         trueFalseItems[1] = new SelectItem("false", "False");
 
         return trueFalseItems;
+    }
+
+    public SelectItem[] getItemsAvailableSelectOne2() {
+        if (ComplaintsController.getStaticCurrentDepartmentID() != -1) {
+            Departments d = getDepartmentFacade().find(ComplaintsController.getStaticCurrentDepartmentID());
+            if (d != null) {
+                return JsfUtil.getThreadsSelectItems2(ejbFacade.findByDepartment(d), true);
+            }
+        }
+        return JsfUtil.getThreadsSelectItems2(ejbFacade.findAll(), true);
     }
 
     @FacesConverter(forClass = Threads.class)
