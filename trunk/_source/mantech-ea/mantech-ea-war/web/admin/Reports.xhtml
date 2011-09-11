@@ -28,7 +28,7 @@
                                     <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
                                 </h:selectOneMenu>
                                 <h:outputLabel  styleClass="form-label" value="#{bundle.EditComplaintsLabel_threadID}" for="threadID" />
-                                <h:selectOneMenu styleClass="form-field full" id="threadID" value="#{reportsController.changeThread}" title="#{bundle.EditComplaintsTitle_threadID}" onchange="submit()" valueChangeListener="#{reportsController.changeThread}" >
+                                <h:selectOneMenu styleClass="form-field full" id="threadID" value="#{reportsController.currentThreadID}" title="#{bundle.EditComplaintsTitle_threadID}" onchange="submit()" valueChangeListener="#{reportsController.changeThread}" >
                                     <f:selectItems value="#{threadsController.itemsAvailableSelectOne}"/>
                                 </h:selectOneMenu>
                                 <br/>
