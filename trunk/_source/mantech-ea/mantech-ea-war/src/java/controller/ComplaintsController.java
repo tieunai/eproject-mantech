@@ -6,6 +6,7 @@ import util.PaginationHelper;
 import entities.Users;
 import facades.ComplaintsFacadeRemote;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -45,7 +46,7 @@ public class ComplaintsController implements Serializable{
     private String fdate;
     private String tdate;
     private static int currentDepartmentID = -1;
-
+    private SimpleDateFormat sdf =null;
     public static int getStaticCurrentDepartmentID(){
         return currentDepartmentID;
     }
@@ -112,8 +113,18 @@ public class ComplaintsController implements Serializable{
             List<entities.Complaints> list = new ArrayList<entities.Complaints>();
             list = getFacade().findAll();
             Map parameters = new HashMap();
-            Date date = new Date();
-            parameters.put("REPORT_TIME", date);
+            sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+            Date fd = new Date();
+            Date td = new Date();
+            String strFDate = fdate +" 00:00:00";
+            String strTDate = tdate +" 23:59:59";
+            fd = sdf.parse(strFDate);
+            td = sdf.parse(strTDate);
+            list = getFacade().findBetweenTime(fd, td);
+            if(getSelected().getThreadID() !=null){
+                list = getFacade().findBetweenTime(getSelected().getThreadID(), fd, td);
+            }
+            parameters.put("REPORT_TIME", new Date());
             IReport.report("1complaint1.jrxml", "PDF", list,parameters);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("Report create successful!"));
         } catch (Exception e) {
