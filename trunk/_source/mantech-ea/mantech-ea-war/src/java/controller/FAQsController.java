@@ -4,6 +4,7 @@ import entities.FAQs;
 import util.JsfUtil;
 import util.PaginationHelper;
 import facades.FAQsFacadeRemote;
+import java.io.Serializable;
 import java.util.Date;
 
 import java.util.ResourceBundle;
@@ -25,7 +26,7 @@ import javax.naming.NamingException;
 
 @ManagedBean(name = "fAQsController")
 @SessionScoped
-public class FAQsController {
+public class FAQsController implements Serializable{
 
     private FAQs current;
     private DataModel items = null;
@@ -100,6 +101,11 @@ public class FAQsController {
     public String prepareList() {
         recreateModel();
         return "FAQsList";
+    }
+
+    public String prepareViewFAQ(){
+         recreateModel();
+        return "FAQsViewClient";
     }
 
     public String prepareView() {
