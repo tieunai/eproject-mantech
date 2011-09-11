@@ -54,7 +54,7 @@ public class JsfUtil {
             i++;
         }
         for (Object x : entities) {
-            items[i++] = new SelectItem(x, ((Departments)x).getDepartmentName());
+            items[i++] = new SelectItem(((Departments)x).getDepartmentID(), ((Departments)x).getDepartmentName());
         }
         return items;
     }
