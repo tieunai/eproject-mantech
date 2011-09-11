@@ -4,6 +4,7 @@
  */
 package controller;
 
+import entities.Departments;
 import entities.VcomplaintsReport;
 import facades.VComplaintsReportFacadeRemote;
 import java.text.SimpleDateFormat;
@@ -48,62 +49,72 @@ public class ReportsController {
     private int selectedItemIndex;
     private String fdate;
     private String tdate;
+
+    public String getFdate() {
+        return fdate;
+    }
+
+    public void setFdate(String fdate) {
+        this.fdate = fdate;
+    }
+
+    public String getTdate() {
+        return tdate;
+    }
+
+    public void setTdate(String tdate) {
+        this.tdate = tdate;
+    }
     private SimpleDateFormat sdf = null;
-    private static int currentDepartmentID = -1;
-    private static int currentThreadID = -1;
-    private static int currentUserRef = -1;
+    private static String currentDepartmentID = "-1";
+    private static String currentThreadID = "-1";
+    private static String currentUserRef = "-1";
 
-    public int getCurrentUserRef() {
+    public String getCurrentUserRef() {
         return currentUserRef;
     }
 
-    public static int getStaticCurrentUserRef() {
+    public static String getStaticCurrentUserRef() {
         return currentUserRef;
     }
 
-    public void setCurrentUserRef(int currentUserRef) {
+    public void setCurrentUserRef(String currentUserRef) {
         ReportsController.currentUserRef = currentUserRef;
     }
 
-    public int getCurrentThreadID() {
+    public String getCurrentThreadID() {
         return currentThreadID;
     }
 
-    public int getStaticCurrentThreadID() {
+    public String getStaticCurrentThreadID() {
         return currentThreadID;
     }
 
-    public void setCurrentThreadID(int currentThreadID) {
+    public void setCurrentThreadID(String currentThreadID) {
         ReportsController.currentThreadID = currentThreadID;
     }
 
-    public static int getStaticCurrentDepartmentID() {
+    public static String getStaticCurrentDepartmentID() {
         return currentDepartmentID;
     }
 
-    public int getCurrentDepartmentID() {
+    public String getCurrentDepartmentID() {
         return currentDepartmentID;
     }
 
-    public void setCurrentDepartmentID(int currentDepartmentID) {
+    public void setCurrentDepartmentID(String currentDepartmentID) {
         ReportsController.currentDepartmentID = currentDepartmentID;
     }
 
-    public void changeDepartment(ValueChangeEvent event) {
-        this.setCurrentDepartmentID((Integer) event.getNewValue());
-    }
-
-    public void changeThread(ValueChangeEvent event) {
-        this.setCurrentThreadID((Integer) event.getNewValue());
-    }
-
-    public void changeUser(ValueChangeEvent event) {
-        this.setCurrentUserRef((Integer) event.getNewValue());
+    public void change(ValueChangeEvent event) {
+        this.setCurrentDepartmentID((String) event.getNewValue());
     }
 
     /** Creates a new instance of ReportsController */
     public ReportsController() {
         ejbFacade = lookupVComplaintsReportFacadeRemote();
+        sdf = new SimpleDateFormat("MM/dd/yyyy");
+        tdate = sdf.format(new Date());
     }
 
     private VComplaintsReportFacadeRemote lookupVComplaintsReportFacadeRemote() {
@@ -117,28 +128,40 @@ public class ReportsController {
     }
 
     public void reportComplaint() {
-        if (currentDepartmentID != -1 && currentThreadID == 1 && currentUserRef ==-1) {
-            String t ="ok";
+        sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        Date fd = new Date();
+        Date td = new Date();
+        if (fdate == null) {
+            fdate = "01/01/2011";
         }
+        String strFDate = fdate + " 00:00:00";
+        String strTDate = tdate + " 23:59:59";
+        String fileName = "";
         try {
-            List<entities.VcomplaintsReport> list = new ArrayList<entities.VcomplaintsReport>();
-            Map parameters = new HashMap();
-            sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-            Date fd = new Date();
-            Date td = new Date();
-            if (fdate == null) {
-                fdate = "01/01/2011";
-            }
-            String strFDate = fdate + " 00:00:00";
-            String strTDate = tdate + " 23:59:59";
             fd = sdf.parse(strFDate);
             td = sdf.parse(strTDate);
+            List<entities.VcomplaintsReport> list = new ArrayList<entities.VcomplaintsReport>();
             list = getFacade().findBetweenTime(fd, td);
-//            if (getSelected().getThreadID() != null) {
-//                list = getFacade().findBetweenTime(getSelected().getThreadID(), fd, td);
-//            }
+            if (currentDepartmentID == null && currentThreadID == null && currentUserRef == null) {
+                list = getFacade().findBetweenTime(fd, td);
+            } else if (currentDepartmentID != null && currentThreadID == null && currentUserRef == null) {
+                list = getFacade().findAll(Integer.parseInt(currentDepartmentID), fd, td);
+                fileName = "1department1.jrxml";
+            } else if (currentDepartmentID == null && currentThreadID != null && currentUserRef == null) {
+                list = getFacade().findBetweenTime(Integer.parseInt(currentThreadID), fd, td);
+                fileName = "1thread1.jrxml";
+            } else if (currentDepartmentID != null && currentThreadID != null && currentUserRef == null) {
+                list = getFacade().findBetweenTime(Integer.parseInt(currentDepartmentID), Integer.parseInt(currentThreadID), fd, td);
+                fileName = "1department1.jrxml";
+            } else if (currentDepartmentID == null && currentThreadID == null && currentUserRef != null) {
+                list = getFacade().findBetweenTime(Integer.parseInt(currentUserRef), fd, td);
+                fileName = "1technician1.jrxml";
+            } else if (currentDepartmentID != null && currentThreadID != null && currentUserRef != null) {
+
+            }
+            Map parameters = new HashMap();
             parameters.put("REPORT_TIME", new Date());
-            IReport.report("1complaint1.jrxml", "PDF", list, parameters);
+            IReport.report(fileName, "PDF", list, parameters);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("Report create successful!"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -152,7 +175,7 @@ public class ReportsController {
             Map parameters = new HashMap();
             Date date = new Date();
             parameters.put("REPORT_TIME", date);
-            IReport.report("1complaint2.jrxml", "PDF", list, parameters);
+            IReport.report("1detail1.jrxml", "PDF", list, parameters);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("Report create successful!"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
