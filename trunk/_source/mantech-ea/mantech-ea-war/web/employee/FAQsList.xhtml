@@ -18,46 +18,32 @@
                         <div class="box-content">
                             <h:form >
                                 <h:commandLink styleClass="button white" action="#{fAQsController.prepareCreate}" immediate="true">
-                                    <span class="icon_text addnew"/>Add new
+                                    <span class="icon_text addnew"/>Create New FAQ
                                 </h:commandLink>
                                 <br/>
-
-                                <h:dataTable value="#{fAQsController.items}" var="item" styleClass="display tabledata"  id="tabledata">
+                                <h:dataTable value="#{fAQsController.itemsForClient}" var="item" styleClass="display tabledata"  id="tabledata">
                                     <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListFAQsTitle_title}"/>
-                                        </f:facet>
-                                        <h:outputText style="font-weight: bold; color: red" value="#{item.title}"/>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListFAQsTitle_content}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.content}"/>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListFAQsTitle_feedback}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.feedback}"/>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="#{bundle.ListFAQsTitle_createTime}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.createTime}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                        </h:outputText>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="&nbsp;"/>
-                                        </f:facet>
-                                        <h:commandLink styleClass="button white tip" title="#{bundle.ActionLabel_View}" action="#{fAQsController.prepareView}" >
-                                                  <span class="icon_single preview"/>
-                                        </h:commandLink>
-                                        <h:outputText value=" "/>
-                             
+                                        <div>
+                                            <div style="float: right">
+                                                <h:outputText value="#{item.createTime}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </div>
+                                        </div>
+                                        <p style="display: block">
+                                            <span style="font-weight: bold; color: #004c7a">
+                                                <h:outputText value="#{item.title}"/>
+                                            </span>
+                                        </p>
+                                        <div>
+                                            <h:outputText value="#{item.content}"/>
+                                            <div style="border-top: 1px dotted #ddddff; margin-bottom: 15px"/>
+                                            <p>
+                                                <h:outputText style="color: #363636" value="Answer: "/>
+                                            </p>
+                                            <h:outputText value="#{item.feedback}"/>
+                                        </div>
+                                        <hr/>
                                     </h:column>
                                 </h:dataTable>
                             </h:form>
