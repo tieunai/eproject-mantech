@@ -44,6 +44,17 @@ public class ComplaintsController {
     private String fdate;
     private String tdate;
 
+    public String priorityText(int level){
+        if(level == 1)
+            return "Low";
+        else if(level == 2)
+            return "Medium";
+        else if(level == 3)
+            return "High";
+        else
+            return "?";
+    }
+
     public String getFdate() {
         return fdate;
     }
@@ -427,6 +438,15 @@ public class ComplaintsController {
 
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
+    }
+
+    public SelectItem[] getPriorityLevelSelectOne() {
+        SelectItem[] priorityLevel = new SelectItem[3];
+        priorityLevel[0] = new SelectItem(1, "Low");
+        priorityLevel[1] = new SelectItem(2, "Medium");
+        priorityLevel[2] = new SelectItem(3, "High");
+
+        return priorityLevel;
     }
 
     @FacesConverter(forClass = Complaints.class)
