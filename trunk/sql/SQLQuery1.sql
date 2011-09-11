@@ -68,7 +68,8 @@ create table Complaints(
 	UserRef int foreign key references Users(UserID),
 	Priority int not null,
 	IsComplaintFinished bit default 0 not null,
-	IsRead bit default 0 not null
+	IsRead bit default 0 not null,
+	IsAdminRead bit default 0 not null
 );
 
 create table Answers(
