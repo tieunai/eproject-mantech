@@ -1,6 +1,8 @@
 package controller;
 
+import entities.Departments;
 import entities.Threads;
+import facades.DepartmentsFacadeRemote;
 import util.JsfUtil;
 import util.PaginationHelper;
 import facades.ThreadsFacadeRemote;
@@ -23,18 +25,32 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-@ManagedBean (name="threadsController")
+@ManagedBean(name = "threadsController")
 @SessionScoped
 public class ThreadsController {
 
     private Threads current;
     private DataModel items = null;
-    @EJB private facades.ThreadsFacadeRemote ejbFacade;
+    @EJB
+    private facades.ThreadsFacadeRemote ejbFacade;
+    @EJB
+    private facades.DepartmentsFacadeRemote departmentFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public ThreadsController() {
         ejbFacade = lookupThreadsFacadeRemote();
+        departmentFacade = lookupDepartmentsFacadeRemote();
+    }
+
+    private DepartmentsFacadeRemote lookupDepartmentsFacadeRemote() {
+        try {
+            Context c = new InitialContext();
+            return (DepartmentsFacadeRemote) c.lookup("java:global/mantech-ea/mantech-ea-ejb/DepartmentsFacade!facades.DepartmentsFacadeRemote");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
     }
 
     private ThreadsFacadeRemote lookupThreadsFacadeRemote() {
@@ -59,6 +75,10 @@ public class ThreadsController {
         return ejbFacade;
     }
 
+    private DepartmentsFacadeRemote getDepartmentFacade() {
+        return departmentFacade;
+    }
+
     public PaginationHelper getPagination() {
         if (pagination == null) {
             pagination = new PaginationHelper(10) {
@@ -70,7 +90,7 @@ public class ThreadsController {
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
+                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
                 }
             };
         }
@@ -83,7 +103,7 @@ public class ThreadsController {
     }
 
     public String prepareView() {
-        current = (Threads)getItems().getRowData();
+        current = (Threads) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ThreadsView";
     }
@@ -110,7 +130,7 @@ public class ThreadsController {
     }
 
     public String prepareEdit() {
-        current = (Threads)getItems().getRowData();
+        current = (Threads) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ThreadsEdit";
     }
@@ -130,7 +150,7 @@ public class ThreadsController {
     }
 
     public String destroy() {
-        current = (Threads)getItems().getRowData();
+        current = (Threads) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreateModel();
@@ -138,7 +158,7 @@ public class ThreadsController {
     }
 
     public String enable() {
-        current = (Threads)getItems().getRowData();
+        current = (Threads) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performEnable();
         recreateModel();
@@ -173,7 +193,7 @@ public class ThreadsController {
 
     private void performDestroy() {
         try {
-           getSelected().setEditTime(new Date());
+            getSelected().setEditTime(new Date());
             getSelected().setEditIP("192.168.1.1");
             getSelected().setIsEnable(false);
 
@@ -183,7 +203,6 @@ public class ThreadsController {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
     }
-
 
     private void performEnable() {
         try {
@@ -202,14 +221,14 @@ public class ThreadsController {
         int count = getFacade().count();
         if (selectedItemIndex >= count) {
             // selected index cannot be bigger than number of items:
-            selectedItemIndex = count-1;
+            selectedItemIndex = count - 1;
             // go to previous page if last page disappeared:
             if (pagination.getPageFirstItem() >= count) {
                 pagination.previousPage();
             }
         }
         if (selectedItemIndex >= 0) {
-            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex+1}).get(0);
+            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
         }
     }
 
@@ -241,10 +260,16 @@ public class ThreadsController {
     }
 
     public SelectItem[] getItemsAvailableSelectOne() {
+        if (ComplaintsController.getStaticCurrentDepartmentID() != -1) {
+            Departments d = getDepartmentFacade().find(ComplaintsController.getStaticCurrentDepartmentID());
+            if (d != null) {
+                return JsfUtil.getThreadsSelectItems(ejbFacade.findByDepartment(d), true);
+            }
+        }
         return JsfUtil.getThreadsSelectItems(ejbFacade.findAll(), true);
     }
 
-     public SelectItem[] getTrueFalseAvailableSelectOne() {
+    public SelectItem[] getTrueFalseAvailableSelectOne() {
         SelectItem[] trueFalseItems = new SelectItem[2];
         trueFalseItems[0] = new SelectItem("true", "True");
         trueFalseItems[1] = new SelectItem("false", "False");
@@ -252,8 +277,7 @@ public class ThreadsController {
         return trueFalseItems;
     }
 
-         
-    @FacesConverter(forClass=Threads.class)
+    @FacesConverter(forClass = Threads.class)
     public static class ThreadsControllerConverter implements Converter {
 
         @Override
@@ -261,7 +285,7 @@ public class ThreadsController {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ThreadsController controller = (ThreadsController)facesContext.getApplication().getELResolver().
+            ThreadsController controller = (ThreadsController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "threadsController");
             return controller.ejbFacade.find(getKey(value));
         }
@@ -287,10 +311,8 @@ public class ThreadsController {
                 Threads o = (Threads) object;
                 return getStringKey(o.getThreadID());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: "+ThreadsController.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + ThreadsController.class.getName());
             }
         }
-
     }
-
 }

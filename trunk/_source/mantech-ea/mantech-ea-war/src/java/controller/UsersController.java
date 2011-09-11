@@ -439,6 +439,9 @@ public class UsersController {
     }
 
     public SelectItem[] getItemsAvailableSelectOne() {
+        if(ComplaintsController.getStaticCurrentDepartmentID() != -1){
+            return JsfUtil.getUsersSelectItems(ejbFacade.findByDepartment(ComplaintsController.getStaticCurrentDepartmentID()), true);
+        }
         return JsfUtil.getUsersSelectItems(ejbFacade.findAll(), true);
     }
 

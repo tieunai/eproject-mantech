@@ -44,14 +44,18 @@ public class ComplaintsController implements Serializable{
     private static Complaints currentToAnswer;
     private String fdate;
     private String tdate;
-    private int currentDepartmentID;
+    private static int currentDepartmentID = -1;
+
+    public static int getStaticCurrentDepartmentID(){
+        return currentDepartmentID;
+    }
 
     public int getCurrentDepartmentID() {
         return currentDepartmentID;
     }
 
     public void setCurrentDepartmentID(int currentDepartmentID) {
-        this.currentDepartmentID = currentDepartmentID;
+        ComplaintsController.currentDepartmentID = currentDepartmentID;
     }
 
     public String getFdate() {
