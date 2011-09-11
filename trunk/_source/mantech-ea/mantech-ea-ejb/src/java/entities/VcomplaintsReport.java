@@ -34,9 +34,11 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "VcomplaintsReport.findByIsFinished", query = "SELECT v FROM VcomplaintsReport v WHERE v.isFinished = :isFinished"),
     @NamedQuery(name = "VcomplaintsReport.findByUserRef", query = "SELECT v FROM VcomplaintsReport v WHERE v.userRef = :userRef"),
     @NamedQuery(name = "VcomplaintsReport.findByUserID", query = "SELECT v FROM VcomplaintsReport v WHERE v.userID = :userID"),
-    @NamedQuery(name = "VcomplaintsReport.findByDepartmentID", query = "SELECT v FROM VcomplaintsReport v WHERE v.departmentID = :departmentID"),
+    @NamedQuery(name = "VcomplaintsReport.findByDepartmentID", query = "SELECT v FROM VcomplaintsReport v WHERE v.departmentID = :departmentID AND v.createTime BETWEEN :start AND :end"),
     @NamedQuery(name = "VcomplaintsReport.findByBetweenTime", query = "SELECT v FROM VcomplaintsReport v WHERE v.threadID = :threadID AND v.createTime BETWEEN :start AND :end"),
+    @NamedQuery(name = "VcomplaintsReport.findByBetweenTimeUser", query = "SELECT v FROM VcomplaintsReport v WHERE v.userRef = :userRef AND v.createTime BETWEEN :start AND :end"),
     @NamedQuery(name = "VcomplaintsReport.findByBetweenTime2", query = "SELECT v FROM VcomplaintsReport v WHERE v.createTime BETWEEN :start AND :end"),
+    @NamedQuery(name = "VcomplaintsReport.findByBetweenTime3", query = "SELECT v FROM VcomplaintsReport v WHERE v.departmentID = :departmentID AND v.threadID = :threadID AND v.createTime BETWEEN :start AND :end"),
     @NamedQuery(name = "VcomplaintsReport.findByThreadID", query = "SELECT v FROM VcomplaintsReport v WHERE v.threadID = :threadID")})
 public class VcomplaintsReport implements Serializable {
     private static final long serialVersionUID = 1L;
