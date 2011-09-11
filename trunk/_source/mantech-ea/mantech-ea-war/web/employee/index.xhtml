@@ -20,25 +20,25 @@ and open the template in the editor.
                             <f:convertDateTime type="date" dateStyle="long"/>
                         </h:outputText> </span>
                 </div>
-                                    <script type="text/javascript">
+                <script type="text/javascript">
 
 $(document).ready(function() {
 $('.comview .hi').each(function()
 {
- var read = $(this).html();
+var read = $(this).html();
 
- if( read == 'UnRead'){
-    $(this).parent().parent().addClass('test');
-    $('.comview .test').css('color', '#FD1212');
- }
+if( read == 'UnRead'){
+$(this).parent().parent().addClass('test');
+$('.comview .test').css('color', '#FD1212');
+}
 
 });
 });
 
-</script>
+                </script>
                 <div class="column half fl">
-                       <div class="box themed_box">
-                <h2 class="box-header">New Complaints</h2>
+                    <div class="box themed_box">
+                        <h2 class="box-header">New Complaints</h2>
                         <div class="box-content box-table">
                             <div class="acview">
                                 <div id="example">
@@ -49,7 +49,7 @@ $('.comview .hi').each(function()
                                                 <h:commandLink value="#{item.title}" action="#{complaintsController.prepareView}">
                                                 </h:commandLink>
                                             </h:column>
-      
+
                                         </h:dataTable>
                                     </h:form>
 
@@ -58,10 +58,10 @@ $('.comview .hi').each(function()
                             </div>
                         </div>
 
-                </div>
+                    </div>
                 </div>
                 <div class="column half fr">
-                            <div class="box themed_box">
+                    <div class="box themed_box">
                         <h2 class="box-header"> Statistics</h2>
                         <div class="box-content typo">
 
@@ -70,7 +70,7 @@ $('.comview .hi').each(function()
 
                                 <li><a href="#"><strong>#{articlesController.items.rowCount}</strong> Article</a></li>
                                 <li><a href="#"><strong>#{complaintsController.paginationByUserID.itemsCount}</strong> Complaints</a></li>
-                       
+
 
                             </ul>
                             <ul class="width40 fl">
@@ -93,14 +93,8 @@ $('.comview .hi').each(function()
                                                 <h:commandLink value="#{item.title}" action="#{articlesController.prepareViewByEnable}">
                                                 </h:commandLink>
                                             </h:column>
-                                                                  <h:column >
-                   <h:outputText rendered="#{item.isAdminRead == 'true'}" value="Read" styleClass="hi"/>
-                   <h:outputText rendered="#{item.isAdminRead == 'false'}" value="UnRead" styleClass="hi"/>
-                                    </h:column>
                                         </h:dataTable>
                                     </h:form>
-
-
                                 </div>
                             </div>
                         </div>
