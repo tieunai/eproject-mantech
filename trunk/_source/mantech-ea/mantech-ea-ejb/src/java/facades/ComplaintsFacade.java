@@ -162,8 +162,8 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
         try {
             Query q = getEntityManager().createNamedQuery("Complaints.findByBetweenTime");
             q.setParameter("threadID", threadID);
-            q.setParameter("fromTime", start);
-            q.setParameter("toTime", end);
+            q.setParameter("start", start);
+            q.setParameter("end", end);
             return q.getResultList();
         } catch (NoResultException noReEx) {
         }
@@ -175,8 +175,8 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
     public List<Complaints> findBetweenTime(String start, String end) {
         try {
             Query q = getEntityManager().createNamedQuery("Complaints.findByBetweenTime2");
-            q.setParameter("fromTime", start);
-            q.setParameter("toTime", end);
+            q.setParameter("start", start);
+            q.setParameter("end", end);
             return q.getResultList();
         } catch (NoResultException noReEx) {
         }
