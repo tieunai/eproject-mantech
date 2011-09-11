@@ -169,18 +169,18 @@ public class ComplaintsController implements Serializable{
     }
 
     public PaginationHelper getPaginationByUserID() {
-
+         
         pagination = new PaginationHelper(10) {
-
+        Users u = UsersController.getCurrentLoggedUser();
             @Override
             public int getItemsCount() {
-                return getFacade().count();
+                return getFacade().countbyem(u);
             }
 
             @Override
             public DataModel createPageDataModel() {
                 //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
-                Users u = UsersController.getCurrentLoggedUser();
+             
                 return new ListDataModel(getFacade().emplFindByUserID(u));
             }
         };
@@ -190,16 +190,16 @@ public class ComplaintsController implements Serializable{
 
     public PaginationHelper getPaginationByUserRef() {
         pagination = new PaginationHelper(10) {
-
+        Users u = UsersController.getCurrentLoggedUser();
             @Override
             public int getItemsCount() {
-                return getFacade().count();
+                return getFacade().countbytech(u);
             }
 
             @Override
             public DataModel createPageDataModel() {
                 //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
-                Users u = UsersController.getCurrentLoggedUser();
+            
                 return new ListDataModel(getFacade().emplFindByUserRef(u));
             }
         };
