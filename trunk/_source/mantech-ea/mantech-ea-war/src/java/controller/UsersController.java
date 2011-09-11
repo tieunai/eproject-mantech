@@ -455,12 +455,23 @@ public class UsersController implements Serializable {
     }
 
     public SelectItem[] getItemsAvailableSelectOne() {
-        if(ComplaintsController.getStaticCurrentDepartmentID() != -1){
+        if (ComplaintsController.getStaticCurrentDepartmentID() != -1) {
             Departments d = departmentFacade.find(ComplaintsController.getStaticCurrentDepartmentID());
-            if(d != null)
+            if (d != null) {
                 return JsfUtil.getUsersSelectItems(ejbFacade.findByDepartment(d), true);
+            }
         }
         return JsfUtil.getUsersSelectItems(ejbFacade.findAll(), true);
+    }
+
+    public SelectItem[] getItemsAvailableSelectOne2() {
+        if (ComplaintsController.getStaticCurrentDepartmentID() != -1) {
+            Departments d = departmentFacade.find(ComplaintsController.getStaticCurrentDepartmentID());
+            if (d != null) {
+                return JsfUtil.getUsersSelectItems2(ejbFacade.findByDepartment(d), true);
+            }
+        }
+        return JsfUtil.getUsersSelectItems2(ejbFacade.findAll(), true);
     }
 
     @FacesConverter(forClass = Users.class)
