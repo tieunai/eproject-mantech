@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package facades;
 
 import entities.Complaints;
@@ -18,6 +17,7 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface ComplaintsFacadeRemote {
+
     void create(Complaints entity);
 
     void edit(Complaints entity);
@@ -46,6 +46,7 @@ public interface ComplaintsFacadeRemote {
 
     List<Complaints> findByThread(Threads thread);
 
-    List<Complaints> findBetweenTime(int threadID, String fromTime, String toTime);
-    List<Complaints> findBetweenTime(String fromTime, String toTime);
+    List<Complaints> findBetweenTime(Threads threadID, Date fromTime, Date toTime);
+
+    List<Complaints> findBetweenTime(Date fromTime, Date toTime);
 }
