@@ -85,7 +85,7 @@ public class FAQsController {
 
             @Override
             public int getItemsCount() {
-                return getFacade().emplCount();
+                return getFacade().count();
             }
 
             @Override
