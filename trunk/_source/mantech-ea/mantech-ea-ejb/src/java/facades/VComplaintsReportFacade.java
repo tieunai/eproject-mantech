@@ -5,6 +5,7 @@
 package facades;
 
 import entities.Departments;
+import entities.Threads;
 import entities.VcomplaintsReport;
 import java.util.Date;
 import java.util.List;
@@ -77,5 +78,29 @@ public class VComplaintsReportFacade implements VComplaintsReportFacadeRemote {
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
+    }
+    @Override
+    public List<VcomplaintsReport> findBetweenTime(int threadid, Date fromTime, Date toTime){
+     try {
+            Query q = getEntityManager().createNamedQuery("VcomplaintsReport.findByBetweenTime");
+            q.setParameter("threadID",threadid);
+            q.setParameter("start", fromTime, TemporalType.TIMESTAMP);
+            q.setParameter("end", toTime, TemporalType.TIMESTAMP);
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
+    }
+
+    @Override
+    public List<VcomplaintsReport> findBetweenTime(Date fromTime, Date toTime){
+     try {
+            Query q = getEntityManager().createNamedQuery("VcomplaintsReport.findByBetweenTime2");
+            q.setParameter("start", fromTime, TemporalType.TIMESTAMP);
+            q.setParameter("end", toTime, TemporalType.TIMESTAMP);
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
     }
 }

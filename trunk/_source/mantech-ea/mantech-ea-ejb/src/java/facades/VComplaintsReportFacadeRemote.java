@@ -5,6 +5,7 @@
 package facades;
 
 import entities.Departments;
+import entities.Threads;
 import entities.VcomplaintsReport;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,10 @@ public interface VComplaintsReportFacadeRemote {
     VcomplaintsReport find(Object id);
 
     List<VcomplaintsReport> findAll();
+
+    List<VcomplaintsReport> findBetweenTime(int threadid, Date fromTime, Date toTime);
+
+    List<VcomplaintsReport> findBetweenTime(Date fromTime, Date toTime);
 
     List<VcomplaintsReport> findAll(Departments department);
 
