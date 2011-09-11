@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package facades;
 
 import entities.Departments;
@@ -17,7 +16,10 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface VComplaintsReportFacadeRemote {
+
     VcomplaintsReport find(Object id);
+
+    List<VcomplaintsReport> findAll();
 
     List<VcomplaintsReport> findAll(Departments department);
 

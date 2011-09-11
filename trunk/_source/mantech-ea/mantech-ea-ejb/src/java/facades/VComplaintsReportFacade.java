@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package facades;
 
 import entities.Departments;
@@ -22,21 +21,29 @@ import javax.persistence.TemporalType;
  */
 @Stateless
 public class VComplaintsReportFacade implements VComplaintsReportFacadeRemote {
-    
+
     @PersistenceContext(unitName = "mantech-ea-ejbPU")
     private EntityManager em;
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-
-    private EntityManager getEntityManager(){
+    private EntityManager getEntityManager() {
         return em;
     }
-
 
     @Override
     public VcomplaintsReport find(Object id) {
         return getEntityManager().find(VcomplaintsReport.class, id);
+    }
+
+    @Override
+    public List<VcomplaintsReport> findAll() {
+        try {
+            Query q = getEntityManager().createNamedQuery("VcomplaintsReport.findAll");
+            return q.getResultList();
+        } catch (NoResultException noReEx) {
+        }
+        return null;
     }
 
     @Override
@@ -71,5 +78,4 @@ public class VComplaintsReportFacade implements VComplaintsReportFacadeRemote {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
- 
 }
