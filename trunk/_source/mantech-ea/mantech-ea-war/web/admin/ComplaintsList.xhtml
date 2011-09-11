@@ -7,7 +7,21 @@
     <h:body>
         <ui:composition template="/_include/master.xhtml">
             <ui:define name="content">
+                                    <script type="text/javascript">
 
+$(document).ready(function() {
+$('.tabledata .hi').each(function()
+{
+ var read = $(this).html();
+ if( read == 'Read'){
+   // $('.tabledata tbody tr').nextUntil($('.tabledata .hi').parent(),"tr").addClass('test');
+    $(this).parent().parent().addClass('test');
+    $('.tabledata .test').css('color', '#B69797');
+ 
+ }
+});
+});
+</script>
                 <div class="clear"></div>
                 <div class="column full">
 
@@ -103,6 +117,13 @@
                                             <h:outputText value="#{bundle.ListComplaintsTitle_isComplaintFinished}"/>
                                         </f:facet>
                                         <h:outputText value="#{item.isComplaintFinished}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComplaintsTitle_isComplaintFinished}"/>
+                                        </f:facet>
+ <h:outputText rendered="#{item.isAdminRead == 'true'}" value="Read" styleClass="hi"/>
+ <h:outputText rendered="#{item.isAdminRead == 'false'}" value="UnRead" styleClass="hi"/>
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
