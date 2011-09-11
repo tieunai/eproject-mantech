@@ -57,6 +57,17 @@ public class ComplaintsController implements Serializable{
         return currentDepartmentID;
     }
 
+    //DEMO METHOD
+    public int getCountByTime(){
+        Date from = new Date();
+        from.setMonth(5);
+        Date to = new Date();
+        to.setMonth(12);
+        System.out.println("FROM-:" + from);
+        System.out.println("TO-:" + to);
+        return getFacade().countBetweenTime(from, to);
+    }
+
     public void change(ValueChangeEvent event) {
       // ((Departments)event.getNewValue()).getDepartmentID();
       //Integer page =   (Integer)event.getNewValue();

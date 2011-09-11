@@ -16,7 +16,7 @@ and open the template in the editor.
             <ui:define name="content">
                 <div class="clear"></div>
                 <div class="column full">
-                    <span class="message information"><strong>Welcome</strong> &nbsp;&nbsp;<h:outputText style="color: red" value="#{usersController.currentLoggedUserForW.username}" /><strong> Last login</strong>&nbsp;&nbsp;&nbsp;&nbsp;<h:outputText value="#{usersController.currentLoggedUserForW.lastVisit}" >
+                    <span class="message information"><strong>Welcome:<h:outputText value="#{complaintsController.countByTime}"/></strong> &nbsp;&nbsp;<h:outputText style="color: red" value="#{usersController.currentLoggedUserForW.username}" /><strong> Last login</strong>&nbsp;&nbsp;&nbsp;&nbsp;<h:outputText value="#{usersController.currentLoggedUserForW.lastVisit}" >
                             <f:convertDateTime type="date" dateStyle="long"/>
                         </h:outputText> </span>
                 </div>
