@@ -1,6 +1,7 @@
 package controller;
 
 import entities.Complaints;
+import entities.Departments;
 import util.JsfUtil;
 import util.PaginationHelper;
 import entities.Users;
@@ -23,10 +24,10 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import javax.mail.internet.MailDateFormat;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -56,6 +57,11 @@ public class ComplaintsController implements Serializable{
         return currentDepartmentID;
     }
 
+    public void change(ValueChangeEvent event) {
+      // ((Departments)event.getNewValue()).getDepartmentID();
+      //Integer page =   (Integer)event.getNewValue();
+      this.setCurrentDepartmentID((Integer)event.getNewValue());
+    }
     public void setCurrentDepartmentID(int currentDepartmentID) {
         ComplaintsController.currentDepartmentID = currentDepartmentID;
     }
@@ -286,12 +292,14 @@ public class ComplaintsController implements Serializable{
     }
 
     public String prepareCreate() {
+       this.setCurrentDepartmentID(-1);
         current = new Complaints();
         selectedItemIndex = -1;
         return "ComplaintsCreate";
     }
 
     public String create() {
+ 
         try {
             getSelected().setUserID(UsersController.getCurrentLoggedUser());
             getSelected().setCreateTime(new Date());
@@ -314,6 +322,7 @@ public class ComplaintsController implements Serializable{
     }
 
     public String prepareEdit() {
+         this.setCurrentDepartmentID(-1);
         current = (Complaints) getCurrentItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "ComplaintsEdit";
