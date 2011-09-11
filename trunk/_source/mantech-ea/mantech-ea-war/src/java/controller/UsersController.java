@@ -195,6 +195,11 @@ public class UsersController {
         return "UsersView";
     }
 
+    public String prepareViewProfile() {
+        current = UsersController.getCurrentLoggedUser();
+        return "/account/UsersView";
+    }
+
     public String prepareCreate() {
         current = new Users();
         selectedItemIndex = -1;
