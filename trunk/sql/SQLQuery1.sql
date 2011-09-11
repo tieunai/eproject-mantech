@@ -52,7 +52,7 @@ create table Threads(
 
 create table Complaints(
 	ComplaintID int identity primary key,
-	ThreadID int foreign key references Threads(ThreadID) not null,
+	ThreadID int foreign key references Threads(ThreadID),
 	UserID int foreign key references Users(UserID) not null,
 	Title nvarchar(256) not null,
 	ComplaintContent nvarchar(max) not null,
@@ -121,12 +121,14 @@ insert into Roles(RoleName) values('employee')
 
 go
 
-CREATE VIEW [dbo].[v_role_user]
+CREATE VIEW [dbo].[v_complaintsReport]
 AS
-SELECT     dbo.Roles.RoleName, dbo.Users.Username, dbo.Users.Password
-FROM         dbo.Roles INNER JOIN
-                      dbo.Roles_Users ON dbo.Roles.RoleID = dbo.Roles_Users.RoleID INNER JOIN
-                      dbo.Users ON dbo.Roles.RoleID = dbo.Users.RoleID AND dbo.Roles_Users.UserID = dbo.Users.UserID
+SELECT     dbo.Complaints.Title, dbo.Threads.ThreadName, dbo.Departments.DepartmentName, dbo.Complaints.CreateTime, dbo.Complaints.FinishedTime, 
+                      dbo.Complaints.RepliedTime, dbo.Complaints.IsFinished, dbo.Complaints.UserRef, dbo.Complaints.UserID, dbo.Departments.DepartmentID, dbo.Threads.ThreadID, 
+                      dbo.Complaints.ComplaintID
+FROM         dbo.Complaints INNER JOIN
+                      dbo.Threads ON dbo.Complaints.ThreadID = dbo.Threads.ThreadID INNER JOIN
+                      dbo.Departments ON dbo.Threads.DepartmentID = dbo.Departments.DepartmentID
 
 GO
 
