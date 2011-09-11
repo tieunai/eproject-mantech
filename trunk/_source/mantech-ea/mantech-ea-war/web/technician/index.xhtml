@@ -72,15 +72,15 @@ $('.comview .hi').each(function()
                                 <li><h3><i class="title"> Content </i></h3></li>
 
                                 <li><a href="#"><strong>#{articlesController.items.rowCount}</strong> Article</a></li>
-                                <li><a href="#"><strong>#{complaintsController.items.rowCount}</strong> Complaints</a></li>
-                                <li><a href="#"><strong>#{threadsController.items.rowCount}</strong> Threads</a></li>
+                                <li><a href="#"><strong>#{complaintsController.paginationByUserRef.itemsCount}</strong> Complaints</a></li>
+                                
 
                             </ul>
                             <ul class="width40 fl">
                                 <li><h3><i class="title"> Discussione </i></h3></li>
-                                <li><a class="approved" href="#"><strong>#{usersController.items.rowCount}</strong> User</a></li>
+             
                                 <li><a class="pending" href="#"><strong>#{fAQsController.items.rowCount}</strong> FAQ </a></li>
-                                <li><a class="spam" href="#"><strong>#{departmentsController.items.rowCount}</strong> Departments</a></li>
+                                <li><a href="#"><strong>#{threadsController.items.rowCount}</strong> Threads</a></li>
                             </ul>
                             <div class="clear"></div>
                         </div>
