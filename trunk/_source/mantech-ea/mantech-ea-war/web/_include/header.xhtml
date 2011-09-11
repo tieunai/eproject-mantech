@@ -144,6 +144,15 @@
                         </c:choose>
                     </ul>
                 </li>
+                <c:choose>
+                    <c:when test="#{sessionScope.rolename == 'admin'}">
+                  <li>
+                      <h:outputLink styleClass="main-link"  value="../ea/admin/Reports.xhtml">
+                                        <span class="icon_text media"></span> Reports
+                      </h:outputLink></li>
+                    </c:when>
+                </c:choose>
+
                 <li><a class="main-link" href="#"><span class="icon_text comment"></span>FAQ</a>
                     <ul class="sub-links">
                         <c:choose>
