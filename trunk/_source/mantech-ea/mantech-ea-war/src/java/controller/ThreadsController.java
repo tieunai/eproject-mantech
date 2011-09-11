@@ -6,6 +6,7 @@ import facades.DepartmentsFacadeRemote;
 import util.JsfUtil;
 import util.PaginationHelper;
 import facades.ThreadsFacadeRemote;
+import java.io.Serializable;
 import java.util.Date;
 
 import java.util.ResourceBundle;
@@ -27,7 +28,7 @@ import javax.naming.NamingException;
 
 @ManagedBean(name = "threadsController")
 @SessionScoped
-public class ThreadsController {
+public class ThreadsController implements Serializable{
 
     private Threads current;
     private DataModel items = null;
