@@ -32,22 +32,25 @@ $('.tabledata .hi').each(function()
                         <div class="box-content">
                             <div style="display: inline">
                                 <h:form>
-                                    <h:commandLink styleClass="button white" action="#{complaintsController.prepareCreate}" immediate="true">
-                                        <span class="icon_text addnew"/>Add new
-                                    </h:commandLink>
-                                </h:form>
-                                <h:form>
-                                    <h:commandLink styleClass="button white" action="#{complaintsController.reportComplaint}">
-                                        <span class="icon_text save"/>Report
-                                    </h:commandLink>
-                                    <h:outputText value="ThreadName"/>
-                                    <h:selectOneMenu styleClass="form-field full" value="#{complaintsController.selected.threadID}" title="#{bundle.EditComplaintsTitle_threadID}" requiredMessage="#{bundle.EditComplaintsRequiredMessage_threadID}">
-                                        <f:selectItems value="#{threadsController.itemsAvailableSelectOne}"/>
-                                    </h:selectOneMenu>
-                                    <h:outputText value="From"/>
-                                    <h:inputText styleClass="form-field " value="#{complaintsController.fdate}"/>
-                                    <h:outputText value="To"/>
-                                    <h:inputText styleClass="form-field " value="#{complaintsController.tdate}"/>
+                                 <h:outputText value="Department"/>
+                                <h:selectOneMenu id="departmentID" value="#{departmentsController.selected.departmentID}" title="#{bundle.EditDepartmentsLabel_departmentID}">
+                                    <f:selectItems value="#{departmentsController.itemsAvailableSelectOne}"/>
+                                </h:selectOneMenu>
+                                <h:outputText value="ThreadName"/>
+                                <h:selectOneMenu id="threadID" value="#{complaintsController.selected.threadID}" title="#{bundle.EditComplaintsTitle_threadID}">
+                                    <f:selectItems value="#{threadsController.itemsAvailableSelectOne}"/>
+                                </h:selectOneMenu>
+                                <h:outputText value="Technician"/>
+                                <h:selectOneMenu id="userid" value="#{usersController.selected.userID}" title="#{bundle.EditUsersLabel_userID}">
+                                    <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
+                                </h:selectOneMenu>
+                                <h:outputText value="From"/>
+                                <h:inputText styleClass="form-field datepicker" value="#{complaintsController.fdate}"/>
+                                <h:outputText value="To"/>
+                                <h:inputText styleClass="form-field datepicker" value="#{complaintsController.tdate}"/>
+                                <h:commandLink styleClass="button white" action="#{complaintsController.reportComplaint}" >
+                                    <span class="icon_text save"/>Report
+                                </h:commandLink>
                                     <br/>
                                 </h:form>
                             </div>
