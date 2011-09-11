@@ -113,6 +113,9 @@ public class Complaints implements Serializable {
     @Basic(optional = false)
     @Column(name = "IsRead", nullable = false)
     private boolean isRead;
+    @Basic(optional = false)
+    @Column(name = "IsAdminRead", nullable = false)
+    private boolean isAdminRead;
 
     public Complaints() {
     }
@@ -130,6 +133,14 @@ public class Complaints implements Serializable {
         this.isEnable = isEnable;
         this.isFinished = isFinished;
         this.hasReplied = hasReplied;
+    }
+
+    public boolean isIsAdminRead() {
+        return isAdminRead;
+    }
+
+    public void setIsAdminRead(boolean isAdminRead) {
+        this.isAdminRead = isAdminRead;
     }
 
     public boolean isIsRead() {
