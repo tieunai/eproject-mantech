@@ -155,35 +155,37 @@
 
                 <li><a class="main-link" href="#"><span class="icon_text comment"></span>FAQ</a>
                     <ul class="sub-links">
+                        <h:form>
                         <c:choose>
                             <c:when test="#{sessionScope.rolename == 'admin'}">
-                                <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/FAQsList.xhtml">
-                                        <span class="icon_text grids"></span>List
-                                    </h:outputLink></li>
-                                <li><h:outputLink styleClass="subbutton white"  value="../ea/admin/FAQsCreate.xhtml">
+                                <li> <h:commandLink styleClass="subbutton white"  action="#{fAQsController.prepareList}">
+                                            <span class="icon_text grids"></span>List
+                                        </h:commandLink></li>
+                                <li><h:commandLink styleClass="subbutton white" action="#{fAQsController.prepareCreate}">
                                         <span class="icon_text pack _253"></span>Create
-                                    </h:outputLink></li>
-                                   <li><h:outputLink styleClass="subbutton white"  value="../ea/template/FAQsList.xhtml">
+                                    </h:commandLink></li>
+                                <li><h:commandLink styleClass="subbutton white"  action="#{fAQsController.prepareViewFAQ}">
                                         <span class="icon_text pack _10"></span>View
-                                    </h:outputLink></li>
+                                    </h:commandLink>></li>
                             </c:when>
                             <c:when test="#{sessionScope.rolename == 'employee'}">
-                                <li><h:outputLink styleClass="subbutton white"  value="../ea/template/FAQsList.xhtml">
-                                        <span class="icon_text grids"></span>List
-                                    </h:outputLink></li>
-                                <li><h:outputLink styleClass="subbutton white"  value="../ea/template/FAQsCreate.xhtml">
+                             <li> <h:commandLink styleClass="subbutton white"  action="#{fAQsController.prepareList}">
+                                            <span class="icon_text pack _10"></span>View
+                                        </h:commandLink></li>
+                                <li><h:commandLink styleClass="subbutton white" action="#{fAQsController.prepareCreate}">
                                         <span class="icon_text pack _253"></span>Create
-                                    </h:outputLink></li>
+                                    </h:commandLink></li>
                             </c:when>
                             <c:when test="#{sessionScope.rolename == 'technician'}">
-                                <li><h:outputLink styleClass="subbutton white"  value="../ea/template/FAQsList.xhtml">
-                                        <span class="icon_text grids"></span>List
-                                    </h:outputLink></li>
-                                <li><h:outputLink styleClass="subbutton white"  value="../ea/template/FAQsCreate.xhtml">
+                      <li> <h:commandLink styleClass="subbutton white"  action="#{fAQsController.prepareList}">
+                                            <span class="icon_text pack _10"></span>View
+                                        </h:commandLink></li>
+                                <li><h:commandLink styleClass="subbutton white" action="#{fAQsController.prepareCreate}">
                                         <span class="icon_text pack _253"></span>Create
-                                    </h:outputLink></li>
+                                    </h:commandLink></li>
                             </c:when>
                         </c:choose>
+                        </h:form>
                     </ul>
                 </li>
                 <li><a class="main-link" href="#"><span class="icon_text settings"></span>Settings</a>
