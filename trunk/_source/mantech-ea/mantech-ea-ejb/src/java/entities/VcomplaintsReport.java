@@ -74,7 +74,19 @@ public class VcomplaintsReport implements Serializable {
     @Column(name = "ThreadID", nullable = false)
     private int threadID;
 
+    @Basic(optional = false)
+    @Column(name = "ComplaintID", nullable = false)
+    private int complaintID;
+
     public VcomplaintsReport() {
+    }
+
+    public int getComplaintID() {
+        return complaintID;
+    }
+
+    public void setComplaintID(int complaintID) {
+        this.complaintID = complaintID;
     }
 
     public String getTitle() {
