@@ -5,6 +5,7 @@ import util.JsfUtil;
 import util.PaginationHelper;
 import entities.Users;
 import facades.ComplaintsFacadeRemote;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -32,7 +33,7 @@ import util.IReport;
 
 @ManagedBean(name = "complaintsController")
 @SessionScoped
-public class ComplaintsController {
+public class ComplaintsController implements Serializable{
 
     private Complaints current;
     private DataModel items = null;
@@ -43,16 +44,14 @@ public class ComplaintsController {
     private static Complaints currentToAnswer;
     private String fdate;
     private String tdate;
+    private int currentDepartmentID;
 
-    public String priorityText(int level){
-        if(level == 1)
-            return "Low";
-        else if(level == 2)
-            return "Medium";
-        else if(level == 3)
-            return "High";
-        else
-            return "?";
+    public int getCurrentDepartmentID() {
+        return currentDepartmentID;
+    }
+
+    public void setCurrentDepartmentID(int currentDepartmentID) {
+        this.currentDepartmentID = currentDepartmentID;
     }
 
     public String getFdate() {
@@ -189,12 +188,24 @@ public class ComplaintsController {
         return pagination;
     }
 
+    public String listUserInDepartment(){
+        System.out.println("DEPARTMENT: " + currentDepartmentID);
+        return null;
+    }
+
     public String prepareList() {
         recreateModel();
         return "ComplaintsList";
     }
 
     public String prepareView() {
+        current = (Complaints) getCurrentItems().getRowData();
+
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "ComplaintsView";
+    }
+
+    public String prepareTechView() {
         current = (Complaints) getCurrentItems().getRowData();
 
         setCompIsRead();
