@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:body>
+        <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+
+                <div class="clear"></div>
+                <div class="column full">
+
+                    <div class="box">
+                        <h2 class="box-header">
+                            <h:outputText value="#{bundle.FAQsManagement_tableName}"/>
+                        </h2>
+                        <div class="box-content">
+                            <h:form >
+                                <h:commandLink styleClass="button white" action="#{fAQsController.prepareCreate}" immediate="true">
+                                    <span class="icon_text addnew"/>Create New FAQ
+                                </h:commandLink>
+                                <br/>
+                                <h:dataTable value="#{fAQsController.itemsForClient}" var="item" styleClass="display tabledata"  id="tabledata">
+                                    <h:column>
+                                        <div>
+                                            <div style="float: right">
+                                                <h:outputText value="#{item.createTime}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </div>
+                                        </div>
+                                        <p style="display: block">
+                                            <span style="font-weight: bold; color: #004c7a">
+                                                <h:outputText value="#{item.title}"/>
+                                            </span>
+                                        </p>
+                                        <div>
+                                            <h:outputText value="#{item.content}"/>
+                                            <div style="border-top: 1px dotted #ddddff; margin-bottom: 15px"/>
+                                            <p>
+                                                <h:outputText style="color: #363636" value="Answer: "/>
+                                            </p>
+                                            <h:outputText value="#{item.feedback}"/>
+                                        </div>
+                                        <hr/>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
