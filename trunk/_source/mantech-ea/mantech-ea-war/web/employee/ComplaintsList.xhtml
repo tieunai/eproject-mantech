@@ -40,7 +40,9 @@
                                         <f:facet name="header">
                                             <h:outputText value="#{bundle.ListComplaintsTitle_priority}"/>
                                         </f:facet>
-                                        <h:outputText value="#{item.priority}"/>
+                                        <h:outputText rendered="#{item.priority == 1}" value="Low"/>
+                                        <h:outputText rendered="#{item.priority == 2}" value="Medium"/>
+                                        <h:outputText rendered="#{item.priority == 3}" value="High"/>
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">

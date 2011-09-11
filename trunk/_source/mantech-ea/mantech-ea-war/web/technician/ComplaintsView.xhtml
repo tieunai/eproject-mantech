@@ -23,6 +23,11 @@
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_title}"/>
                                 <h:outputText escape="false" styleClass="form-label" style="color:red" value="#{complaintsController.selected.title}" title="#{bundle.ViewComplaintsTitle_title}"/>
 
+                                <h:outputText styleClass="form-label" value="#{bundle.ListComplaintsTitle_priority}"/>
+                                <h:outputText styleClass="form-label full" escape="false" style="color:red" rendered="#{complaintsController.selected.priority == '1'}" value="Low" title="#{bundle.ListComplaintsTitle_priority}"/>
+                                <h:outputText styleClass="form-label full" escape="false" style="color:red" rendered="#{complaintsController.selected.priority == '2'}" value="Medium" title="#{bundle.ListComplaintsTitle_priority}"/>
+                                <h:outputText styleClass="form-label full" escape="false" style="color:red" rendered="#{complaintsController.selected.priority == '3'}" value="High" title="#{bundle.ListComplaintsTitle_priority}"/>
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_complaintContent}"/>
                                 <h:outputText escape="false" styleClass="form-label" style="color:red" value="#{complaintsController.selected.complaintContent}" title="#{bundle.ViewComplaintsTitle_complaintContent}"/>
 

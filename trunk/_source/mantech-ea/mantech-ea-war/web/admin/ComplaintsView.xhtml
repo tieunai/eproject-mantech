@@ -26,6 +26,11 @@
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_complaintContent}"/>
                                 <h:outputText styleClass="form-label full" escape="false" style="color:red" value="#{complaintsController.selected.complaintContent}" title="#{bundle.ViewComplaintsTitle_complaintContent}"/>
 
+                                <h:outputText styleClass="form-label" value="#{bundle.ListComplaintsTitle_priority}"/>
+                                <h:outputText styleClass="form-label full" escape="false" style="color:red" rendered="#{complaintsController.selected.priority == 1}" value="Low" title="#{bundle.ListComplaintsTitle_priority}"/>
+                                <h:outputText styleClass="form-label full" escape="false" style="color:red" rendered="#{complaintsController.selected.priority == 2}" value="Medium" title="#{bundle.ListComplaintsTitle_priority}"/>
+                                <h:outputText styleClass="form-label full" escape="false" style="color:red" rendered="#{complaintsController.selected.priority == 3}" value="High" title="#{bundle.ListComplaintsTitle_priority}"/>
+
                                 <h:outputText styleClass="form-label" value="#{bundle.ViewComplaintsLabel_createTime}"/>
                                 <h:outputText styleClass="form-label full" style="color:red" value="#{complaintsController.selected.createTime}" title="#{bundle.ViewComplaintsTitle_createTime}">
                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />

@@ -16,25 +16,27 @@
                             <h:outputText value="#{bundle.ComplaintsManagement_tableName}"/>
                         </h2>
                         <div class="box-content">
-                            <h:form>
-                                <h:commandLink styleClass="button white" action="#{complaintsController.prepareCreate}" immediate="true">
-                                    <span class="icon_text addnew"/>Add new
-                                </h:commandLink>
-                            </h:form>
-                            <h:form>
-                                <h:commandLink styleClass="button white" action="#{complaintsController.reportComplaint}" immediate="true">
-                                    <span class="icon_text save"/>Report
-                                </h:commandLink>
-                                <h:outputText value="ThreadName"/>
-                                <h:selectOneMenu styleClass="form-field full" id="threadID" value="#{complaintsController.selected.threadID}" title="#{bundle.EditComplaintsTitle_threadID}" requiredMessage="#{bundle.EditComplaintsRequiredMessage_threadID}">
-                                    <f:selectItems value="#{threadsController.itemsAvailableSelectOne}"/>
-                                </h:selectOneMenu>
-                                <h:outputText value="From"/>
-                                <h:inputText styleClass="form-field full" id="fdate" value="#{complaintsController.fdate}" id="fdate"/>
-                                <h:outputText value="To"/>
-                                <h:inputText styleClass="form-field full" id="tdate" value="#{complaintsController.tdate}"/>
-                                <br/>
-                            </h:form>
+                            <div style="display: inline">
+                                <h:form>
+                                    <h:commandLink styleClass="button white" action="#{complaintsController.prepareCreate}" immediate="true">
+                                        <span class="icon_text addnew"/>Add new
+                                    </h:commandLink>
+                                </h:form>
+                                <h:form>
+                                    <h:commandLink styleClass="button white" action="#{complaintsController.reportComplaint}" immediate="true">
+                                        <span class="icon_text save"/>Report
+                                    </h:commandLink>
+                                    <h:outputText value="ThreadName"/>
+                                    <h:selectOneMenu styleClass="form-field full" id="threadID" value="#{complaintsController.selected.threadID}" title="#{bundle.EditComplaintsTitle_threadID}" requiredMessage="#{bundle.EditComplaintsRequiredMessage_threadID}">
+                                        <f:selectItems value="#{threadsController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                    <h:outputText value="From"/>
+                                    <h:inputText styleClass="form-field " id="fdate" value="#{complaintsController.fdate}"/>
+                                    <h:outputText value="To"/>
+                                    <h:inputText styleClass="form-field " id="tdate" value="#{complaintsController.tdate}"/>
+                                    <br/>
+                                </h:form>
+                            </div>
                             <h:form>
                                 <h:dataTable value="#{complaintsController.items}" var="item" styleClass="display tabledata"  id="tabledata">
                                     <h:column>
@@ -55,8 +57,9 @@
                                         <f:facet name="header">
                                             <h:outputText value="#{bundle.ListComplaintsTitle_priority}"/>
                                         </f:facet>
-                                        <h:outputText value="#{item.priority}">
-                                        </h:outputText>
+                                        <h:outputText rendered="#{item.priority == 1}" value="Low"/>
+                                        <h:outputText rendered="#{item.priority == 2}" value="Medium"/>
+                                        <h:outputText rendered="#{item.priority == 3}" value="High"/>
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
@@ -68,7 +71,8 @@
                                         <f:facet name="header">
                                             <h:outputText value="#{bundle.ListComplaintsTitle_isFinished}"/>
                                         </f:facet>
-                                        <h:outputText value="#{item.isFinished}"/>
+                                        <h:outputText rendered="#{item.isFinished=='true'}" value="Yes"/>
+                                        <h:outputText rendered="#{item.isFinished=='false'}" value="No"/>
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
