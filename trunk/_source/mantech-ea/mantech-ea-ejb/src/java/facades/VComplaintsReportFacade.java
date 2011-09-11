@@ -43,7 +43,7 @@ public class VComplaintsReportFacade implements VComplaintsReportFacadeRemote {
     public List<VcomplaintsReport> findAll(Departments department) {
         try {
             Query q = getEntityManager().createNamedQuery("VcomplaintsReport.findByDepartmentID");
-            q.setParameter("departmentID", department.getDepartmentID());
+            q.setParameter("departmentID", department);
             return q.getResultList();
         } catch (NoResultException noReEx) {
         }
@@ -54,9 +54,9 @@ public class VComplaintsReportFacade implements VComplaintsReportFacadeRemote {
     public List<VcomplaintsReport> findAll(Departments department, Date start, Date end) {
         try {
             Query q = getEntityManager().createNamedQuery("VcomplaintsReport.findByDepartmentID");
-            q.setParameter("departmentID", department.getDepartmentID());
-            q.setParameter("start", start, TemporalType.DATE);
-            q.setParameter("end", end, TemporalType.DATE);
+            q.setParameter("departmentID", department);
+            q.setParameter("start", start, TemporalType.TIMESTAMP);
+            q.setParameter("end", end, TemporalType.TIMESTAMP);
             return q.getResultList();
         } catch (NoResultException noReEx) {
         }
