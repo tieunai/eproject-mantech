@@ -28,21 +28,21 @@
             </h:form>
 
             <ul id="navbar">
-                        <c:choose>
+                <c:choose>
                     <c:when test="#{sessionScope.rolename == 'admin'}">
-                                   <li><h:outputLink  value="../ea/admin/index.xhtml">
-                                        <span class="icon_text dashboard"></span>Dashboard
-                                    </h:outputLink></li>
+                        <li><h:outputLink  value="../ea/admin/index.xhtml">
+                                <span class="icon_text dashboard"></span>Dashboard
+                            </h:outputLink></li>
                     </c:when>
                     <c:when test="#{sessionScope.rolename == 'employee'}">
-                                   <li><h:outputLink   value="../ea/employee/index.xhtml">
-                                        <span class="icon_text dashboard"></span>Dashboard
-                                    </h:outputLink></li>
+                        <li><h:outputLink   value="../ea/employee/index.xhtml">
+                                <span class="icon_text dashboard"></span>Dashboard
+                            </h:outputLink></li>
                     </c:when>
                     <c:when test="#{sessionScope.rolename == 'technician'}">
-                                   <li><h:outputLink  value="../ea/technician/index.xhtml">
-                                        <span class="icon_text dashboard"></span>Dashboard
-                                    </h:outputLink></li>
+                        <li><h:outputLink  value="../ea/technician/index.xhtml">
+                                <span class="icon_text dashboard"></span>Dashboard
+                            </h:outputLink></li>
                     </c:when>
                 </c:choose>
                 <li><a class="main-link" href="#"><span class="icon_text content"></span>Articles</a>
@@ -176,6 +176,9 @@
                                         </h:commandLink></li>
                                     <li><h:commandLink styleClass="subbutton white"  action="#{usersController.prepareUpdatePassword}">
                                             <span class="icon_text pack _195"></span>Change Password
+                                        </h:commandLink></li>
+                                    <li><h:commandLink styleClass="subbutton white"  action="#{usersController.prepareView}">
+                                            <span class="icon_text pack _55"></span>My Profile
                                         </h:commandLink></li>
                                 </h:form>
                             </ul>
