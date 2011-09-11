@@ -203,9 +203,28 @@ public class ComplaintsController {
         return "ComplaintsView";
     }
 
+    public String adminPrepareView() {
+        current = (Complaints) getCurrentItems().getRowData();
+
+        setCompIsAdminRead();
+
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "ComplaintsView";
+    }
+
     private void setCompIsRead(){
         try {
             getSelected().setIsRead(true);
+
+            getFacade().edit(current);
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+        }
+    }
+
+    private void setCompIsAdminRead(){
+        try {
+            getSelected().setIsAdminRead(true);
 
             getFacade().edit(current);
         } catch (Exception e) {
@@ -253,6 +272,7 @@ public class ComplaintsController {
             getSelected().setPriority(getSelected().getPriority() == null ? 1 : getSelected().getPriority());
             getSelected().setIsComplaintFinished(false);
             getSelected().setIsRead(false);
+            getSelected().setIsAdminRead(false);
 
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ComplaintsCreated"));
