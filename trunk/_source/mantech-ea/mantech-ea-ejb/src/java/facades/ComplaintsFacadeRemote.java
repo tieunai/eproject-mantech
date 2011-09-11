@@ -47,4 +47,5 @@ public interface ComplaintsFacadeRemote {
     List<Complaints> findByThread(Threads thread);
 
     List<Complaints> findBetweenTime(int threadID, String fromTime, String toTime);
+    List<Complaints> findBetweenTime(String fromTime, String toTime);
 }
