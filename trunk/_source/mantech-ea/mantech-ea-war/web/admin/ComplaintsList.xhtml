@@ -7,21 +7,21 @@
     <h:body>
         <ui:composition template="/_include/master.xhtml">
             <ui:define name="content">
-                                    <script type="text/javascript">
+                <script type="text/javascript">
 
 $(document).ready(function() {
 $('.tabledata .hi').each(function()
 {
- var read = $(this).html();
- if( read == 'Read'){
-   // $('.tabledata tbody tr').nextUntil($('.tabledata .hi').parent(),"tr").addClass('test');
-    $(this).parent().parent().addClass('test');
-    $('.tabledata .test').css('color', '#B69797');
+var read = $(this).html();
+if( read == 'Read'){
+// $('.tabledata tbody tr').nextUntil($('.tabledata .hi').parent(),"tr").addClass('test');
+$(this).parent().parent().addClass('test');
+$('.tabledata .test').css('color', '#B69797');
  
- }
+}
 });
 });
-</script>
+                </script>
                 <div class="clear"></div>
                 <div class="column full">
 
@@ -32,25 +32,27 @@ $('.tabledata .hi').each(function()
                         <div class="box-content">
                             <div style="display: inline">
                                 <h:form>
-                                 <h:outputText value="Department"/>
-                                <h:selectOneMenu id="departmentID" value="#{departmentsController.selected.departmentID}" title="#{bundle.EditDepartmentsLabel_departmentID}">
-                                    <f:selectItems value="#{departmentsController.itemsAvailableSelectOne}"/>
-                                </h:selectOneMenu>
-                                <h:outputText value="ThreadName"/>
-                                <h:selectOneMenu id="threadID" value="#{complaintsController.selected.threadID}" title="#{bundle.EditComplaintsTitle_threadID}">
-                                    <f:selectItems value="#{threadsController.itemsAvailableSelectOne}"/>
-                                </h:selectOneMenu>
-                                <h:outputText value="Technician"/>
-                                <h:selectOneMenu id="userid" value="#{usersController.selected.userID}" title="#{bundle.EditUsersLabel_userID}">
-                                    <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
-                                </h:selectOneMenu>
-                                <h:outputText value="From"/>
-                                <h:inputText styleClass="form-field datepicker" value="#{complaintsController.fdate}"/>
-                                <h:outputText value="To"/>
-                                <h:inputText styleClass="form-field datepicker" value="#{complaintsController.tdate}"/>
-                                <h:commandLink styleClass="button white" action="#{complaintsController.reportComplaint}" >
-                                    <span class="icon_text save"/>Report
-                                </h:commandLink>
+                                    <h:outputText value="Department: "/>
+                                    <h:selectOneMenu styleClass="form-field" id="departmentID" value="#{departmentsController.selected.departmentID}" title="#{bundle.EditDepartmentsLabel_departmentID}">
+                                        <f:selectItems value="#{departmentsController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                    <h:outputText value="ThreadName: "/>
+                                    <h:selectOneMenu styleClass="form-field" id="threadID" value="#{complaintsController.selected.threadID}" title="#{bundle.EditComplaintsTitle_threadID}">
+                                        <f:selectItems value="#{threadsController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                    <h:outputText value="Technician: "/>
+                                    <h:selectOneMenu styleClass="form-field" id="userid" value="#{usersController.selected.userID}" title="#{bundle.EditUsersLabel_userID}">
+                                        <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
+                                    </h:selectOneMenu>
+                                    <br/>
+                                    <h:outputText value="From: "/>
+                                    <h:inputText styleClass="form-field datepicker" value="#{complaintsController.fdate}"/>
+                                    <h:outputText value="To: "/>
+                                    <h:inputText styleClass="form-field datepicker" value="#{complaintsController.tdate}"/>
+                                    <br/>
+                                    <h:commandLink styleClass="button white" action="#{complaintsController.reportComplaint}" >
+                                        <span class="icon_text save"/>Report
+                                    </h:commandLink>
                                     <br/>
                                 </h:form>
                             </div>
@@ -125,8 +127,8 @@ $('.tabledata .hi').each(function()
                                         <f:facet name="header">
                                             <h:outputText value="#{bundle.ListComplaintsTitle_isComplaintFinished}"/>
                                         </f:facet>
- <h:outputText rendered="#{item.isAdminRead == 'true'}" value="Read" styleClass="hi"/>
- <h:outputText rendered="#{item.isAdminRead == 'false'}" value="UnRead" styleClass="hi"/>
+                                        <h:outputText rendered="#{item.isAdminRead == 'true'}" value="Read" styleClass="hi"/>
+                                        <h:outputText rendered="#{item.isAdminRead == 'false'}" value="UnRead" styleClass="hi"/>
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
