@@ -4,6 +4,7 @@ import entities.Departments;
 import util.JsfUtil;
 import util.PaginationHelper;
 import facades.DepartmentsFacadeRemote;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -30,7 +31,7 @@ import util.IReport;
 
 @ManagedBean(name = "departmentsController")
 @SessionScoped
-public class DepartmentsController {
+public class DepartmentsController implements Serializable{
 
     private Departments current;
     private DataModel items = null;
