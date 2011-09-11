@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:body>
+        <ui:composition template="/_include/master.xhtml">
+            <ui:define name="content">
+
+                <div class="clear"></div>
+                <div class="column full">
+
+                    <div class="box">
+                        <h2 class="box-header">
+                            <h:outputText value="#{bundle.Report_Name}"/>
+                        </h2>
+                        <div class="box-content">
+                            <h:form>
+                                <h:outputLabel styleClass="form-label" value="#{bundle.EditDepartmentsTitle_departmentName}" for="department" />
+                                <h:selectOneMenu styleClass="form-field" id="department" value="#{complaintsController.currentDepartmentID}" title="#{bundle.EditDepartmentsTitle_departmentName}" onchange="submit()"
+                                                 valueChangeListener="#{complaintsController.change}" >
+                                    <f:selectItems value="#{departmentsController.itemsAvailableSelectOne}"/>
+                                </h:selectOneMenu>
+                                <h:outputLabel styleClass="form-label" value="#{bundle.EditComplaintsLabel_userRef}" for="userRef" />
+                                <h:selectOneMenu styleClass="form-field full" id="userRef" value="#{complaintsController.selected.userRef}" title="#{bundle.EditComplaintsTitle_userRef}" >
+                                    <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
+                                </h:selectOneMenu>
+                                <h:outputLabel  styleClass="form-label" value="#{bundle.EditComplaintsLabel_threadID}" for="threadID" />
+                                <h:selectOneMenu styleClass="form-field full" id="threadID" value="#{complaintsController.selected.threadID}" title="#{bundle.EditComplaintsTitle_threadID}" required="true" requiredMessage="#{bundle.EditComplaintsRequiredMessage_threadID}">
+                                    <f:selectItems value="#{threadsController.itemsAvailableSelectOne}"/>
+                                </h:selectOneMenu>
+                                <br/>
+                                <h:outputText value="From: "/>
+                                <h:inputText styleClass="form-field datepicker" value="#{complaintsController.fdate}"/>
+                                <h:outputText value="To: "/>
+                                <h:inputText styleClass="form-field datepicker" value="#{complaintsController.tdate}"/>
+                                <br/>
+                                <h:commandLink styleClass="button white" action="#{complaintsController.reportComplaint}" >
+                                    <span class="icon_text save"/>Report
+                                </h:commandLink>
+                                <br/>
+                            </h:form>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
