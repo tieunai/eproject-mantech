@@ -4,6 +4,7 @@ import entities.Articles;
 import util.JsfUtil;
 import util.PaginationHelper;
 import facades.ArticlesFacadeRemote;
+import java.io.Serializable;
 import java.util.Date;
 
 import java.util.ResourceBundle;
@@ -26,7 +27,7 @@ import util.IPAddressUtil;
 
 @ManagedBean(name = "articlesController")
 @SessionScoped
-public class ArticlesController {
+public class ArticlesController implements Serializable {
 
     private Articles current;
     private DataModel items = null;
