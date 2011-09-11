@@ -1,8 +1,10 @@
 package controller;
 
+import entities.Departments;
 import entities.Roles;
 import entities.Users;
 import entities.Users_Roles;
+import facades.DepartmentsFacadeRemote;
 import facades.RolesFacadeRemote;
 import facades.Roles_UsersFacadeRemote;
 import util.JsfUtil;
@@ -39,6 +41,8 @@ public class UsersController {
     private DataModel items = null;
     @EJB
     private facades.UsersFacadeRemote ejbFacade;
+    @EJB
+    private facades.DepartmentsFacadeRemote departmentFacade;
     private static facades.UsersFacadeRemote ejbFacade2;
     private PaginationHelper pagination;
     private int selectedItemIndex;
@@ -96,6 +100,17 @@ public class UsersController {
         ejbFacade = lookupUsersFacadeRemote();
         roles_UsersFacade = lookupRUFacadeRemote();
         rolesFacade = lookupRolesFacadeRemote();
+        departmentFacade = lookupDepartmentsFacadeRemote();
+    }
+
+    private DepartmentsFacadeRemote lookupDepartmentsFacadeRemote() {
+        try {
+            Context c = new InitialContext();
+            return (DepartmentsFacadeRemote) c.lookup("java:global/mantech-ea/mantech-ea-ejb/DepartmentsFacade!facades.DepartmentsFacadeRemote");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
     }
 
     private static UsersFacadeRemote lookupUsersFacadeRemote() {
@@ -440,7 +455,9 @@ public class UsersController {
 
     public SelectItem[] getItemsAvailableSelectOne() {
         if(ComplaintsController.getStaticCurrentDepartmentID() != -1){
-            return JsfUtil.getUsersSelectItems(ejbFacade.findByDepartment(ComplaintsController.getStaticCurrentDepartmentID()), true);
+            Departments d = departmentFacade.find(ComplaintsController.getStaticCurrentDepartmentID());
+            if(d != null)
+                return JsfUtil.getUsersSelectItems(ejbFacade.findByDepartment(d), true);
         }
         return JsfUtil.getUsersSelectItems(ejbFacade.findAll(), true);
     }
