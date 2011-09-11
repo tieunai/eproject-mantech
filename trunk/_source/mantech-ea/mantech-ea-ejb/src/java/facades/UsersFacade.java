@@ -4,6 +4,7 @@
  */
 package facades;
 
+import entities.Departments;
 import entities.Roles;
 import entities.Users;
 import java.util.List;
@@ -89,10 +90,10 @@ public class UsersFacade implements UsersFacadeRemote {
     }
 
     @Override
-    public List<Users> findByDepartment(int departmentID) {
+    public List<Users> findByDepartment(Departments department) {
         try {
             Query q = getEntityManager().createNamedQuery("Users.findByDepartmentID");
-            q.setParameter("departmentID", departmentID);
+            q.setParameter("departmentID", department);
             return q.getResultList();
         } catch (NoResultException noReEx) {
         }

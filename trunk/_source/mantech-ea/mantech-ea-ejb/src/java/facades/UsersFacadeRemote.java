@@ -5,6 +5,7 @@
 
 package facades;
 
+import entities.Departments;
 import entities.Roles;
 import entities.Users;
 import java.util.List;
@@ -32,7 +33,7 @@ public interface UsersFacadeRemote {
 
     Users find(String userName);
 
-    List<Users> findByDepartment(int departmentID);
+    List<Users> findByDepartment(Departments department);
 
     List<Users> findByRole(Roles role);
 
