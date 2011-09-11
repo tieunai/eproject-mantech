@@ -20,11 +20,13 @@
                                 <h:commandLink styleClass="button white" action="#{complaintsController.prepareCreate}" immediate="true">
                                     <span class="icon_text addnew"/>Add new
                                 </h:commandLink>
+                            </h:form>
+                            <h:form>
                                 <h:commandLink styleClass="button white" action="#{complaintsController.reportComplaint}" immediate="true">
                                     <span class="icon_text save"/>Report
                                 </h:commandLink>
                                 <h:outputText value="ThreadName"/>
-                                <h:selectOneMenu styleClass="form-field full" id="threadID" value="#{complaintsController.selected.threadID}" title="#{bundle.EditComplaintsTitle_threadID}" required="true" requiredMessage="#{bundle.EditComplaintsRequiredMessage_threadID}">
+                                <h:selectOneMenu styleClass="form-field full" id="threadID" value="#{complaintsController.selected.threadID}" title="#{bundle.EditComplaintsTitle_threadID}" requiredMessage="#{bundle.EditComplaintsRequiredMessage_threadID}">
                                     <f:selectItems value="#{threadsController.itemsAvailableSelectOne}"/>
                                 </h:selectOneMenu>
                                 <h:outputText value="From"/>
@@ -32,6 +34,8 @@
                                 <h:outputText value="To"/>
                                 <h:inputText value="#{complaintsController.tdate}"/>
                                 <br/>
+                            </h:form>
+                            <h:form>
                                 <h:dataTable value="#{complaintsController.items}" var="item" styleClass="display tabledata"  id="tabledata">
                                     <h:column>
                                         <f:facet name="header">
