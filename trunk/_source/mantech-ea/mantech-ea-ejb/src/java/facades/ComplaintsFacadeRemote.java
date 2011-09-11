@@ -53,4 +53,6 @@ public interface ComplaintsFacadeRemote {
     List<Complaints> findBetweenTime(Threads threadID, Date fromTime, Date toTime);
 
     List<Complaints> findBetweenTime(Date fromTime, Date toTime);
+
+    int countBetweenTime(Date fromTime, Date toTime);
 }

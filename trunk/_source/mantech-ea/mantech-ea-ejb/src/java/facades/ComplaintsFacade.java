@@ -161,7 +161,7 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
     public List<Complaints> findBetweenTime(Threads thread, Date fromTime, Date toTime) {
         try {
             Query q = getEntityManager().createNamedQuery("Complaints.findByBetweenTime");
-            q.setParameter("threadID",thread);
+            q.setParameter("threadID", thread);
             q.setParameter("start", fromTime, TemporalType.TIMESTAMP);
             q.setParameter("end", toTime, TemporalType.TIMESTAMP);
             return q.getResultList();
@@ -181,19 +181,25 @@ public class ComplaintsFacade implements ComplaintsFacadeRemote {
         }
         return null;
     }
-        @Override
+
+    @Override
     public int countbyem(Users user) {
-          Query q = getEntityManager().createNamedQuery("Complaints.countbyem");
-          q.setParameter("userID", user);
-          Number countResult=(Number) q.getSingleResult();
-          return  countResult.intValue();
+        Query q = getEntityManager().createNamedQuery("Complaints.countbyem");
+        q.setParameter("userID", user);
+        Number countResult = (Number) q.getSingleResult();
+        return countResult.intValue();
     }
 
     @Override
     public int countbytech(Users user) {
-         Query q = getEntityManager().createNamedQuery("Complaints.countbytech");
-          q.setParameter("userRef", user);
-          Number countResult=(Number) q.getSingleResult();
-          return  countResult.intValue();
+        Query q = getEntityManager().createNamedQuery("Complaints.countbytech");
+        q.setParameter("userRef", user);
+        Number countResult = (Number) q.getSingleResult();
+        return countResult.intValue();
+    }
+
+    @Override
+    public int countBetweenTime(Date fromTime, Date toTime) {
+        return findBetweenTime(fromTime, toTime).size();
     }
 }
