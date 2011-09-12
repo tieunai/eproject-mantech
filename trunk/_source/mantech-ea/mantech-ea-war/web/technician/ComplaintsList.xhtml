@@ -7,6 +7,14 @@
     <h:body>
         <ui:composition template="/_include/master.xhtml">
             <ui:define name="content">
+                <script type="text/javascript" >
+                    function refresh()
+                    {
+                      setTimeout("refresh()",300000);
+                      location.reload(true);
+                    }
+                    refresh();
+                </script>
 
                 <div class="clear"></div>
                 <div class="column full">

@@ -9,18 +9,25 @@
             <ui:define name="content">
                 <script type="text/javascript">
 
-$(document).ready(function() {
-$('.tabledata .hi').each(function()
-{
-var read = $(this).html();
-if( read == 'Read'){
-// $('.tabledata tbody tr').nextUntil($('.tabledata .hi').parent(),"tr").addClass('test');
-$(this).parent().parent().addClass('test');
-$('.tabledata .test').css('color', '#B69797');
- 
-}
-});
-});
+                    $(document).ready(function() {
+                    $('.tabledata .hi').each(function()
+                    {
+                    var read = $(this).html();
+                    if( read == 'Read'){
+                    // $('.tabledata tbody tr').nextUntil($('.tabledata .hi').parent(),"tr").addClass('test');
+                    $(this).parent().parent().addClass('test');
+                    $('.tabledata .test').css('color', '#B69797');
+
+                    }
+                    });
+                    });
+
+                    function refresh()
+                    {
+                      setTimeout("refresh()",300000);
+                      location.reload(true);
+                    }
+                    refresh();
                 </script>
                 <div class="clear"></div>
                 <div class="column full">
@@ -31,30 +38,7 @@ $('.tabledata .test').css('color', '#B69797');
                         </h2>
                         <div class="box-content">
                             <div style="display: inline">
-                                <h:form>
-                                    <h:outputText value="Department: "/>
-                                    <h:selectOneMenu styleClass="form-field" id="departmentID" value="#{departmentsController.selected.departmentID}" title="#{bundle.EditDepartmentsLabel_departmentID}">
-                                        <f:selectItems value="#{departmentsController.itemsAvailableSelectOne}"/>
-                                    </h:selectOneMenu>
-                                    <h:outputText value="ThreadName: "/>
-                                    <h:selectOneMenu styleClass="form-field" id="threadID" value="#{complaintsController.selected.threadID}" title="#{bundle.EditComplaintsTitle_threadID}">
-                                        <f:selectItems value="#{threadsController.itemsAvailableSelectOne}"/>
-                                    </h:selectOneMenu>
-                                    <h:outputText value="Technician: "/>
-                                    <h:selectOneMenu styleClass="form-field" id="userid" value="#{usersController.selected.userID}" title="#{bundle.EditUsersLabel_userID}">
-                                        <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
-                                    </h:selectOneMenu>
-                                    <br/>
-                                    <h:outputText value="From: "/>
-                                    <h:inputText styleClass="form-field datepicker" value="#{complaintsController.fdate}"/>
-                                    <h:outputText value="To: "/>
-                                    <h:inputText styleClass="form-field datepicker" value="#{complaintsController.tdate}"/>
-                                    <br/>
-                                    <h:commandLink styleClass="button white" action="#{complaintsController.reportComplaint}" >
-                                        <span class="icon_text save"/>Report
-                                    </h:commandLink>
-                                    <br/>
-                                </h:form>
+                                <input type="button" title="Re" onclick="refresh()"/>
                             </div>
                             <h:form>
                                 <h:dataTable value="#{complaintsController.items}" var="item" styleClass="display tabledata"  id="tabledata">
