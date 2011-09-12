@@ -24,8 +24,7 @@
 
                     function refresh()
                     {
-                      setTimeout("refresh()",300000);
-                      location.reload(true);
+                      setTimeout("location.reload(true);",300000);
                     }
                     refresh();
                 </script>
@@ -37,9 +36,6 @@
                             <h:outputText value="#{bundle.ComplaintsManagement_tableName}"/>
                         </h2>
                         <div class="box-content">
-                            <div style="display: inline">
-                                <input type="button" title="Re" onclick="refresh()"/>
-                            </div>
                             <h:form>
                                 <h:dataTable value="#{complaintsController.items}" var="item" styleClass="display tabledata"  id="tabledata">
                                     <h:column>
