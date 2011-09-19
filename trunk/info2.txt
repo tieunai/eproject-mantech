@@ -1,3 +1,0 @@
-svn checkout:	https://c0812i-semiv.googlecode.com/svn/trunk/ c0812i-semiv
-
-trunk:			https://c0812i-semiv.googlecode.com/svn/trunk
